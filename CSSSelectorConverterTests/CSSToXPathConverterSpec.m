@@ -54,20 +54,24 @@ describe(@"CSSToXPathParser", ^{
         
         css = [converter xpathWithCSS:@"p#header" error:&error];
         [[css should] equal:@"//p[@id = 'header']"];
+        
+        css = [converter xpathWithCSS:@"p#header.red" error:&error];
+        [[css should] equal:@"//p[@id = 'header' and contains(concat(' ', normalize-space(@class), ' '), ' red ')]"];
     });
     
-    it(@"should parse selectors", ^{
-        NSError *error = nil;
-        NSString* css = [converter xpathWithCSS:@"div p" error:&error];
-        [[css should] equal:@"//div//p"];
-        
-        css = [converter xpathWithCSS:@"div *" error:&error];
-        [[css should] equal:@"//div//*"];
-        
-        css = [converter xpathWithCSS:@"div#main p" error:&error];
-        [[css should] equal:@"//div[@id = 'main']//p"];
+//    it(@"should parse selectors", ^{
+//        NSError *error = nil;
+//        NSString* css = [converter xpathWithCSS:@"div p" error:&error];
+//        [[css should] equal:@"//div//p"];
+//        
+//        css = [converter xpathWithCSS:@"div *" error:&error];
+//        [[css should] equal:@"//div//*"];
+//        
+//        css = [converter xpathWithCSS:@"div#main p" error:&error];
+//        [[css should] equal:@"//div[@id = 'main']//p"];
+//
+//    });
 
-    });
 });
 
 SPEC_END

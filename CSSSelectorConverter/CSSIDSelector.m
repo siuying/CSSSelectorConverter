@@ -15,7 +15,7 @@
 }
 
 -(NSString*) toXPath {
-    return [NSString stringWithFormat:@"[@id = '%@']", self.name];
+    return [NSString stringWithFormat:@"@id = '%@'", self.name];
 }
 
 @end

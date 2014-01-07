@@ -15,7 +15,7 @@
 }
 
 -(NSString*) toXPath {
-    return [NSString stringWithFormat:@"[contains(concat(' ', normalize-space(@class), ' '), ' %@ ')]", self.name];
+    return [NSString stringWithFormat:@"contains(concat(' ', normalize-space(@class), ' '), ' %@ ')", self.name];
 }
 
 @end
