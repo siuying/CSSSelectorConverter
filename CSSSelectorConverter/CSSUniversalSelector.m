@@ -10,10 +10,6 @@
 
 @implementation CSSUniversalSelector
 
-+(instancetype) selector {
-    return [[self alloc] init];
-}
-
 -(NSString*) description {
     return @"<UniversalSelector>";
 }

@@ -12,4 +12,6 @@
 
 -(NSString*) toXPath;
 
++(instancetype) selector;
+
 @end

@@ -18,4 +18,8 @@
     return @"";
 }
 
++(instancetype) selector {
+    return [[self alloc] init];
+}
+
 @end

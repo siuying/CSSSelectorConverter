@@ -13,6 +13,4 @@
 
 @interface CSSUniversalSelector : CSSBaseSelector
 
-+(instancetype) selector;
-
 @end
