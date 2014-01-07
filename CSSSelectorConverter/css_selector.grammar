@@ -1,22 +1,21 @@
 /*
 A CSS Selector to XPath Selector Grammar
 */
-
-@start 
+@start
 @before{
   PKTokenizer *t = self.tokenizer;
-  [t.symbolState add:@"."]; 
-}                 = selectorsGroup;                        
-selectorsGroup          = selectors ( selectors )*;
-selectors               = selectorSequence (combinator selectorSequence)* {
+  [t.symbolState add:@"."];
+}                       = selectorsGroup;                        
+selectorsGroup          = selector ( ','! selector )*;
+selector                = simpleSelectorSequence (simpleSelectorSequence | childSimpleSelectorSequence)* {
   PUSH_SELECTORS();
 };
-selectorSequence        = (universalSelector | typeSelector)? ( classSelector | idSelector )* {
+childSimpleSelectorSequence = '>' simpleSelectorSequence;
+simpleSelectorSequence  = (universalSelector | typeSelector)? (classSelector | idSelector)* {
   PUSH_SELECTOR_SEQUENCE();
 };
-combinator              = '+' | '>' | '~';
 attributeSelector       = '['! Word ('=' QuotedString)? ']'!;
-classSelector           ='.'! Word {
+classSelector           = '.'! Word {
   PUSH_CSS_CLASS(POP_STR());
 };
 idSelector              = '#'! Word {

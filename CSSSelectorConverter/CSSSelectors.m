@@ -7,6 +7,7 @@
 //
 
 #import "CSSSelectors.h"
+#import "CSSChildSelector.h"
 
 @implementation CSSSelectors
 
@@ -20,32 +21,51 @@
     [self.sequences addObject:sequence];
 }
 
+-(void) addChild:(CSSChildSelector*)child {
+    [self.sequences addObject:child];
+}
+
 -(NSString*) description {
     return [NSString stringWithFormat:@"<CSSSelectors %@>", self.sequences];
 }
 
 -(NSString*) toXPath {
     NSMutableString* result = [[NSMutableString alloc] init];
-
-    [self.sequences enumerateObjectsUsingBlock:^(CSSSelectorSequence* selector, NSUInteger idx, BOOL *stop) {
+    
+    NSArray* reverseSequence = [[self.sequences reverseObjectEnumerator] allObjects];
+    [reverseSequence enumerateObjectsUsingBlock:^(CSSSelectorSequence* selector, NSUInteger idx, BOOL *stop) {
         [result appendString:selector.toXPath];
     }];
 
     return [result copy];
 }
 
-+(instancetype) selectorWithAssembly:(PKSTokenAssembly*)assembly {
++(instancetype) selectorWithAssembly:(PKAssembly*)assembly {
     CSSSelectors* selectors = [[self alloc] init];
-    CSSSelectorSequence* sequence = nil;
-    while ((sequence = [assembly pop])) {
-        if ([sequence isKindOfClass:[CSSSelectorSequence class]]) {
+    CSSSelectorSequence* sequence1 = [assembly pop];
+    [selectors addSequence:sequence1];
+
+    id token;
+    while ((token = [assembly pop])) {
+        if ([token isKindOfClass:[CSSSelectorSequence class]]) {
+            NSLog(@" token is sequence: %@", token);
+            CSSSelectorSequence* sequence = token;
             [selectors addSequence:sequence];
+
         } else {
-            [assembly push:sequence];
-            [assembly push:selectors];
-            return selectors;
+            NSLog(@" token is separator: %@", token);
+            NSString* tokenString;
+            if ([token respondsToSelector:@selector(stringValue)]) {
+                tokenString = [token stringValue];
+            } else {
+                tokenString = [token description];
+            }
+            if ([tokenString isEqualToString:@">"]) {
+                [selectors addChild:[CSSChildSelector selector]];
+            }
         }
     }
+
     [assembly push:selectors];
     return selectors;
 }

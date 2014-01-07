@@ -8,6 +8,7 @@
 
 #import "CSSBaseSelector.h"
 #import "CSSSelectorSequence.h"
+#import "CSSChildSelector.h"
 #import <ParseKit/ParseKit.h>
 
 #define PUSH_SELECTORS() [CSSSelectors selectorWithAssembly:self.assembly];
@@ -17,6 +18,8 @@
 @property (nonatomic, strong) NSMutableArray* sequences;
 
 -(void) addSequence:(CSSSelectorSequence*)sequence;
+
+-(void) addChild:(CSSChildSelector*)child;
 
 +(instancetype) selectorWithAssembly:(PKSTokenAssembly*)assembly;
 

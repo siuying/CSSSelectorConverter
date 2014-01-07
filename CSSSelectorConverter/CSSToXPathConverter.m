@@ -35,14 +35,14 @@
 #pragma mark - CSSSelectorParserDelegate
 
 -(void) parser:(CSSSelectorParser*)parser didMatchSelectorsGroup:(PKAssembly*)assembly {
-
+    NSLog(@"SELECTORS GROUP = %@", assembly);
 }
 
--(void) parser:(CSSSelectorParser*)parser didMatchSelectors:(PKAssembly*)assembly {
+-(void) parser:(CSSSelectorParser*)parser didMatchSelector:(PKAssembly*)assembly {
     NSLog(@"SELECTORS = %@", assembly);
 }
 
--(void) parser:(CSSSelectorParser*)parser didMatchSelectorSequence:(PKAssembly*)assembly {
+-(void) parser:(CSSSelectorParser*)parser didMatchSimpleSelectorSequence:(PKAssembly*)assembly {
     NSLog(@"SEQ = %@", assembly);
 }
 

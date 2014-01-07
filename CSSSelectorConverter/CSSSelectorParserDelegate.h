@@ -14,8 +14,8 @@
 @protocol CSSSelectorParserDelegate <NSObject>
 @optional
 -(void) parser:(CSSSelectorParser*)parser didMatchSelectorsGroup:(PKAssembly*)assembly;
--(void) parser:(CSSSelectorParser*)parser didMatchSelectors:(PKAssembly*)assembly;
--(void) parser:(CSSSelectorParser*)parser didMatchSelectorSequence:(PKAssembly*)assembly;
+-(void) parser:(CSSSelectorParser*)parser didMatchSelector:(PKAssembly*)assembly;
+-(void) parser:(CSSSelectorParser*)parser didMatchSimpleSelectorSequence:(PKAssembly*)assembly;
 -(void) parser:(CSSSelectorParser*)parser didMatchCombinator:(PKAssembly*)assembly;
 -(void) parser:(CSSSelectorParser*)parser didMatchAttributeSelector:(PKAssembly*)assembly;
 -(void) parser:(CSSSelectorParser*)parser didMatchTypeSelector:(PKAssembly*)assembly;
