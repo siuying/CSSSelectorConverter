@@ -46,7 +46,7 @@
     if (self.universalOrTypeSelector) {
         [result appendString:self.universalOrTypeSelector.toXPath];
     } else {
-        [result appendString:@"//*"];
+        [result appendString:@"*"];
     }
     
     if ([self.otherSelectors count] > 0) {

@@ -15,7 +15,7 @@
 }
 
 -(NSString*) toXPath {
-    return @"//*";
+    return @"*";
 }
 
 @end

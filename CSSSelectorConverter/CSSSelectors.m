@@ -33,7 +33,17 @@
     NSMutableString* result = [[NSMutableString alloc] init];
     
     NSArray* reverseSequence = [[self.sequences reverseObjectEnumerator] allObjects];
-    [reverseSequence enumerateObjectsUsingBlock:^(CSSSelectorSequence* selector, NSUInteger idx, BOOL *stop) {
+    [reverseSequence enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
+        if (idx == 0) {
+            [result appendString:@"//"];
+        } else {
+            if ([selector isKindOfClass:[CSSChildSelector class]]) {
+                [result appendString:selector.toXPath];
+                return;
+            } else if (![[reverseSequence objectAtIndex:idx-1] isKindOfClass:[CSSChildSelector class]]) {
+                [result appendString:@"//"];
+            }
+        }
         [result appendString:selector.toXPath];
     }];
 
