@@ -72,6 +72,9 @@ describe(@"CSSToXPathParser", ^{
 
         css = [converter xpathWithCSS:@"div#main p > a" error:&error];
         [[css should] equal:@"//div[@id = 'main']//p/a"];
+
+        css = [converter xpathWithCSS:@"div#main p > a p > div" error:&error];
+        [[css should] equal:@"//div[@id = 'main']//p/a//p/div"];
     });
 
 });

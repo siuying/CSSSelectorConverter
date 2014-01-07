@@ -35,12 +35,19 @@
     NSArray* reverseSequence = [[self.sequences reverseObjectEnumerator] allObjects];
     [reverseSequence enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
         if (idx == 0) {
+            // first selector is always //
             [result appendString:@"//"];
         } else {
+            // child selector '>' itself do not convert to xpath
             if ([selector isKindOfClass:[CSSChildSelector class]]) {
-                [result appendString:selector.toXPath];
                 return;
-            } else if (![[reverseSequence objectAtIndex:idx-1] isKindOfClass:[CSSChildSelector class]]) {
+            }
+            
+            // if previous selector is child selector '>', prefix it with '/'
+            // otherwise, prefix it with '//'
+            if ([[reverseSequence objectAtIndex:idx-1] isKindOfClass:[CSSChildSelector class]]) {
+                [result appendString:@"/"];
+            } else {
                 [result appendString:@"//"];
             }
         }
