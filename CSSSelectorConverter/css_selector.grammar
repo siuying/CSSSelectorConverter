@@ -1,0 +1,30 @@
+/*
+A CSS Selector to XPath Selector Grammar
+*/
+
+@start 
+@before{
+  PKTokenizer *t = self.tokenizer;
+  [t.symbolState add:@"."]; 
+}                 = selectorsGroup;                        
+selectorsGroup          = selectors ( selectors )*;
+selectors               = selectorSequence (combinator selectorSequence)* {
+  PUSH_SELECTORS();
+};
+selectorSequence        = (universalSelector | typeSelector)? ( classSelector | idSelector )* {
+  PUSH_SELECTOR_SEQUENCE();
+};
+combinator              = '+' | '>' | '~';
+attributeSelector       = '['! Word ('=' QuotedString)? ']'!;
+classSelector           ='.'! Word {
+  PUSH_CSS_CLASS(POP_STR());
+};
+idSelector              = '#'! Word {
+  PUSH_CSS_ID(POP_STR());
+};
+typeSelector            = Word {
+  PUSH_CSS_TYPE(POP_STR());
+};
+universalSelector       = '*'! {
+  PUSH_CSS_UNIVERSAL();
+};

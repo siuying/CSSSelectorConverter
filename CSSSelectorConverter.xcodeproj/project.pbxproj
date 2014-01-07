@@ -1,0 +1,655 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		314EB2B033004B6F82F43722 /* libPods-CSSSelectorConverterTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C89C0A8F74244B1F8AECA338 /* libPods-CSSSelectorConverterTests.a */; };
+		4E9F91BE36C84A6FA954D8C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 645CC76B14924389A7C750E3 /* libPods.a */; };
+		540AA34C187BC5F60012AA44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540AA34B187BC5F60012AA44 /* Foundation.framework */; };
+		540AA34E187BC5F60012AA44 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540AA34D187BC5F60012AA44 /* CoreGraphics.framework */; };
+		540AA350187BC5F60012AA44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540AA34F187BC5F60012AA44 /* UIKit.framework */; };
+		540AA356187BC5F60012AA44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 540AA354187BC5F60012AA44 /* InfoPlist.strings */; };
+		540AA358187BC5F60012AA44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA357187BC5F60012AA44 /* main.m */; };
+		540AA35C187BC5F60012AA44 /* IGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA35B187BC5F60012AA44 /* IGAppDelegate.m */; };
+		540AA35F187BC5F60012AA44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 540AA35D187BC5F60012AA44 /* Main.storyboard */; };
+		540AA362187BC5F60012AA44 /* IGMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA361187BC5F60012AA44 /* IGMasterViewController.m */; };
+		540AA365187BC5F60012AA44 /* IGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA364187BC5F60012AA44 /* IGDetailViewController.m */; };
+		540AA367187BC5F70012AA44 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 540AA366187BC5F70012AA44 /* Images.xcassets */; };
+		540AA36E187BC5F70012AA44 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540AA36D187BC5F70012AA44 /* XCTest.framework */; };
+		540AA36F187BC5F70012AA44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540AA34B187BC5F60012AA44 /* Foundation.framework */; };
+		540AA370187BC5F70012AA44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540AA34F187BC5F60012AA44 /* UIKit.framework */; };
+		540AA378187BC5F70012AA44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 540AA376187BC5F70012AA44 /* InfoPlist.strings */; };
+		540AA389187BDD5B0012AA44 /* CSSToXPathConverterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA388187BDD5B0012AA44 /* CSSToXPathConverterSpec.m */; };
+		540AA398187BE4900012AA44 /* CSSToXPathConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA397187BE4900012AA44 /* CSSToXPathConverter.m */; };
+		540AA399187BE5C70012AA44 /* CSSToXPathConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA397187BE4900012AA44 /* CSSToXPathConverter.m */; };
+		540AA39D187BEE660012AA44 /* CSSSelectorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA39C187BEE660012AA44 /* CSSSelectorParser.m */; };
+		540AA39E187BEE660012AA44 /* CSSSelectorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA39C187BEE660012AA44 /* CSSSelectorParser.m */; };
+		540AA3A2187BEF380012AA44 /* CSSUniversalSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A1187BEF380012AA44 /* CSSUniversalSelector.m */; };
+		540AA3A3187BEF380012AA44 /* CSSUniversalSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A1187BEF380012AA44 /* CSSUniversalSelector.m */; };
+		540AA3A6187BEF8B0012AA44 /* CSSTypeSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A5187BEF8B0012AA44 /* CSSTypeSelector.m */; };
+		540AA3A7187BEF8B0012AA44 /* CSSTypeSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A5187BEF8B0012AA44 /* CSSTypeSelector.m */; };
+		540AA3AA187BF1460012AA44 /* CSSIDSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A9187BF1460012AA44 /* CSSIDSelector.m */; };
+		540AA3AB187BF1460012AA44 /* CSSIDSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A9187BF1460012AA44 /* CSSIDSelector.m */; };
+		540AA3AE187BF1510012AA44 /* CSSClassSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3AD187BF1510012AA44 /* CSSClassSelector.m */; };
+		540AA3AF187BF1510012AA44 /* CSSClassSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3AD187BF1510012AA44 /* CSSClassSelector.m */; };
+		540AA3B2187BF1660012AA44 /* CSSNamedSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3B1187BF1660012AA44 /* CSSNamedSelector.m */; };
+		540AA3B3187BF1660012AA44 /* CSSNamedSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3B1187BF1660012AA44 /* CSSNamedSelector.m */; };
+		540AA3B6187BF2D60012AA44 /* CSSBaseSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3B5187BF2D60012AA44 /* CSSBaseSelector.m */; };
+		540AA3B7187BF2D60012AA44 /* CSSBaseSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3B5187BF2D60012AA44 /* CSSBaseSelector.m */; };
+		540AA3BA187BF3630012AA44 /* CSSSelectorSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3B9187BF3630012AA44 /* CSSSelectorSequence.m */; };
+		540AA3BB187BF3630012AA44 /* CSSSelectorSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3B9187BF3630012AA44 /* CSSSelectorSequence.m */; };
+		543F5AA7187C0A1D00F3CC22 /* CSSSelectors.m in Sources */ = {isa = PBXBuildFile; fileRef = 543F5AA6187C0A1D00F3CC22 /* CSSSelectors.m */; };
+		543F5AA8187C0B2A00F3CC22 /* CSSSelectors.m in Sources */ = {isa = PBXBuildFile; fileRef = 543F5AA6187C0A1D00F3CC22 /* CSSSelectors.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		540AA371187BC5F70012AA44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 540AA340187BC5F60012AA44 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 540AA347187BC5F60012AA44;
+			remoteInfo = CSSSelectorConverter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		120C8E845AC74187B385721E /* Pods-CSSSelectorConverterTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSSSelectorConverterTests.xcconfig"; path = "Pods/Pods-CSSSelectorConverterTests.xcconfig"; sourceTree = "<group>"; };
+		540AA348187BC5F60012AA44 /* CSSSelectorConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSSSelectorConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		540AA34B187BC5F60012AA44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		540AA34D187BC5F60012AA44 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		540AA34F187BC5F60012AA44 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		540AA353187BC5F60012AA44 /* CSSSelectorConverter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CSSSelectorConverter-Info.plist"; sourceTree = "<group>"; };
+		540AA355187BC5F60012AA44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		540AA357187BC5F60012AA44 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		540AA359187BC5F60012AA44 /* CSSSelectorConverter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSSSelectorConverter-Prefix.pch"; sourceTree = "<group>"; };
+		540AA35A187BC5F60012AA44 /* IGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGAppDelegate.h; sourceTree = "<group>"; };
+		540AA35B187BC5F60012AA44 /* IGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IGAppDelegate.m; sourceTree = "<group>"; };
+		540AA35E187BC5F60012AA44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		540AA360187BC5F60012AA44 /* IGMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGMasterViewController.h; sourceTree = "<group>"; };
+		540AA361187BC5F60012AA44 /* IGMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IGMasterViewController.m; sourceTree = "<group>"; };
+		540AA363187BC5F60012AA44 /* IGDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGDetailViewController.h; sourceTree = "<group>"; };
+		540AA364187BC5F60012AA44 /* IGDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IGDetailViewController.m; sourceTree = "<group>"; };
+		540AA366187BC5F70012AA44 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		540AA36C187BC5F70012AA44 /* CSSSelectorConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSSSelectorConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		540AA36D187BC5F70012AA44 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		540AA375187BC5F70012AA44 /* CSSSelectorConverterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CSSSelectorConverterTests-Info.plist"; sourceTree = "<group>"; };
+		540AA377187BC5F70012AA44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		540AA388187BDD5B0012AA44 /* CSSToXPathConverterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSToXPathConverterSpec.m; sourceTree = "<group>"; };
+		540AA396187BE4900012AA44 /* CSSToXPathConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSToXPathConverter.h; sourceTree = "<group>"; };
+		540AA397187BE4900012AA44 /* CSSToXPathConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSToXPathConverter.m; sourceTree = "<group>"; };
+		540AA39A187BEB5C0012AA44 /* CSSSelectorParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSSelectorParserDelegate.h; sourceTree = "<group>"; };
+		540AA39B187BEE660012AA44 /* CSSSelectorParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorParser.h; sourceTree = "<group>"; };
+		540AA39C187BEE660012AA44 /* CSSSelectorParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorParser.m; sourceTree = "<group>"; };
+		540AA3A0187BEF380012AA44 /* CSSUniversalSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSUniversalSelector.h; sourceTree = "<group>"; };
+		540AA3A1187BEF380012AA44 /* CSSUniversalSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSUniversalSelector.m; sourceTree = "<group>"; };
+		540AA3A4187BEF8B0012AA44 /* CSSTypeSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSTypeSelector.h; sourceTree = "<group>"; };
+		540AA3A5187BEF8B0012AA44 /* CSSTypeSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSTypeSelector.m; sourceTree = "<group>"; };
+		540AA3A8187BF1460012AA44 /* CSSIDSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSIDSelector.h; sourceTree = "<group>"; };
+		540AA3A9187BF1460012AA44 /* CSSIDSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSIDSelector.m; sourceTree = "<group>"; };
+		540AA3AC187BF1510012AA44 /* CSSClassSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSClassSelector.h; sourceTree = "<group>"; };
+		540AA3AD187BF1510012AA44 /* CSSClassSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSClassSelector.m; sourceTree = "<group>"; };
+		540AA3B0187BF1660012AA44 /* CSSNamedSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSNamedSelector.h; sourceTree = "<group>"; };
+		540AA3B1187BF1660012AA44 /* CSSNamedSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSNamedSelector.m; sourceTree = "<group>"; };
+		540AA3B4187BF2D60012AA44 /* CSSBaseSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSBaseSelector.h; sourceTree = "<group>"; };
+		540AA3B5187BF2D60012AA44 /* CSSBaseSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSBaseSelector.m; sourceTree = "<group>"; };
+		540AA3B8187BF3630012AA44 /* CSSSelectorSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorSequence.h; sourceTree = "<group>"; };
+		540AA3B9187BF3630012AA44 /* CSSSelectorSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorSequence.m; sourceTree = "<group>"; };
+		543F5AA5187C0A1D00F3CC22 /* CSSSelectors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectors.h; sourceTree = "<group>"; };
+		543F5AA6187C0A1D00F3CC22 /* CSSSelectors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectors.m; sourceTree = "<group>"; };
+		547F4955187C021C0041264E /* css_selector.grammar */ = {isa = PBXFileReference; lastKnownFileType = text; path = css_selector.grammar; sourceTree = "<group>"; };
+		645CC76B14924389A7C750E3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C89C0A8F74244B1F8AECA338 /* libPods-CSSSelectorConverterTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CSSSelectorConverterTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2CA43EDD52451AA75BA409 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		540AA345187BC5F60012AA44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				540AA34E187BC5F60012AA44 /* CoreGraphics.framework in Frameworks */,
+				540AA350187BC5F60012AA44 /* UIKit.framework in Frameworks */,
+				540AA34C187BC5F60012AA44 /* Foundation.framework in Frameworks */,
+				4E9F91BE36C84A6FA954D8C1 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		540AA369187BC5F70012AA44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				540AA36E187BC5F70012AA44 /* XCTest.framework in Frameworks */,
+				540AA370187BC5F70012AA44 /* UIKit.framework in Frameworks */,
+				540AA36F187BC5F70012AA44 /* Foundation.framework in Frameworks */,
+				314EB2B033004B6F82F43722 /* libPods-CSSSelectorConverterTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		540AA33F187BC5F60012AA44 = {
+			isa = PBXGroup;
+			children = (
+				540AA351187BC5F60012AA44 /* CSSSelectorConverter */,
+				540AA373187BC5F70012AA44 /* CSSSelectorConverterTests */,
+				540AA34A187BC5F60012AA44 /* Frameworks */,
+				540AA349187BC5F60012AA44 /* Products */,
+				CE2CA43EDD52451AA75BA409 /* Pods.xcconfig */,
+				120C8E845AC74187B385721E /* Pods-CSSSelectorConverterTests.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		540AA349187BC5F60012AA44 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				540AA348187BC5F60012AA44 /* CSSSelectorConverter.app */,
+				540AA36C187BC5F70012AA44 /* CSSSelectorConverterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		540AA34A187BC5F60012AA44 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				540AA34B187BC5F60012AA44 /* Foundation.framework */,
+				540AA34D187BC5F60012AA44 /* CoreGraphics.framework */,
+				540AA34F187BC5F60012AA44 /* UIKit.framework */,
+				540AA36D187BC5F70012AA44 /* XCTest.framework */,
+				645CC76B14924389A7C750E3 /* libPods.a */,
+				C89C0A8F74244B1F8AECA338 /* libPods-CSSSelectorConverterTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		540AA351187BC5F60012AA44 /* CSSSelectorConverter */ = {
+			isa = PBXGroup;
+			children = (
+				540AA39F187BEEED0012AA44 /* Selector */,
+				540AA39A187BEB5C0012AA44 /* CSSSelectorParserDelegate.h */,
+				540AA39B187BEE660012AA44 /* CSSSelectorParser.h */,
+				540AA39C187BEE660012AA44 /* CSSSelectorParser.m */,
+				540AA396187BE4900012AA44 /* CSSToXPathConverter.h */,
+				540AA397187BE4900012AA44 /* CSSToXPathConverter.m */,
+				540AA35A187BC5F60012AA44 /* IGAppDelegate.h */,
+				540AA35B187BC5F60012AA44 /* IGAppDelegate.m */,
+				540AA35D187BC5F60012AA44 /* Main.storyboard */,
+				540AA360187BC5F60012AA44 /* IGMasterViewController.h */,
+				540AA361187BC5F60012AA44 /* IGMasterViewController.m */,
+				540AA363187BC5F60012AA44 /* IGDetailViewController.h */,
+				540AA364187BC5F60012AA44 /* IGDetailViewController.m */,
+				540AA366187BC5F70012AA44 /* Images.xcassets */,
+				540AA352187BC5F60012AA44 /* Supporting Files */,
+			);
+			path = CSSSelectorConverter;
+			sourceTree = "<group>";
+		};
+		540AA352187BC5F60012AA44 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				547F4955187C021C0041264E /* css_selector.grammar */,
+				540AA353187BC5F60012AA44 /* CSSSelectorConverter-Info.plist */,
+				540AA354187BC5F60012AA44 /* InfoPlist.strings */,
+				540AA357187BC5F60012AA44 /* main.m */,
+				540AA359187BC5F60012AA44 /* CSSSelectorConverter-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		540AA373187BC5F70012AA44 /* CSSSelectorConverterTests */ = {
+			isa = PBXGroup;
+			children = (
+				540AA374187BC5F70012AA44 /* Supporting Files */,
+				540AA388187BDD5B0012AA44 /* CSSToXPathConverterSpec.m */,
+			);
+			path = CSSSelectorConverterTests;
+			sourceTree = "<group>";
+		};
+		540AA374187BC5F70012AA44 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				540AA375187BC5F70012AA44 /* CSSSelectorConverterTests-Info.plist */,
+				540AA376187BC5F70012AA44 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		540AA39F187BEEED0012AA44 /* Selector */ = {
+			isa = PBXGroup;
+			children = (
+				540AA3B4187BF2D60012AA44 /* CSSBaseSelector.h */,
+				540AA3B5187BF2D60012AA44 /* CSSBaseSelector.m */,
+				540AA3A0187BEF380012AA44 /* CSSUniversalSelector.h */,
+				540AA3A1187BEF380012AA44 /* CSSUniversalSelector.m */,
+				540AA3B0187BF1660012AA44 /* CSSNamedSelector.h */,
+				540AA3B1187BF1660012AA44 /* CSSNamedSelector.m */,
+				540AA3A4187BEF8B0012AA44 /* CSSTypeSelector.h */,
+				540AA3A5187BEF8B0012AA44 /* CSSTypeSelector.m */,
+				540AA3A8187BF1460012AA44 /* CSSIDSelector.h */,
+				540AA3A9187BF1460012AA44 /* CSSIDSelector.m */,
+				540AA3AC187BF1510012AA44 /* CSSClassSelector.h */,
+				540AA3AD187BF1510012AA44 /* CSSClassSelector.m */,
+				540AA3B8187BF3630012AA44 /* CSSSelectorSequence.h */,
+				540AA3B9187BF3630012AA44 /* CSSSelectorSequence.m */,
+				543F5AA5187C0A1D00F3CC22 /* CSSSelectors.h */,
+				543F5AA6187C0A1D00F3CC22 /* CSSSelectors.m */,
+			);
+			name = Selector;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		540AA347187BC5F60012AA44 /* CSSSelectorConverter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 540AA37D187BC5F70012AA44 /* Build configuration list for PBXNativeTarget "CSSSelectorConverter" */;
+			buildPhases = (
+				E9DFBE05A0034D26B921C88E /* Check Pods Manifest.lock */,
+				540AA344187BC5F60012AA44 /* Sources */,
+				540AA345187BC5F60012AA44 /* Frameworks */,
+				540AA346187BC5F60012AA44 /* Resources */,
+				D4177FD04A764743819E8D91 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CSSSelectorConverter;
+			productName = CSSSelectorConverter;
+			productReference = 540AA348187BC5F60012AA44 /* CSSSelectorConverter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		540AA36B187BC5F70012AA44 /* CSSSelectorConverterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 540AA380187BC5F70012AA44 /* Build configuration list for PBXNativeTarget "CSSSelectorConverterTests" */;
+			buildPhases = (
+				24221490C75A4512A9EDB908 /* Check Pods Manifest.lock */,
+				540AA368187BC5F70012AA44 /* Sources */,
+				540AA369187BC5F70012AA44 /* Frameworks */,
+				540AA36A187BC5F70012AA44 /* Resources */,
+				B54882A65CA547AA967484DE /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				540AA372187BC5F70012AA44 /* PBXTargetDependency */,
+			);
+			name = CSSSelectorConverterTests;
+			productName = CSSSelectorConverterTests;
+			productReference = 540AA36C187BC5F70012AA44 /* CSSSelectorConverterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		540AA340187BC5F60012AA44 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = IG;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Ignition Soft";
+				TargetAttributes = {
+					540AA36B187BC5F70012AA44 = {
+						TestTargetID = 540AA347187BC5F60012AA44;
+					};
+				};
+			};
+			buildConfigurationList = 540AA343187BC5F60012AA44 /* Build configuration list for PBXProject "CSSSelectorConverter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 540AA33F187BC5F60012AA44;
+			productRefGroup = 540AA349187BC5F60012AA44 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				540AA347187BC5F60012AA44 /* CSSSelectorConverter */,
+				540AA36B187BC5F70012AA44 /* CSSSelectorConverterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		540AA346187BC5F60012AA44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				540AA367187BC5F70012AA44 /* Images.xcassets in Resources */,
+				540AA356187BC5F60012AA44 /* InfoPlist.strings in Resources */,
+				540AA35F187BC5F60012AA44 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		540AA36A187BC5F70012AA44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				540AA378187BC5F70012AA44 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		24221490C75A4512A9EDB908 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B54882A65CA547AA967484DE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-CSSSelectorConverterTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4177FD04A764743819E8D91 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9DFBE05A0034D26B921C88E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		540AA344187BC5F60012AA44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				540AA3A6187BEF8B0012AA44 /* CSSTypeSelector.m in Sources */,
+				540AA3B6187BF2D60012AA44 /* CSSBaseSelector.m in Sources */,
+				540AA362187BC5F60012AA44 /* IGMasterViewController.m in Sources */,
+				540AA39D187BEE660012AA44 /* CSSSelectorParser.m in Sources */,
+				540AA3B2187BF1660012AA44 /* CSSNamedSelector.m in Sources */,
+				540AA398187BE4900012AA44 /* CSSToXPathConverter.m in Sources */,
+				540AA365187BC5F60012AA44 /* IGDetailViewController.m in Sources */,
+				540AA3AE187BF1510012AA44 /* CSSClassSelector.m in Sources */,
+				543F5AA7187C0A1D00F3CC22 /* CSSSelectors.m in Sources */,
+				540AA3A2187BEF380012AA44 /* CSSUniversalSelector.m in Sources */,
+				540AA3BA187BF3630012AA44 /* CSSSelectorSequence.m in Sources */,
+				540AA35C187BC5F60012AA44 /* IGAppDelegate.m in Sources */,
+				540AA358187BC5F60012AA44 /* main.m in Sources */,
+				540AA3AA187BF1460012AA44 /* CSSIDSelector.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		540AA368187BC5F70012AA44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				540AA3A3187BEF380012AA44 /* CSSUniversalSelector.m in Sources */,
+				540AA3AF187BF1510012AA44 /* CSSClassSelector.m in Sources */,
+				540AA389187BDD5B0012AA44 /* CSSToXPathConverterSpec.m in Sources */,
+				540AA3BB187BF3630012AA44 /* CSSSelectorSequence.m in Sources */,
+				540AA39E187BEE660012AA44 /* CSSSelectorParser.m in Sources */,
+				540AA3B3187BF1660012AA44 /* CSSNamedSelector.m in Sources */,
+				540AA399187BE5C70012AA44 /* CSSToXPathConverter.m in Sources */,
+				540AA3A7187BEF8B0012AA44 /* CSSTypeSelector.m in Sources */,
+				543F5AA8187C0B2A00F3CC22 /* CSSSelectors.m in Sources */,
+				540AA3B7187BF2D60012AA44 /* CSSBaseSelector.m in Sources */,
+				540AA3AB187BF1460012AA44 /* CSSIDSelector.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		540AA372187BC5F70012AA44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 540AA347187BC5F60012AA44 /* CSSSelectorConverter */;
+			targetProxy = 540AA371187BC5F70012AA44 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		540AA354187BC5F60012AA44 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				540AA355187BC5F60012AA44 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		540AA35D187BC5F60012AA44 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				540AA35E187BC5F60012AA44 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		540AA376187BC5F70012AA44 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				540AA377187BC5F70012AA44 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		540AA37B187BC5F70012AA44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		540AA37C187BC5F70012AA44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		540AA37E187BC5F70012AA44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE2CA43EDD52451AA75BA409 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CSSSelectorConverter/CSSSelectorConverter-Prefix.pch";
+				INFOPLIST_FILE = "CSSSelectorConverter/CSSSelectorConverter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		540AA37F187BC5F70012AA44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE2CA43EDD52451AA75BA409 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CSSSelectorConverter/CSSSelectorConverter-Prefix.pch";
+				INFOPLIST_FILE = "CSSSelectorConverter/CSSSelectorConverter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		540AA381187BC5F70012AA44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 120C8E845AC74187B385721E /* Pods-CSSSelectorConverterTests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CSSSelectorConverter/CSSSelectorConverter-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CSSSelectorConverterTests/CSSSelectorConverterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		540AA382187BC5F70012AA44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 120C8E845AC74187B385721E /* Pods-CSSSelectorConverterTests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CSSSelectorConverter/CSSSelectorConverter-Prefix.pch";
+				INFOPLIST_FILE = "CSSSelectorConverterTests/CSSSelectorConverterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		540AA343187BC5F60012AA44 /* Build configuration list for PBXProject "CSSSelectorConverter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				540AA37B187BC5F70012AA44 /* Debug */,
+				540AA37C187BC5F70012AA44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		540AA37D187BC5F70012AA44 /* Build configuration list for PBXNativeTarget "CSSSelectorConverter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				540AA37E187BC5F70012AA44 /* Debug */,
+				540AA37F187BC5F70012AA44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		540AA380187BC5F70012AA44 /* Build configuration list for PBXNativeTarget "CSSSelectorConverterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				540AA381187BC5F70012AA44 /* Debug */,
+				540AA382187BC5F70012AA44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 540AA340187BC5F60012AA44 /* Project object */;
+}
