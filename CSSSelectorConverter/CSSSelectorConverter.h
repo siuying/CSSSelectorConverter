@@ -20,5 +20,7 @@
 #import "CSSSelectorGroup.h"
 #import "CSSSelectorParser.h"
 #import "CSSToXPathConverter.h"
+#import "CSSSelectorAttribute.h"
+#import "CSSNamedSelector.h"
 
 #endif

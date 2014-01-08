@@ -17,6 +17,6 @@
 
 -(void) addSelectors:(CSSSelectors*)selectors;
 
-+(instancetype) selectorsGroupWithAssembly:(PKSTokenAssembly*)assembly;
++(instancetype) selectorsGroupWithAssembly:(PKAssembly*)assembly;
 
 @end

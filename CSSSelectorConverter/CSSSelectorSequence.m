@@ -20,6 +20,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 #import "CSSTypeSelector.h"
 #import "CSSIDSelector.h"
 #import "CSSClassSelector.h"
+#import "CSSSelectorAttribute.h"
 
 @implementation CSSSelectorSequence
 
@@ -42,7 +43,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
         } else {
             self.universalOrTypeSelector = selector;
         }
-    } else if ([selector isKindOfClass:[CSSIDSelector class]] || [selector isKindOfClass:[CSSClassSelector class]]) {
+    } else if ([selector isKindOfClass:[CSSIDSelector class]] || [selector isKindOfClass:[CSSClassSelector class]] || [selector isKindOfClass:[CSSSelectorAttribute class]]) {
         [self.otherSelectors addObject:selector];
     } else {
         DDLogError(@"attempt to add unknown selector to sequence: %@", selector);
@@ -86,7 +87,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
     while ((selector = [assembly pop])) {
         if ([selector isKindOfClass:[CSSUniversalSelector class]] || [selector isKindOfClass:[CSSTypeSelector class]] ||
-            [selector isKindOfClass:[CSSIDSelector class]] || [selector isKindOfClass:[CSSClassSelector class]]) {
+            [selector isKindOfClass:[CSSIDSelector class]] || [selector isKindOfClass:[CSSClassSelector class]] || [selector isKindOfClass:[CSSSelectorAttribute class]]) {
             DDLogVerbose(@"  add %@ (%@) to sequence", [selector class], selector);
             [seq addSelector:selector];
         } else {

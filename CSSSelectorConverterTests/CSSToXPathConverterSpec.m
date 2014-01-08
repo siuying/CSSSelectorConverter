@@ -82,6 +82,18 @@ describe(@"CSSToXPathParser", ^{
         [[css should] equal:@"//div | //p"];
     });
 
+    it(@"should parse attribute", ^{
+        NSError *error = nil;
+        NSString* css = [converter xpathWithCSS:@"div[foo]" error:&error];
+        [[css should] equal:@"//div[@foo]"];
+
+        NSString* cssWithValue = [converter xpathWithCSS:@"div[width=\"100\"]" error:&error];
+        [[cssWithValue should] equal:@"//div[@width = \"100\"]"];
+        
+        NSString* cssWithIncludesValue = [converter xpathWithCSS:@"div[class~=\"100\"]" error:&error];
+        [[cssWithIncludesValue should] equal:@"//div[contains(concat(\" \", @class, \" \"),concat(\" \", \"100\", \" \"))]"];
+    });
+
 });
 
 SPEC_END

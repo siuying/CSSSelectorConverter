@@ -21,6 +21,6 @@
 
 -(void) addChild:(CSSChildSelector*)child;
 
-+(instancetype) selectorWithAssembly:(PKSTokenAssembly*)assembly;
++(instancetype) selectorWithAssembly:(PKAssembly*)assembly;
 
 @end
