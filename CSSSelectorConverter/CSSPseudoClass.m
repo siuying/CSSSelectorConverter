@@ -18,7 +18,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
     static NSArray* _supportedPseudoClass;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _supportedPseudoClass = @[@"first-child"];
+        _supportedPseudoClass = @[@"first-child", @"last-child"];
     });
     return _supportedPseudoClass;
 }
@@ -31,6 +31,8 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
     NSString* parentName = self.parent ? self.parent.name : @"*";
     if ([self.name isEqualToString:@"first-child"]) {
         return [NSString stringWithFormat:@"*[position() = 1 and self::%@]", parentName];
+    } else if ([self.name isEqualToString:@"last-child"]) {
+        return [NSString stringWithFormat:@"*[position() = last() and self::%@]", parentName];
     } else {
         return @"";
     }

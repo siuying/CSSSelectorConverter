@@ -2,7 +2,7 @@
 
 A CSS Selector to XPath Selector for Objective-C.
 
-Target to support [CSS Selector Level 2](http://www.w3.org/TR/CSS2/selector.html).
+Support subset of  [CSS Selector Level 3](http://www.w3.org/TR/css3-selectors/).
 
 WIP.
 

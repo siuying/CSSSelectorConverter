@@ -103,8 +103,12 @@ describe(@"CSSToXPathParser", ^{
 
     it(@"should parse pseudo class", ^{
         NSError *error = nil;
-        NSString* css = [converter xpathWithCSS:@"a:first-child" error:&error];
-        [[css should] equal:@"//*[position() = 1 and self::a]"];
+        NSString* firstChild = [converter xpathWithCSS:@"a:first-child" error:&error];
+        [[firstChild should] equal:@"//*[position() = 1 and self::a]"];
+        
+        // ol > li:last-child
+        NSString* lastChild = [converter xpathWithCSS:@"ol > li:last-child" error:&error];
+        [[lastChild should] equal:@"//ol/*[position() = last() and self::li]"];
     });
 
 });
