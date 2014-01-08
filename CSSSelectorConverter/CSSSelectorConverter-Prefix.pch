@@ -21,5 +21,6 @@
 #import "CSSClassSelector.h"
 #import "CSSSelectorSequence.h"
 #import "CSSSelectors.h"
+#import "CSSSelectorGroup.h"
 
 #endif

@@ -103,6 +103,11 @@
             break;
         }
     }
+    [self execute:(id)^{
+    
+  PUSH_SELECTORS_GROUP();
+
+    }];
 
     [self fireAssemblerSelector:@selector(parser:didMatchSelectorsGroup:)];
 }

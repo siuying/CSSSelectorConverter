@@ -65,12 +65,12 @@
     id token;
     while ((token = [assembly pop])) {
         if ([token isKindOfClass:[CSSSelectorSequence class]]) {
+            // this is a sequence
             NSLog(@" token is sequence: %@", token);
             CSSSelectorSequence* sequence = token;
             [selectors addSequence:sequence];
 
         } else {
-            NSLog(@" token is separator: %@", token);
             NSString* tokenString;
             if ([token respondsToSelector:@selector(stringValue)]) {
                 tokenString = [token stringValue];
@@ -78,7 +78,15 @@
                 tokenString = [token description];
             }
             if ([tokenString isEqualToString:@">"]) {
+                // this is a separator
+                NSLog(@" token is separator: %@", token);
                 [selectors addChild:[CSSChildSelector selector]];
+            } else {
+                // token is not a sequence or separator, push it back and abort
+                NSLog(@" token is %@: %@", [token class], token);
+                [assembly push:token];
+                [assembly push:selectors];
+                return selectors;
             }
         }
     }

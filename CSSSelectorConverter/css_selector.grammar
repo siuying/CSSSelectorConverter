@@ -6,7 +6,9 @@ A CSS Selector to XPath Selector Grammar
   PKTokenizer *t = self.tokenizer;
   [t.symbolState add:@"."];
 }                       = selectorsGroup;                        
-selectorsGroup          = selector ( ','! selector )*;
+selectorsGroup          = selector ( ','! selector )* {
+  PUSH_SELECTORS_GROUP();
+};
 selector                = simpleSelectorSequence (simpleSelectorSequence | childSimpleSelectorSequence)* {
   PUSH_SELECTORS();
 };
