@@ -53,15 +53,18 @@
         self._tokenKindTab[@"*"] = @(CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR);
         self._tokenKindTab[@"|="] = @(CSSSELECTORPARSER_TOKEN_KIND_DASHMATCH);
         self._tokenKindTab[@"#"] = @(CSSSELECTORPARSER_TOKEN_KIND_POUND);
-        self._tokenKindTab[@"+"] = @(CSSSELECTORPARSER_TOKEN_KIND_PLUS);
         self._tokenKindTab[@":"] = @(CSSSELECTORPARSER_TOKEN_KIND_COLON);
+        self._tokenKindTab[@"+"] = @(CSSSELECTORPARSER_TOKEN_KIND_PLUS);
         self._tokenKindTab[@","] = @(CSSSELECTORPARSER_TOKEN_KIND_COMMA);
+        self._tokenKindTab[@"nth-child"] = @(CSSSELECTORPARSER_TOKEN_KIND_NTHCHILDNAME);
         self._tokenKindTab[@"["] = @(CSSSELECTORPARSER_TOKEN_KIND_OPEN_BRACKET);
         self._tokenKindTab[@"-"] = @(CSSSELECTORPARSER_TOKEN_KIND_MINUS);
-        self._tokenKindTab[@"="] = @(CSSSELECTORPARSER_TOKEN_KIND_EQUAL);
         self._tokenKindTab[@"."] = @(CSSSELECTORPARSER_TOKEN_KIND_DOT);
+        self._tokenKindTab[@"even"] = @(CSSSELECTORPARSER_TOKEN_KIND_EVEN);
         self._tokenKindTab[@">"] = @(CSSSELECTORPARSER_TOKEN_KIND_GT);
         self._tokenKindTab[@"]"] = @(CSSSELECTORPARSER_TOKEN_KIND_CLOSE_BRACKET);
+        self._tokenKindTab[@"="] = @(CSSSELECTORPARSER_TOKEN_KIND_EQUAL);
+        self._tokenKindTab[@"odd"] = @(CSSSELECTORPARSER_TOKEN_KIND_ODD);
         self._tokenKindTab[@"("] = @(CSSSELECTORPARSER_TOKEN_KIND_OPEN_PAREN);
         self._tokenKindTab[@"~="] = @(CSSSELECTORPARSER_TOKEN_KIND_INCLUDES);
         self._tokenKindTab[@")"] = @(CSSSELECTORPARSER_TOKEN_KIND_CLOSE_PAREN);
@@ -69,15 +72,18 @@
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR] = @"*";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_DASHMATCH] = @"|=";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_POUND] = @"#";
-        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_PLUS] = @"+";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_COLON] = @":";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_PLUS] = @"+";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_COMMA] = @",";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_NTHCHILDNAME] = @"nth-child";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_OPEN_BRACKET] = @"[";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_MINUS] = @"-";
-        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_EQUAL] = @"=";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_DOT] = @".";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_EVEN] = @"even";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_GT] = @">";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_CLOSE_BRACKET] = @"]";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_EQUAL] = @"=";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_ODD] = @"odd";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_OPEN_PAREN] = @"(";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_INCLUDES] = @"~=";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_CLOSE_PAREN] = @")";
@@ -164,15 +170,15 @@
             [self raise:@"No viable alternative found in rule 'simpleSelectorSequence'."];
         }
     }
-    while ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_COLON, CSSSELECTORPARSER_TOKEN_KIND_DOT, CSSSELECTORPARSER_TOKEN_KIND_OPEN_BRACKET, CSSSELECTORPARSER_TOKEN_KIND_POUND, TOKEN_KIND_BUILTIN_WORD, 0]) {
-        if ([self speculate:^{ if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_DOT, 0]) {[self classSelector]; } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_POUND, 0]) {[self idSelector]; } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_OPEN_BRACKET, 0]) {[self attributeSelector]; } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_COLON, TOKEN_KIND_BUILTIN_WORD, 0]) {[self pseudoSelector]; } else {[self raise:@"No viable alternative found in rule 'simpleSelectorSequence'."];}}]) {
+    while ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_COLON, CSSSELECTORPARSER_TOKEN_KIND_DOT, CSSSELECTORPARSER_TOKEN_KIND_OPEN_BRACKET, CSSSELECTORPARSER_TOKEN_KIND_POUND, 0]) {
+        if ([self speculate:^{ if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_DOT, 0]) {[self classSelector]; } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_POUND, 0]) {[self idSelector]; } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_OPEN_BRACKET, 0]) {[self attributeSelector]; } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_COLON, 0]) {[self pseudoSelector]; } else {[self raise:@"No viable alternative found in rule 'simpleSelectorSequence'."];}}]) {
             if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_DOT, 0]) {
                 [self classSelector]; 
             } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_POUND, 0]) {
                 [self idSelector]; 
             } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_OPEN_BRACKET, 0]) {
                 [self attributeSelector]; 
-            } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_COLON, TOKEN_KIND_BUILTIN_WORD, 0]) {
+            } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_COLON, 0]) {
                 [self pseudoSelector]; 
             } else {
                 [self raise:@"No viable alternative found in rule 'simpleSelectorSequence'."];
@@ -218,8 +224,15 @@
 
 - (void)pseudoSelector {
     
-    if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_COLON, 0]) {
-        [self match:CSSSELECTORPARSER_TOKEN_KIND_COLON discard:YES]; 
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_COLON discard:YES]; 
+    if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_NTHCHILDNAME, 0]) {
+        [self nthChild]; 
+        [self execute:(id)^{
+        
+  PUSH_PSEUDO_CLASS();
+
+        }];
+    } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, TOKEN_KIND_BUILTIN_WORD, 0]) {
         do {
             if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
                 [self matchWord:NO]; 
@@ -234,16 +247,6 @@
   PUSH_PSEUDO_CLASS();
 
         }];
-    } else if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
-        [self matchWord:NO]; 
-        [self match:CSSSELECTORPARSER_TOKEN_KIND_OPEN_PAREN discard:NO]; 
-        [self expression]; 
-        [self match:CSSSELECTORPARSER_TOKEN_KIND_CLOSE_PAREN discard:NO]; 
-        [self execute:(id)^{
-        
-  PUSH_PSEUDO_CLASS();
-
-        }];
     } else {
         [self raise:@"No viable alternative found in rule 'pseudoSelector'."];
     }
@@ -251,25 +254,44 @@
     [self fireAssemblerSelector:@selector(parser:didMatchPseudoSelector:)];
 }
 
-- (void)expression {
+- (void)nthChild {
     
-    do {
-        if ([self speculate:^{ [self match:CSSSELECTORPARSER_TOKEN_KIND_PLUS discard:NO]; }]) {
-            [self match:CSSSELECTORPARSER_TOKEN_KIND_PLUS discard:NO]; 
-        } else if ([self speculate:^{ [self match:CSSSELECTORPARSER_TOKEN_KIND_MINUS discard:NO]; }]) {
-            [self match:CSSSELECTORPARSER_TOKEN_KIND_MINUS discard:NO]; 
-        } else if ([self speculate:^{ [self dimension]; }]) {
-            [self dimension]; 
-        } else if ([self speculate:^{ [self matchNumber:NO]; }]) {
-            [self matchNumber:NO]; 
-        } else if ([self speculate:^{ [self matchWord:NO]; }]) {
-            [self matchWord:NO]; 
-        } else {
-            [self raise:@"No viable alternative found in rule 'expression'."];
-        }
-    } while ([self speculate:^{ if ([self speculate:^{ [self match:CSSSELECTORPARSER_TOKEN_KIND_PLUS discard:NO]; }]) {[self match:CSSSELECTORPARSER_TOKEN_KIND_PLUS discard:NO]; } else if ([self speculate:^{ [self match:CSSSELECTORPARSER_TOKEN_KIND_MINUS discard:NO]; }]) {[self match:CSSSELECTORPARSER_TOKEN_KIND_MINUS discard:NO]; } else if ([self speculate:^{ [self dimension]; }]) {[self dimension]; } else if ([self speculate:^{ [self matchNumber:NO]; }]) {[self matchNumber:NO]; } else if ([self speculate:^{ [self matchWord:NO]; }]) {[self matchWord:NO]; } else {[self raise:@"No viable alternative found in rule 'expression'."];}}]);
+    [self nthChildName]; 
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_OPEN_PAREN discard:NO]; 
+    [self nth]; 
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_CLOSE_PAREN discard:NO]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchExpression:)];
+    [self fireAssemblerSelector:@selector(parser:didMatchNthChild:)];
+}
+
+- (void)nth {
+    
+    if ([self speculate:^{ if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {[self sign]; }if ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, 0]) {[self matchNumber:NO]; }[self matchWord:NO]; if ([self speculate:^{ [self sign]; [self matchNumber:NO]; }]) {[self sign]; [self matchNumber:NO]; }}]) {
+        if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {
+            [self sign]; 
+        }
+        if ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, 0]) {
+            [self matchNumber:NO]; 
+        }
+        [self matchWord:NO]; 
+        if ([self speculate:^{ [self sign]; [self matchNumber:NO]; }]) {
+            [self sign]; 
+            [self matchNumber:NO]; 
+        }
+    } else if ([self speculate:^{ if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {[self sign]; }[self matchNumber:NO]; }]) {
+        if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {
+            [self sign]; 
+        }
+        [self matchNumber:NO]; 
+    } else if ([self speculate:^{ [self even]; }]) {
+        [self even]; 
+    } else if ([self speculate:^{ [self odd]; }]) {
+        [self odd]; 
+    } else {
+        [self raise:@"No viable alternative found in rule 'nth'."];
+    }
+
+    [self fireAssemblerSelector:@selector(parser:didMatchNth:)];
 }
 
 - (void)dimension {
@@ -330,6 +352,27 @@
     [self fireAssemblerSelector:@selector(parser:didMatchUniversalSelector:)];
 }
 
+- (void)nthChildName {
+    
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_NTHCHILDNAME discard:NO]; 
+
+    [self fireAssemblerSelector:@selector(parser:didMatchNthChildName:)];
+}
+
+- (void)odd {
+    
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_ODD discard:NO]; 
+
+    [self fireAssemblerSelector:@selector(parser:didMatchOdd:)];
+}
+
+- (void)even {
+    
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_EVEN discard:NO]; 
+
+    [self fireAssemblerSelector:@selector(parser:didMatchEven:)];
+}
+
 - (void)combinator {
     
     if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, 0]) {
@@ -341,6 +384,19 @@
     }
 
     [self fireAssemblerSelector:@selector(parser:didMatchCombinator:)];
+}
+
+- (void)sign {
+    
+    if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, 0]) {
+        [self match:CSSSELECTORPARSER_TOKEN_KIND_MINUS discard:NO]; 
+    } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {
+        [self match:CSSSELECTORPARSER_TOKEN_KIND_PLUS discard:NO]; 
+    } else {
+        [self raise:@"No viable alternative found in rule 'sign'."];
+    }
+
+    [self fireAssemblerSelector:@selector(parser:didMatchSign:)];
 }
 
 - (void)equal {

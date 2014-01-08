@@ -29,13 +29,15 @@ attributeSelector       = '['! Word (Empty | ((equal | includes | dashmatch) Quo
   PUSH_ATTRIBUTE();
 };
 
-pseudoSelector          = ':'! ((Word | '-')+)  {
+pseudoSelector          = ':'! (nthChild {
   PUSH_PSEUDO_CLASS();
-} | (Word '(' expression ')') {
+}| ( Word | '-')+ {
   PUSH_PSEUDO_CLASS();
-};
+});
 
-expression =  ( ( '+' | '-' | dimension | Number | Word ) )+;
+nthChild = nthChildName '(' nth ')';
+
+nth = ( sign? Number? Word (sign Number)? ) | (sign? Number) | even | odd;
 
 dimension = Number Word;
 
@@ -55,7 +57,11 @@ universalSelector       = '*'! {
   PUSH_CSS_UNIVERSAL();
 };
 
-combinator = '>' | '+' ;
+nthChildName            = 'nth-child';
+odd                     = 'odd';
+even                    = 'even';
+combinator              = '>' | '+' ;
+sign                    = '-' | '+';
 equal                   = "=";
 includes                = "~=";
-dashmatch    = "|=";
+dashmatch               = "|=";

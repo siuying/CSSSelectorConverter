@@ -29,7 +29,8 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
                                   @"last-of-type":@"%@[position() = last()]",
                                   @"only-child": @"*[last() = 1 and self::%@]",
                                   @"only-of-type": @"%@[last() = 1]",
-                                  @"empty": @"%@[not(node())]"
+                                  @"empty": @"%@[not(node())]",
+                                  @"nth-child": @"%@"
                                   };
     });
     return _pseudoClassXPathMapping;

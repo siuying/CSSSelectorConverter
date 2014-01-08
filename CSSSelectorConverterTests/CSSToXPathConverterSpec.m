@@ -125,6 +125,11 @@ describe(@"CSSToXPathParser", ^{
         [[empty should] equal:@"//div[not(node())]"];
     });
 
+    it(@"should parse function pseudo class", ^{
+        NSError *error = nil;
+        NSString* firstChild = [converter xpathWithCSS:@"tr:nth-child(2n+1)" error:&error];
+        [[firstChild should] equal:@"//tr[(position() >= 1) and (((position()-1) mod 2) = 0)]"];
+    });
 });
 
 SPEC_END
