@@ -31,7 +31,11 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     
     NSMutableString* output = [[NSMutableString alloc] init];
     [assembly.stack enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
-        [output appendString:selector.toXPath];
+        if ([selector respondsToSelector:@selector(toXPath)]) {
+            [output appendString:selector.toXPath];
+        } else {
+            DDLogError(@"not a xpath node! %@", selector);
+        }
     }];
     return [output copy];
 }
@@ -39,39 +43,30 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 #pragma mark - CSSSelectorParserDelegate
 
 -(void) parser:(CSSSelectorParser*)parser didMatchSelectorsGroup:(PKAssembly*)assembly {
-    DDLogVerbose(@"SELECTORS GROUP = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchSelector:(PKAssembly*)assembly {
-    DDLogVerbose(@"SELECTORS = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchSimpleSelectorSequence:(PKAssembly*)assembly {
-    DDLogVerbose(@"SEQ = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchCombinator:(PKAssembly*)assembly {
-    DDLogVerbose(@"COMB = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchAttributeSelector:(PKAssembly*)assembly {
-    DDLogVerbose(@"ATTR = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchTypeSelector:(PKAssembly*)assembly {
-    DDLogVerbose(@"TYPE = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchClassSelector:(PKAssembly*)assembly {
-    DDLogVerbose(@"CLASS = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchIdSelector:(PKAssembly*)assembly {
-    DDLogVerbose(@"ID = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchUniversalSelector:(PKAssembly*)assembly {
-    DDLogVerbose(@"UNIV = %@", assembly);
 }
 
 @end

@@ -11,12 +11,12 @@
 
 #define PUSH_SELECTOR_SEQUENCE() [CSSSelectorSequence selectorWithAssembly:self.assembly];
 
-@class CSSChildSelector;
+@class CSSCombinator;
 @class CSSBaseSelector;
 
 @interface CSSSelectorSequence : CSSBaseSelector
 
-@property (nonatomic, strong) CSSChildSelector* childSelector;
+@property (nonatomic, strong) CSSCombinator* combinator;
 
 @property (nonatomic, strong) CSSBaseSelector* universalOrTypeSelector;
 

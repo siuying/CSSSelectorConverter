@@ -11,20 +11,17 @@ A CSS Selector to XPath Selector Grammar
 selectorsGroup          = selector ( ','! selector )* {
   PUSH_SELECTORS_GROUP();
 };
-selector                = simpleSelectorSequence (simpleSelectorSequence | childSimpleSelectorSequence)* {
+selector                = simpleSelectorSequence ((combinator {
+  PUSH_COMBINATOR();
+} simpleSelectorSequence) | simpleSelectorSequence)* {
   PUSH_SELECTORS();
 };
-childSimpleSelectorSequence = '>'! { PUSH_CHILD_SELECTOR(); } simpleSelectorSequence {
-  CSSSelectorSequence* seq = POP();
-  CSSChildSelector* child = POP();
-  seq.childSelector = child;
-  PUSH(seq);
-};
+
 simpleSelectorSequence  = (universalSelector | typeSelector)? (classSelector | idSelector | attributeSelector)* {
   PUSH_SELECTOR_SEQUENCE();
 };
 attributeSelector       = '['! Word (Empty | ((equal | includes) QuotedString )) ']'! {
- PUSH_ATTRIBUTE();
+  PUSH_ATTRIBUTE();
 };
 classSelector           = '.'! Word {
   PUSH_CSS_CLASS(POP_STR());
@@ -39,5 +36,6 @@ universalSelector       = '*'! {
   PUSH_CSS_UNIVERSAL();
 };
 
+combinator = '>' | '+' ;
 equal                   = "=";
 includes                = "~=";

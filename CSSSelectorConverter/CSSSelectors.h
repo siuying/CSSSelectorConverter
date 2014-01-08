@@ -7,19 +7,20 @@
 //
 
 #import "CSSBaseSelector.h"
-#import "CSSSelectorSequence.h"
-#import "CSSChildSelector.h"
 #import <ParseKit/ParseKit.h>
 
 #define PUSH_SELECTORS() [CSSSelectors selectorWithAssembly:self.assembly];
 
 @interface CSSSelectors : CSSBaseSelector
 
-@property (nonatomic, strong) NSMutableArray* sequences;
+@property (nonatomic, strong) NSMutableArray* selectors;
 
--(void) addSequence:(CSSSelectorSequence*)sequence;
+/**
+ Add a CSSSelectorSequence or CSSCombinator to the selectors.
 
--(void) addChild:(CSSChildSelector*)child;
+ @raise NSInvalidArgumentException if selector is not CSSSelectorSequence or CSSCombinator
+ */
+-(void) addSelector:(CSSBaseSelector*)selector;
 
 +(instancetype) selectorWithAssembly:(PKAssembly*)assembly;
 

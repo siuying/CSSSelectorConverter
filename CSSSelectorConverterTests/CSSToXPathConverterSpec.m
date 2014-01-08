@@ -58,7 +58,7 @@ describe(@"CSSToXPathParser", ^{
         [[css should] equal:@"//p[@id = 'header' and contains(concat(' ', normalize-space(@class), ' '), ' red ')]"];
     });
 
-    it(@"should parse selector sequence", ^{
+    it(@"should parse simple selector sequence", ^{
         NSError *error = nil;
         NSString* css = [converter xpathWithCSS:@"div p" error:&error];
         [[css should] equal:@"//div//p"];
@@ -68,14 +68,18 @@ describe(@"CSSToXPathParser", ^{
         
         css = [converter xpathWithCSS:@"div#main p" error:&error];
         [[css should] equal:@"//div[@id = 'main']//p"];
-
-        css = [converter xpathWithCSS:@"div#main p > a" error:&error];
-        [[css should] equal:@"//div[@id = 'main']//p/a"];
-
-        css = [converter xpathWithCSS:@"div#main p > a p > div" error:&error];
-        [[css should] equal:@"//div[@id = 'main']//p/a//p/div"];
     });
-
+    
+    it(@"should parse descendant selector sequence", ^{
+        NSError *error = nil;
+        
+        NSString* descendantCss = [converter xpathWithCSS:@"div#main p > a" error:&error];
+        [[descendantCss should] equal:@"//div[@id = 'main']//p/a"];
+        
+        descendantCss = [converter xpathWithCSS:@"div#main p > a p > div" error:&error];
+        [[descendantCss should] equal:@"//div[@id = 'main']//p/a//p/div"];
+    });
+    
     it(@"should parse selector group", ^{
         NSError *error = nil;
         NSString* css = [converter xpathWithCSS:@"div, p" error:&error];

@@ -52,6 +52,7 @@
     if (self) {
         self._tokenKindTab[@"*"] = @(CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR);
         self._tokenKindTab[@"~="] = @(CSSSELECTORPARSER_TOKEN_KIND_INCLUDES);
+        self._tokenKindTab[@"+"] = @(CSSSELECTORPARSER_TOKEN_KIND_PLUS);
         self._tokenKindTab[@"["] = @(CSSSELECTORPARSER_TOKEN_KIND_OPEN_BRACKET);
         self._tokenKindTab[@"#"] = @(CSSSELECTORPARSER_TOKEN_KIND_POUND);
         self._tokenKindTab[@","] = @(CSSSELECTORPARSER_TOKEN_KIND_COMMA);
@@ -62,6 +63,7 @@
 
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR] = @"*";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_INCLUDES] = @"~=";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_PLUS] = @"+";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_OPEN_BRACKET] = @"[";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_POUND] = @"#";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_COMMA] = @",";
@@ -111,12 +113,18 @@
 - (void)selector {
     
     [self simpleSelectorSequence]; 
-    while ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR, TOKEN_KIND_BUILTIN_WORD, 0]) {
-        if ([self speculate:^{ if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR, TOKEN_KIND_BUILTIN_WORD, 0]) {[self simpleSelectorSequence]; } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, 0]) {[self childSimpleSelectorSequence]; } else {[self raise:@"No viable alternative found in rule 'selector'."];}}]) {
-            if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR, TOKEN_KIND_BUILTIN_WORD, 0]) {
+    while ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, CSSSELECTORPARSER_TOKEN_KIND_PLUS, CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR, TOKEN_KIND_BUILTIN_WORD, 0]) {
+        if ([self speculate:^{ if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {[self combinator]; [self simpleSelectorSequence]; } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR, TOKEN_KIND_BUILTIN_WORD, 0]) {[self simpleSelectorSequence]; } else {[self raise:@"No viable alternative found in rule 'selector'."];}}]) {
+            if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {
+                [self combinator]; 
+                [self execute:(id)^{
+                
+  PUSH_COMBINATOR();
+
+                }];
                 [self simpleSelectorSequence]; 
-            } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, 0]) {
-                [self childSimpleSelectorSequence]; 
+            } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR, TOKEN_KIND_BUILTIN_WORD, 0]) {
+                [self simpleSelectorSequence]; 
             } else {
                 [self raise:@"No viable alternative found in rule 'selector'."];
             }
@@ -131,25 +139,6 @@
     }];
 
     [self fireAssemblerSelector:@selector(parser:didMatchSelector:)];
-}
-
-- (void)childSimpleSelectorSequence {
-    
-    [self match:CSSSELECTORPARSER_TOKEN_KIND_GT discard:YES]; 
-    [self execute:(id)^{
-     PUSH_CHILD_SELECTOR(); 
-    }];
-    [self simpleSelectorSequence]; 
-    [self execute:(id)^{
-    
-  CSSSelectorSequence* seq = POP();
-  CSSChildSelector* child = POP();
-  seq.childSelector = child;
-  PUSH(seq);
-
-    }];
-
-    [self fireAssemblerSelector:@selector(parser:didMatchChildSimpleSelectorSequence:)];
 }
 
 - (void)simpleSelectorSequence {
@@ -204,7 +193,7 @@
     [self match:CSSSELECTORPARSER_TOKEN_KIND_CLOSE_BRACKET discard:YES]; 
     [self execute:(id)^{
     
- PUSH_ATTRIBUTE();
+  PUSH_ATTRIBUTE();
 
     }];
 
@@ -259,6 +248,19 @@
     }];
 
     [self fireAssemblerSelector:@selector(parser:didMatchUniversalSelector:)];
+}
+
+- (void)combinator {
+    
+    if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, 0]) {
+        [self match:CSSSELECTORPARSER_TOKEN_KIND_GT discard:NO]; 
+    } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {
+        [self match:CSSSELECTORPARSER_TOKEN_KIND_PLUS discard:NO]; 
+    } else {
+        [self raise:@"No viable alternative found in rule 'combinator'."];
+    }
+
+    [self fireAssemblerSelector:@selector(parser:didMatchCombinator:)];
 }
 
 - (void)equal {

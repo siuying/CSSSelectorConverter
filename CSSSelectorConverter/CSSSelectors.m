@@ -12,32 +12,33 @@
 static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 #import "CSSSelectors.h"
-#import "CSSChildSelector.h"
+#import "CSSCombinator.h"
+#import "CSSSelectorSequence.h"
 
 @implementation CSSSelectors
 
 -(instancetype) init {
     self = [super init];
-    self.sequences = [[NSMutableArray alloc] init];
+    self.selectors = [[NSMutableArray alloc] init];
     return self;
 }
 
--(void) addSequence:(CSSSelectorSequence*)sequence {
-    [self.sequences addObject:sequence];
-}
+-(void) addSelector:(CSSBaseSelector*)selector {
+    if (![selector isKindOfClass:[CSSSelectorSequence class]] && ![selector isKindOfClass:[CSSCombinator class]]) {
+        [NSException raise:NSInvalidArgumentException format:@"Only allowed to add selector of type CSSSelectorSequence or CSSCombinator, given: %@", [selector class]];
+    }
 
--(void) addChild:(CSSChildSelector*)child {
-    [self.sequences addObject:child];
+    [self.selectors addObject:selector];
 }
 
 -(NSString*) description {
-    return [NSString stringWithFormat:@"<CSSSelectors %@>", self.sequences];
+    return [NSString stringWithFormat:@"<CSSSelectors %@>", self.selectors];
 }
 
 -(NSString*) toXPath {
     NSMutableString* result = [[NSMutableString alloc] init];
     
-    NSArray* reverseSequence = [[self.sequences reverseObjectEnumerator] allObjects];
+    NSArray* reverseSequence = [[self.selectors reverseObjectEnumerator] allObjects];
     [reverseSequence enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
         [result appendString:selector.toXPath];
     }];
@@ -48,15 +49,12 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 +(instancetype) selectorWithAssembly:(PKAssembly*)assembly {
     DDLogVerbose(@"create CSSSelectors ...");
     CSSSelectors* selectors = [[self alloc] init];
-    CSSSelectorSequence* sequence1 = [assembly pop];
-    [selectors addSequence:sequence1];
 
     id token;
     while ((token = [assembly pop])) {
-        if ([token isKindOfClass:[CSSSelectorSequence class]]) {
-            DDLogVerbose(@"  add a sequence: %@", token);
-            CSSSelectorSequence* sequence = token;
-            [selectors addSequence:sequence];
+        if ([token isKindOfClass:[CSSSelectorSequence class]] || [token isKindOfClass:[CSSCombinator class]]) {
+            DDLogVerbose(@"  add a sequence or combiantor: %@", token);
+            [selectors addSelector:token];
 
         } else {
             DDLogVerbose(@"  %@ is not a sequence or separator, push it back and abort sequence", [token class]);
