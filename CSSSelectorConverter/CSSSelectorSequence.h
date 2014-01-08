@@ -14,6 +14,7 @@
 @class CSSCombinator;
 @class CSSBaseSelector;
 @class CSSPseudoClass;
+@class CSSTypeSelector;
 
 @interface CSSSelectorSequence : CSSBaseSelector
 
@@ -21,7 +22,7 @@
 
 @property (nonatomic, strong) CSSPseudoClass* pseudoClass;
 
-@property (nonatomic, strong) CSSBaseSelector* universalOrTypeSelector;
+@property (nonatomic, strong) CSSTypeSelector* universalOrTypeSelector;
 
 @property (nonatomic, strong) NSMutableArray* otherSelectors;
 
