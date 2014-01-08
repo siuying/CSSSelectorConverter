@@ -14,13 +14,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
-#import "CSSUniversalSelector.h"
-#import "CSSNamedSelector.h"
-#import "CSSTypeSelector.h"
-#import "CSSIDSelector.h"
-#import "CSSClassSelector.h"
-#import "CSSSelectorSequence.h"
-#import "CSSSelectors.h"
-#import "CSSSelectorGroup.h"
+#import "CSSSelectorConverter.h"
 
 #endif

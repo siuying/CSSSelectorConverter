@@ -5,6 +5,10 @@
 //  Created by Francis Chong on 7/1/14.
 //  Copyright (c) 2014 Ignition Soft. All rights reserved.
 //
+#import "DDLog.h"
+#undef LOG_LEVEL_DEF
+#define LOG_LEVEL_DEF cssSelectorLogLevel
+static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 #import "CSSToXPathConverter.h"
 #import <ParseKit/ParseKit.h>
@@ -35,39 +39,39 @@
 #pragma mark - CSSSelectorParserDelegate
 
 -(void) parser:(CSSSelectorParser*)parser didMatchSelectorsGroup:(PKAssembly*)assembly {
-    NSLog(@"SELECTORS GROUP = %@", assembly);
+    DDLogVerbose(@"SELECTORS GROUP = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchSelector:(PKAssembly*)assembly {
-    NSLog(@"SELECTORS = %@", assembly);
+    DDLogVerbose(@"SELECTORS = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchSimpleSelectorSequence:(PKAssembly*)assembly {
-    NSLog(@"SEQ = %@", assembly);
+    DDLogVerbose(@"SEQ = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchCombinator:(PKAssembly*)assembly {
-    NSLog(@"COMB = %@", assembly);
+    DDLogVerbose(@"COMB = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchAttributeSelector:(PKAssembly*)assembly {
-     NSLog(@"ATTR = %@", assembly);
+    DDLogVerbose(@"ATTR = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchTypeSelector:(PKAssembly*)assembly {
-    NSLog(@"TYPE = %@", assembly);
+    DDLogVerbose(@"TYPE = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchClassSelector:(PKAssembly*)assembly {
-    NSLog(@"CLASS = %@", assembly);
+    DDLogVerbose(@"CLASS = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchIdSelector:(PKAssembly*)assembly {
-    NSLog(@"ID = %@", assembly);
+    DDLogVerbose(@"ID = %@", assembly);
 }
 
 -(void) parser:(CSSSelectorParser*)parser didMatchUniversalSelector:(PKAssembly*)assembly {
-    NSLog(@"UNIV = %@", assembly);    
+    DDLogVerbose(@"UNIV = %@", assembly);
 }
 
 @end

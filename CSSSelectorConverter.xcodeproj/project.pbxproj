@@ -107,6 +107,7 @@
 		547F4955187C021C0041264E /* css_selector.grammar */ = {isa = PBXFileReference; lastKnownFileType = text; path = css_selector.grammar; sourceTree = "<group>"; };
 		54D62F25187D06150075A755 /* CSSSelectorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorGroup.h; sourceTree = "<group>"; };
 		54D62F26187D06150075A755 /* CSSSelectorGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorGroup.m; sourceTree = "<group>"; };
+		54D62F29187D0B0E0075A755 /* CSSSelectorConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSSelectorConverter.h; sourceTree = "<group>"; };
 		54DB8AD6187C6251000C994C /* CSSChildSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSChildSelector.h; sourceTree = "<group>"; };
 		54DB8AD7187C6251000C994C /* CSSChildSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSChildSelector.m; sourceTree = "<group>"; };
 		645CC76B14924389A7C750E3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +180,7 @@
 			children = (
 				540AA39F187BEEED0012AA44 /* Selector */,
 				540AA39A187BEB5C0012AA44 /* CSSSelectorParserDelegate.h */,
+				54D62F29187D0B0E0075A755 /* CSSSelectorConverter.h */,
 				540AA39B187BEE660012AA44 /* CSSSelectorParser.h */,
 				540AA39C187BEE660012AA44 /* CSSSelectorParser.m */,
 				540AA396187BE4900012AA44 /* CSSToXPathConverter.h */,

@@ -6,6 +6,12 @@
 //  Copyright (c) 2014 Ignition Soft. All rights reserved.
 //
 
+#import "DDLog.h"
+
+#undef LOG_LEVEL_DEF
+#define LOG_LEVEL_DEF cssSelectorLogLevel
+static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
+
 #import "CSSSelectorSequence.h"
 
 #import "CSSUniversalSelector.h"
@@ -30,6 +36,7 @@
 -(void) addSelector:(CSSBaseSelector*)selector {
     if ([selector isKindOfClass:[CSSUniversalSelector class]] || [selector isKindOfClass:[CSSTypeSelector class]]) {
         if (self.universalOrTypeSelector != nil) {
+            DDLogError(@"selector sequence only begin with one universal selector or type selector, already added: %@, attempt to add: %@", self.universalOrTypeSelector, selector);
             [NSException raise:NSInternalInconsistencyException format:@"selector sequence only begin with one universal selector or type selector, already added: %@, attempt to add: %@", self.universalOrTypeSelector, selector];
         } else {
             self.universalOrTypeSelector = selector;
@@ -37,6 +44,7 @@
     } else if ([selector isKindOfClass:[CSSIDSelector class]] || [selector isKindOfClass:[CSSClassSelector class]]) {
         [self.otherSelectors addObject:selector];
     } else {
+        DDLogError(@"attempt to add unknown selector to sequence: %@", selector);
         [NSException raise:NSInternalInconsistencyException format:@"attempt to add unknown selector to sequence: %@", selector];
     }
 }
@@ -65,14 +73,17 @@
 }
 
 +(instancetype) selectorWithAssembly:(PKAssembly*)assembly {
+    DDLogVerbose(@"create a sequence ...");
     CSSSelectorSequence* seq = [[self alloc] init];
     CSSBaseSelector* selector = nil;
 
     while ((selector = [assembly pop])) {
         if ([selector isKindOfClass:[CSSUniversalSelector class]] || [selector isKindOfClass:[CSSTypeSelector class]] ||
             [selector isKindOfClass:[CSSIDSelector class]] || [selector isKindOfClass:[CSSClassSelector class]]) {
+            DDLogVerbose(@"  add %@ (%@) to sequence", [selector class], selector);
             [seq addSelector:selector];
         } else {
+            DDLogVerbose(@"  not a supported selector, push it back and abort sequence %@(%@)", [selector class], selector);
             [assembly push:selector];
             [assembly push:seq];
             return seq;

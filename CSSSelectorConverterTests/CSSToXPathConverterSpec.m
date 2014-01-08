@@ -7,12 +7,19 @@
 //
 
 #import "Kiwi.h"
-#import "CSSToXPathConverter.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
+#import "CSSSelectorConverter.h"
 
 SPEC_BEGIN(CSSToXPathConverterSpec)
 __block CSSToXPathConverter *converter;
 
 describe(@"CSSToXPathParser", ^{
+    beforeAll(^{
+        DDTTYLogger* ttyLogger = [DDTTYLogger sharedInstance];
+        [DDLog addLogger:ttyLogger];
+    });
+
     beforeEach(^{
         converter = [[CSSToXPathConverter alloc] init];
     });
