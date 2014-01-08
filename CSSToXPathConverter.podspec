@@ -13,9 +13,13 @@ Pod::Spec.new do |s|
   }
 
   s.source_files           =  'CSSSelectorConverter/CSS*.{m,h}'
-  s.prefix_header_contents = "#import \"CSSToXPathConverter.h\""
+  s.prefix_header_contents = "#import \"CSSSelectorConverter.h\""
+
+  s.ios.deployment_target  = '6.0'
+  s.osx.deployment_target  = '10.8'
 
   s.dependency 'ParseKit', '~> 0.7'
+  s.dependency 'CocoaLumberjack', '>= 1.6.4'
   s.library                =  'icucore'
   s.requires_arc           =  true
 end
