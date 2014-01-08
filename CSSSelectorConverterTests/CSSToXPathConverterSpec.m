@@ -114,6 +114,15 @@ describe(@"CSSToXPathParser", ^{
         
         NSString* lastOfType = [converter xpathWithCSS:@"tr > td:last-of-type" error:&error];
         [[lastOfType should] equal:@"//tr/td[position() = last()]"];
+        
+        NSString* onlyChild = [converter xpathWithCSS:@"p:only-child" error:&error];
+        [[onlyChild should] equal:@"//*[last() = 1 and self::p]"];
+        
+        NSString* onlyOfType = [converter xpathWithCSS:@"p:only-of-type" error:&error];
+        [[onlyOfType should] equal:@"//p[last() = 1]"];
+
+        NSString* empty = [converter xpathWithCSS:@"div:empty" error:&error];
+        [[empty should] equal:@"//div[not(node())]"];
     });
 
 });

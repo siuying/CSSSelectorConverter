@@ -26,7 +26,10 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
                                   @"first-child": @"*[position() = 1 and self::%@]",
                                   @"last-child": @"*[position() = last() and self::%@]",
                                   @"first-of-type": @"%@[position() = 1]",
-                                  @"last-of-type":@"%@[position() = last()]"
+                                  @"last-of-type":@"%@[position() = last()]",
+                                  @"only-child": @"*[last() = 1 and self::%@]",
+                                  @"only-of-type": @"%@[last() = 1]",
+                                  @"empty": @"%@[not(node())]"
                                   };
     });
     return _pseudoClassXPathMapping;
@@ -39,6 +42,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
 -(NSString*) toXPath {
     NSString* parentName = self.parent ? self.parent.name : @"*";
     NSString* mapping = [CSSPseudoClass pseudoClassXPathMapping][self.name];
+    
     if (mapping) {
         return [NSString stringWithFormat:mapping, parentName];
     } else {
