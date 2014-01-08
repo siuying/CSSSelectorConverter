@@ -22,5 +22,6 @@
 #import "CSSSelectorAttribute.h"
 #import "CSSNamedSelector.h"
 #import "CSSCombinator.h"
-
+#import "CSSNamedSelector.h"
+#import "CSSPseudoClass.h"
 #endif

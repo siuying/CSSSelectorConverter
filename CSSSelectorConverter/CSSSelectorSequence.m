@@ -21,6 +21,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 #import "CSSClassSelector.h"
 #import "CSSSelectorAttribute.h"
 #import "CSSCombinator.h"
+#import "CSSPseudoClass.h"
 
 @implementation CSSSelectorSequence
 
@@ -36,14 +37,9 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 -(void) addSelector:(CSSBaseSelector*)selector {
-    if ([selector isKindOfClass:[CSSUniversalSelector class]] || [selector isKindOfClass:[CSSTypeSelector class]]) {
-        if (self.universalOrTypeSelector != nil) {
-            DDLogError(@"selector sequence only begin with one universal selector or type selector, already added: %@, attempt to add: %@", self.universalOrTypeSelector, selector);
-            [NSException raise:NSInternalInconsistencyException format:@"selector sequence only begin with one universal selector or type selector, already added: %@, attempt to add: %@", self.universalOrTypeSelector, selector];
-        } else {
-            self.universalOrTypeSelector = selector;
-        }
-    } else if ([selector isKindOfClass:[CSSIDSelector class]] || [selector isKindOfClass:[CSSClassSelector class]] || [selector isKindOfClass:[CSSSelectorAttribute class]]) {
+    if ([selector isKindOfClass:[CSSIDSelector class]] ||
+        [selector isKindOfClass:[CSSClassSelector class]] ||
+        [selector isKindOfClass:[CSSSelectorAttribute class]]) {
         [self.otherSelectors addObject:selector];
     } else {
         DDLogError(@"attempt to add unknown selector to sequence: %@", selector);
@@ -58,12 +54,18 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     } else {
         [result appendString:@"//"];
     }
-
-    if (self.universalOrTypeSelector) {
-        [result appendString:self.universalOrTypeSelector.toXPath];
-    } else {
-        [result appendString:@"*"];
+    
+    if (!self.universalOrTypeSelector) {
+        self.universalOrTypeSelector = [CSSUniversalSelector selector];
     }
+
+    if (self.pseudoClass) {
+        self.pseudoClass.parent = self.universalOrTypeSelector;
+        [result appendString:self.pseudoClass.toXPath];
+    } else {
+        [result appendString:self.universalOrTypeSelector.toXPath];
+    }
+
     
     if ([self.otherSelectors count] > 0) {
         [result appendString:@"["];
@@ -86,10 +88,20 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     CSSBaseSelector* selector = nil;
 
     while ((selector = [assembly pop])) {
-        if ([selector isKindOfClass:[CSSUniversalSelector class]] || [selector isKindOfClass:[CSSTypeSelector class]] ||
-            [selector isKindOfClass:[CSSIDSelector class]] || [selector isKindOfClass:[CSSClassSelector class]] || [selector isKindOfClass:[CSSSelectorAttribute class]]) {
+        if ([selector isKindOfClass:[CSSUniversalSelector class]] ||
+            [selector isKindOfClass:[CSSTypeSelector class]]) {
+            seq.universalOrTypeSelector = selector;
+        } else if ([selector isKindOfClass:[CSSIDSelector class]] ||
+            [selector isKindOfClass:[CSSClassSelector class]] ||
+            [selector isKindOfClass:[CSSSelectorAttribute class]]) {
             DDLogVerbose(@"  add %@ (%@) to sequence", [selector class], selector);
             [seq addSelector:selector];
+
+        } else if ([selector isKindOfClass:[CSSPseudoClass class]]) {
+            CSSPseudoClass* pseudo = (CSSPseudoClass*) selector;
+            DDLogVerbose(@"  add psedo class (%@) to sequence", pseudo.name);
+            [seq setPseudoClass:pseudo];
+
         } else if ([selector isKindOfClass:[CSSCombinator class]]) {
             CSSCombinator* combinator = (CSSCombinator*) selector;
             [seq setCombinator:combinator];

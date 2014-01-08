@@ -10,6 +10,10 @@
 
 @implementation CSSUniversalSelector
 
++(instancetype) selector {
+    return [self selectorWithName:@"*"];
+}
+
 -(NSString*) description {
     return @"<UniversalSelector>";
 }

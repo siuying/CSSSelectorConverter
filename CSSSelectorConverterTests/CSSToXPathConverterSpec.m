@@ -101,6 +101,12 @@ describe(@"CSSToXPathParser", ^{
         [[cssWithDashValue should] equal:@"//div[@att = \"val\" or starts-with(@att, concat(\"val\", '-'))]"];
     });
 
+    it(@"should parse pseudo class", ^{
+        NSError *error = nil;
+        NSString* css = [converter xpathWithCSS:@"a:first-child" error:&error];
+        [[css should] equal:@"//*[position() = 1 and self::a]"];
+    });
+
 });
 
 SPEC_END

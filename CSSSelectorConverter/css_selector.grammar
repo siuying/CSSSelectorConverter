@@ -1,38 +1,56 @@
 /*
 A CSS Selector to XPath Selector Grammar
 */
-@symbols = '=' '~=' '|=';
+@symbols = '=' '~=' '|=' ':';
 
 @start
 @before{
   PKTokenizer *t = self.tokenizer;
- [t.symbolState add:@"~="];
+  [t.symbolState add:@"~="];
   [t.symbolState add:@"|="];
-}                       = selectorsGroup;                        
+  [t.symbolState add:@":"];
+}                       = selectorsGroup;
+
 selectorsGroup          = selector ( ','! selector )* {
   PUSH_SELECTORS_GROUP();
 };
+
 selector                = simpleSelectorSequence ((combinator {
   PUSH_COMBINATOR();
 } simpleSelectorSequence) | simpleSelectorSequence)* {
   PUSH_SELECTORS();
 };
 
-simpleSelectorSequence  = (universalSelector | typeSelector)? (classSelector | idSelector | attributeSelector)* {
+simpleSelectorSequence  = (universalSelector | typeSelector)? (classSelector | idSelector | attributeSelector | pseudoSelector)* {
   PUSH_SELECTOR_SEQUENCE();
 };
+
 attributeSelector       = '['! Word (Empty | ((equal | includes | dashmatch) QuotedString )) ']'! {
   PUSH_ATTRIBUTE();
 };
+
+pseudoSelector          = ':'! ((Word | '-')+)  {
+  PUSH_PSEUDO_CLASS();
+} | (Word '(' expression ')') {
+  PUSH_PSEUDO_CLASS();
+};
+
+expression =  ( ( '+' | '-' | dimension | Number | Word ) )+;
+
+dimension = Number Word;
+
 classSelector           = '.'! Word {
   PUSH_CSS_CLASS(POP_STR());
 };
+
 idSelector              = '#'! Word {
   PUSH_CSS_ID(POP_STR());
 };
+
 typeSelector            = Word {
   PUSH_CSS_TYPE(POP_STR());
 };
+
 universalSelector       = '*'! {
   PUSH_CSS_UNIVERSAL();
 };

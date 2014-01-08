@@ -13,10 +13,13 @@
 
 @class CSSCombinator;
 @class CSSBaseSelector;
+@class CSSPseudoClass;
 
 @interface CSSSelectorSequence : CSSBaseSelector
 
 @property (nonatomic, strong) CSSCombinator* combinator;
+
+@property (nonatomic, strong) CSSPseudoClass* pseudoClass;
 
 @property (nonatomic, strong) CSSBaseSelector* universalOrTypeSelector;
 

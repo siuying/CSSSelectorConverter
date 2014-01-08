@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CSSBaseSelector.h"
+#import "CSSTypeSelector.h"
 
 #define PUSH_CSS_UNIVERSAL() [self.assembly push:([CSSUniversalSelector selector])]
 
-@interface CSSUniversalSelector : CSSBaseSelector
+@interface CSSUniversalSelector : CSSTypeSelector
 
 @end
