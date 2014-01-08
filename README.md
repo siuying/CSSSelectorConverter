@@ -1,4 +1,4 @@
-# CSSToXPathConverter
+# CSS Selector Converter
 
 A CSS Selector to XPath Selector for Objective-C. 
 
