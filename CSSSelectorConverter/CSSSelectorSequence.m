@@ -90,7 +90,8 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     while ((selector = [assembly pop])) {
         if ([selector isKindOfClass:[CSSUniversalSelector class]] ||
             [selector isKindOfClass:[CSSTypeSelector class]]) {
-            seq.universalOrTypeSelector = selector;
+            CSSTypeSelector* typeSelector = (CSSTypeSelector*) selector;
+            seq.universalOrTypeSelector = typeSelector;
         } else if ([selector isKindOfClass:[CSSIDSelector class]] ||
             [selector isKindOfClass:[CSSClassSelector class]] ||
             [selector isKindOfClass:[CSSSelectorAttribute class]]) {
