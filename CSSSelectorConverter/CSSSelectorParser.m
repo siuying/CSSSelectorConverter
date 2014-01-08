@@ -244,18 +244,12 @@
 - (void)pseudoSelector {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_COLON discard:YES]; 
-    if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_NTHCONSTANT, 0]) {
-        [self paramPseudoSelector]; 
-    } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_EMPTY, CSSSELECTORPARSER_TOKEN_KIND_FIRST, CSSSELECTORPARSER_TOKEN_KIND_LAST, CSSSELECTORPARSER_TOKEN_KIND_ONLY, 0]) {
-        [self pseudoSelectorName]; 
-        [self execute:(id)^{
-        
+    [self pseudoSelectorName]; 
+    [self execute:(id)^{
+    
   PUSH_PSEUDO_CLASS();
 
-        }];
-    } else {
-        [self raise:@"No viable alternative found in rule 'pseudoSelector'."];
-    }
+    }];
 
 }
 
@@ -275,7 +269,10 @@
 
 - (void)paramPseudoSelectorParam {
     
-    if ([self speculate:^{ if ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, 0]) {[self matchNumber:NO]; }[self nthChildConstant]; if ([self speculate:^{ if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {[self sign]; }[self matchNumber:NO]; }]) {if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {[self sign]; }[self matchNumber:NO]; }}]) {
+    if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {
+        if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {
+            [self sign]; 
+        }
         if ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, 0]) {
             [self matchNumber:NO]; 
         }
@@ -286,11 +283,11 @@
             }
             [self matchNumber:NO]; 
         }
-    } else if ([self speculate:^{ [self matchNumber:NO]; }]) {
+    } else if ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, 0]) {
         [self matchNumber:NO]; 
-    } else if ([self speculate:^{ [self even]; }]) {
+    } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_EVEN, 0]) {
         [self even]; 
-    } else if ([self speculate:^{ [self odd]; }]) {
+    } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_ODD, 0]) {
         [self odd]; 
     } else {
         [self raise:@"No viable alternative found in rule 'paramPseudoSelectorParam'."];

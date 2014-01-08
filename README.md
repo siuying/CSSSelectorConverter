@@ -6,7 +6,7 @@ Support mostly used subset of  [CSS Selector Level 3](http://www.w3.org/TR/css3-
 
 ## Usage
 
-```
+```objective-c
 #import "CSSSelectorConverter.h"
 
 CSSToXPathConverter* converter = [[CSSToXPathConverter alloc] init];
@@ -44,8 +44,22 @@ It supports following pseduo classes:
 - only-child
 - only-of-type
 - empty
-- nth-child()
 
+Currently pseduo classes with parameters are not supported (I probably will not implement them until I really NEEDS them):
+
+- nth-child()
+- nth-last-child()
+- nth-of-type() 
+- nth-last-of-type()
+- not()
+
+Following pseduo classes will not be supported:
+
+- Dynamic pseudo classes (:link, :visied, :hover ... etc)
+- UI elements states pseudo-classes (:enabled, :checked, :indeterminate)
+- :target
+- :lang
+- :root
 
 ## License
 

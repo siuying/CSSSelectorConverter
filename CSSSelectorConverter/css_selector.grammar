@@ -32,7 +32,8 @@ attributeSelector       = '['! Word (Empty | ((equal | includes | dashmatch) Quo
   PUSH_ATTRIBUTE();
 };
 
-pseudoSelector          = ':'! ( (paramPseudoSelector)  | pseudoSelectorName {
+/* disabled pseudo selector with params */
+pseudoSelector          = ':'! ( /*(paramPseudoSelector)  | */ pseudoSelectorName {
   PUSH_PSEUDO_CLASS();
 });
 
