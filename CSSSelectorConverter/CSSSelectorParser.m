@@ -244,9 +244,9 @@
 - (void)pseudoSelector {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_COLON discard:YES]; 
-    if ([self speculate:^{ [self nthChild]; }]) {
-        [self nthChild]; 
-    } else if ([self speculate:^{ [self pseudoSelectorName]; }]) {
+    if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_NTHCONSTANT, 0]) {
+        [self paramPseudoSelector]; 
+    } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_EMPTY, CSSSELECTORPARSER_TOKEN_KIND_FIRST, CSSSELECTORPARSER_TOKEN_KIND_LAST, CSSSELECTORPARSER_TOKEN_KIND_ONLY, 0]) {
         [self pseudoSelectorName]; 
         [self execute:(id)^{
         
@@ -259,11 +259,11 @@
 
 }
 
-- (void)nthChild {
+- (void)paramPseudoSelector {
     
-    [self nthChildName]; 
+    [self paramPseudoSelectorName]; 
     [self match:CSSSELECTORPARSER_TOKEN_KIND_OPEN_PAREN discard:YES]; 
-    [self nth]; 
+    [self paramPseudoSelectorParam]; 
     [self match:CSSSELECTORPARSER_TOKEN_KIND_CLOSE_PAREN discard:YES]; 
     [self execute:(id)^{
     
@@ -273,7 +273,7 @@
 
 }
 
-- (void)nth {
+- (void)paramPseudoSelectorParam {
     
     if ([self speculate:^{ if ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, 0]) {[self matchNumber:NO]; }[self nthChildConstant]; if ([self speculate:^{ if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {[self sign]; }[self matchNumber:NO]; }]) {if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {[self sign]; }[self matchNumber:NO]; }}]) {
         if ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, 0]) {
@@ -293,7 +293,7 @@
     } else if ([self speculate:^{ [self odd]; }]) {
         [self odd]; 
     } else {
-        [self raise:@"No viable alternative found in rule 'nth'."];
+        [self raise:@"No viable alternative found in rule 'paramPseudoSelectorParam'."];
     }
 
 }
@@ -351,11 +351,35 @@
 
 }
 
-- (void)nthChildName {
+- (void)paramPseudoSelectorName {
     
-    [self nthConstant]; 
-    [self minus]; 
-    [self child]; 
+    if ([self speculate:^{ [self nthConstant]; [self minus]; [self last]; [self minus]; [self child]; }]) {
+        [self nthConstant]; 
+        [self minus]; 
+        [self last]; 
+        [self minus]; 
+        [self child]; 
+    } else if ([self speculate:^{ [self nthConstant]; [self minus]; [self last]; [self minus]; [self of]; [self minus]; [self type]; }]) {
+        [self nthConstant]; 
+        [self minus]; 
+        [self last]; 
+        [self minus]; 
+        [self of]; 
+        [self minus]; 
+        [self type]; 
+    } else if ([self speculate:^{ [self nthConstant]; [self minus]; [self of]; [self minus]; [self type]; }]) {
+        [self nthConstant]; 
+        [self minus]; 
+        [self of]; 
+        [self minus]; 
+        [self type]; 
+    } else if ([self speculate:^{ [self nthConstant]; [self minus]; [self child]; }]) {
+        [self nthConstant]; 
+        [self minus]; 
+        [self child]; 
+    } else {
+        [self raise:@"No viable alternative found in rule 'paramPseudoSelectorName'."];
+    }
 
 }
 
@@ -391,10 +415,6 @@
         [self of]; 
         [self minus]; 
         [self type]; 
-    } else if ([self speculate:^{ [self nthConstant]; [self minus]; [self child]; }]) {
-        [self nthConstant]; 
-        [self minus]; 
-        [self child]; 
     } else if ([self speculate:^{ [self empty]; }]) {
         [self empty]; 
     } else {

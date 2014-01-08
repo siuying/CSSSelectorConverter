@@ -32,15 +32,15 @@ attributeSelector       = '['! Word (Empty | ((equal | includes | dashmatch) Quo
   PUSH_ATTRIBUTE();
 };
 
-pseudoSelector          = ':'! ( (nthChild)  | pseudoSelectorName {
+pseudoSelector          = ':'! ( (paramPseudoSelector)  | pseudoSelectorName {
   PUSH_PSEUDO_CLASS();
 });
 
-nthChild = nthChildName '('! nth ')'!  {
+paramPseudoSelector = paramPseudoSelectorName '('! paramPseudoSelectorParam ')'!  {
   PUSH_NTH_CHILD();
 };
 
-nth = (  Number? nthChildConstant (sign? Number)? ) | Number | even | odd  ;
+paramPseudoSelectorParam = ( sign? Number? nthChildConstant (sign? Number)? ) | Number | even | odd  ;
 
 dimension = Number Word;
 
@@ -60,18 +60,18 @@ universalSelector       = '*'! {
   PUSH_CSS_UNIVERSAL();
 };
 
-nthChildName            = nthConstant minus child;
+paramPseudoSelectorName = nthConstant minus last minus child | nthConstant minus last minus of minus type | nthConstant minus of minus type | nthConstant minus child;
 pseudoSelectorName      = first minus child | last minus child | first minus of minus type | last minus of minus type | 
-    only minus child | only minus of minus type | nthConstant minus child  | empty;
+                          only minus child | only minus of minus type | empty;
 
 nthChildConstant        = 'n';
-first = 'first';
-last = 'last';
-child = 'child';
-type = 'type';
-of = 'of';
-only = 'only';
-empty = 'empty';
+first                   = 'first';
+last                    = 'last';
+child                   = 'child';
+type                    = 'type';
+of                      = 'of';
+only                    = 'only';
+empty                   = 'empty';
 nthConstant             = 'nth';
 odd                     = 'odd';
 even                    = 'even';
