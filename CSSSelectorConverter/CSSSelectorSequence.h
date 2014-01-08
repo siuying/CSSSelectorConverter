@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ParseKit/ParseKit.h>
 
-#define PUSH_SELECTOR_SEQUENCE() [CSSSelectorSequence selectorWithAssembly:self.assembly];
+#define PUSH_SELECTOR_SEQUENCE() [CSSSelectorSequence pushSelectorSequence:self.assembly];
 
 @class CSSCombinator;
 @class CSSBaseSelector;
@@ -24,6 +24,6 @@
 
 -(void) addSelector:(CSSBaseSelector*)selector;
 
-+(instancetype) selectorWithAssembly:(PKAssembly*)assembly;
++(void) pushSelectorSequence:(PKAssembly*)assembly;
 
 @end

@@ -42,7 +42,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     return [result copy];
 }
 
-+(instancetype) selectorsGroupWithAssembly:(PKAssembly*)assembly {
++(void) pushSelectorGroup:(PKAssembly*)assembly {
     DDLogVerbose(@"create CSSSelectorGroup ...");
     CSSSelectorGroup* group = [[self alloc] init];
     id token;
@@ -57,12 +57,12 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
             DDLogVerbose(@"  %@ is not a selector, push it back and abort sequence", [token class]);
             [assembly push:token];
             [assembly push:group];
-            return group;
+            return;
         }
     }
 
     [assembly push:group];
-    return group;
+    return;
 }
 
 @end

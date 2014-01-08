@@ -9,7 +9,7 @@
 #import "CSSBaseSelector.h"
 #import "CSSSelectors.h"
 
-#define PUSH_SELECTORS_GROUP() [CSSSelectorGroup selectorsGroupWithAssembly:self.assembly];
+#define PUSH_SELECTORS_GROUP() [CSSSelectorGroup pushSelectorGroup:self.assembly];
 
 @interface CSSSelectorGroup : CSSBaseSelector
 
@@ -17,6 +17,6 @@
 
 -(void) addSelectors:(CSSSelectors*)selectors;
 
-+(instancetype) selectorsGroupWithAssembly:(PKAssembly*)assembly;
++(void) pushSelectorGroup:(PKAssembly*)assembly;
 
 @end

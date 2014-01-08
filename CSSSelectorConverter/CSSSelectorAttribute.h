@@ -9,7 +9,7 @@
 #import "CSSBaseSelector.h"
 #import "CSSSelectorAttributeOperator.h"
 
-#define PUSH_ATTRIBUTE() [CSSSelectorAttribute attributeWithAssembly:self.assembly];
+#define PUSH_ATTRIBUTE() [CSSSelectorAttribute pushAttribute:self.assembly];
 
 @interface CSSSelectorAttribute : CSSBaseSelector
 
@@ -17,6 +17,6 @@
 @property (nonatomic, copy) NSString* name;
 @property (nonatomic, copy) NSString* value;
 
-+(instancetype) attributeWithAssembly:(PKAssembly*)assembly;
++(void) pushAttribute:(PKAssembly*)assembly;
 
 @end

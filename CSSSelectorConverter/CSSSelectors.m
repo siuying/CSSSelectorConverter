@@ -46,7 +46,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     return [result copy];
 }
 
-+(instancetype) selectorWithAssembly:(PKAssembly*)assembly {
++(void) pushSelectors:(PKAssembly*)assembly {
     DDLogVerbose(@"create CSSSelectors ...");
     CSSSelectors* selectors = [[self alloc] init];
 
@@ -60,12 +60,12 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
             DDLogVerbose(@"  %@ is not a sequence or separator, push it back and abort sequence", [token class]);
             [assembly push:token];
             [assembly push:selectors];
-            return selectors;
+            return;
         }
     }
 
     [assembly push:selectors];
-    return selectors;
+    return;
 }
 
 @end
