@@ -11,6 +11,7 @@
 
 #import "CSSUniversalSelector.h"
 #import "CSSNamedSelector.h"
+#import "CSSChildSelector.h"
 #import "CSSTypeSelector.h"
 #import "CSSIDSelector.h"
 #import "CSSClassSelector.h"

@@ -71,29 +71,20 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     id token;
     while ((token = [assembly pop])) {
         if ([token isKindOfClass:[CSSSelectorSequence class]]) {
-            // this is a sequence
             DDLogVerbose(@"  add a sequence: %@", token);
             CSSSelectorSequence* sequence = token;
             [selectors addSequence:sequence];
 
+        } else if ([token isKindOfClass:[CSSChildSelector class]]) {
+            DDLogVerbose(@"  add a child: %@", token);
+            CSSChildSelector* child = token;
+            [selectors addChild:child];
+
         } else {
-            NSString* tokenString;
-            if ([token respondsToSelector:@selector(stringValue)]) {
-                tokenString = [token stringValue];
-            } else {
-                tokenString = [token description];
-            }
-            if ([tokenString isEqualToString:@">"]) {
-                // this is a separator
-                DDLogVerbose(@"  add a separator: %@", token);
-                [selectors addChild:[CSSChildSelector selector]];
-            } else {
-                // token is not a sequence or separator, push it back and abort
-                DDLogVerbose(@"  not a sequence or separator, push it back and abort sequence %@(%@)", [token class], token);
-                [assembly push:token];
-                [assembly push:selectors];
-                return selectors;
-            }
+            DDLogVerbose(@"  not a sequence or separator, push it back and abort sequence %@(%@)", [token class], token);
+            [assembly push:token];
+            [assembly push:selectors];
+            return selectors;
         }
     }
 

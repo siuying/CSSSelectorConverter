@@ -8,6 +8,8 @@
 
 #import "CSSBaseSelector.h"
 
+#define PUSH_CHILD_SELECTOR() [self.assembly push:([CSSChildSelector selector])];
+
 @interface CSSChildSelector : CSSBaseSelector
 
 @end

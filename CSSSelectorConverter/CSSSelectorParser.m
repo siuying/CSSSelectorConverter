@@ -139,7 +139,10 @@
 
 - (void)childSimpleSelectorSequence {
     
-    [self match:CSSSELECTORPARSER_TOKEN_KIND_GT discard:NO]; 
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_GT discard:YES]; 
+    [self execute:(id)^{
+     PUSH_CHILD_SELECTOR(); 
+    }];
     [self simpleSelectorSequence]; 
 
     [self fireAssemblerSelector:@selector(parser:didMatchChildSimpleSelectorSequence:)];
