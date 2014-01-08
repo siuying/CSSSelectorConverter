@@ -12,7 +12,12 @@ selectorsGroup          = selector ( ','! selector )* {
 selector                = simpleSelectorSequence (simpleSelectorSequence | childSimpleSelectorSequence)* {
   PUSH_SELECTORS();
 };
-childSimpleSelectorSequence = '>'! { PUSH_CHILD_SELECTOR(); } simpleSelectorSequence;
+childSimpleSelectorSequence = '>'! { PUSH_CHILD_SELECTOR(); } simpleSelectorSequence {
+  CSSSelectorSequence* seq = POP();
+  CSSChildSelector* child = POP();
+  seq.childSelector = child;
+  PUSH(seq);
+};
 simpleSelectorSequence  = (universalSelector | typeSelector)? (classSelector | idSelector)* {
   PUSH_SELECTOR_SEQUENCE();
 };

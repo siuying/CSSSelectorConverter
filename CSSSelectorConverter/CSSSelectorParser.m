@@ -144,6 +144,14 @@
      PUSH_CHILD_SELECTOR(); 
     }];
     [self simpleSelectorSequence]; 
+    [self execute:(id)^{
+    
+  CSSSelectorSequence* seq = POP();
+  CSSChildSelector* child = POP();
+  seq.childSelector = child;
+  PUSH(seq);
+
+    }];
 
     [self fireAssemblerSelector:@selector(parser:didMatchChildSimpleSelectorSequence:)];
 }

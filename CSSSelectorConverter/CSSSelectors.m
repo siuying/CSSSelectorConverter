@@ -39,23 +39,6 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     
     NSArray* reverseSequence = [[self.sequences reverseObjectEnumerator] allObjects];
     [reverseSequence enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
-        if (idx == 0) {
-            // first selector is always //
-            [result appendString:@"//"];
-        } else {
-            // child selector '>' itself do not convert to xpath
-            if ([selector isKindOfClass:[CSSChildSelector class]]) {
-                return;
-            }
-            
-            // if previous selector is child selector '>', prefix it with '/'
-            // otherwise, prefix it with '//'
-            if ([[reverseSequence objectAtIndex:idx-1] isKindOfClass:[CSSChildSelector class]]) {
-                [result appendString:@"/"];
-            } else {
-                [result appendString:@"//"];
-            }
-        }
         [result appendString:selector.toXPath];
     }];
 
@@ -74,11 +57,6 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
             DDLogVerbose(@"  add a sequence: %@", token);
             CSSSelectorSequence* sequence = token;
             [selectors addSequence:sequence];
-
-        } else if ([token isKindOfClass:[CSSChildSelector class]]) {
-            DDLogVerbose(@"  add a child: %@", token);
-            CSSChildSelector* child = token;
-            [selectors addChild:child];
 
         } else {
             DDLogVerbose(@"  not a sequence or separator, push it back and abort sequence %@(%@)", [token class], token);

@@ -13,7 +13,8 @@
 static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 #import "CSSSelectorSequence.h"
-
+#import "CSSBaseSelector.h"
+#import "CSSChildSelector.h"
 #import "CSSUniversalSelector.h"
 #import "CSSNamedSelector.h"
 #import "CSSTypeSelector.h"
@@ -51,6 +52,12 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 -(NSString*) toXPath {
     NSMutableString* result = [[NSMutableString alloc] init];
+    if (self.childSelector) {
+        [result appendString:self.childSelector.toXPath];
+    } else {
+        [result appendString:@"//"];
+    }
+
     if (self.universalOrTypeSelector) {
         [result appendString:self.universalOrTypeSelector.toXPath];
     } else {

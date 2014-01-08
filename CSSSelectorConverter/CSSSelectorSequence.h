@@ -7,12 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CSSBaseSelector.h"
 #import <ParseKit/ParseKit.h>
 
 #define PUSH_SELECTOR_SEQUENCE() [CSSSelectorSequence selectorWithAssembly:self.assembly];
 
+@class CSSChildSelector;
+@class CSSBaseSelector;
+
 @interface CSSSelectorSequence : CSSBaseSelector
+
+@property (nonatomic, strong) CSSChildSelector* childSelector;
 
 @property (nonatomic, strong) CSSBaseSelector* universalOrTypeSelector;
 
