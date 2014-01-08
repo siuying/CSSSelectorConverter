@@ -2,7 +2,7 @@
 
 A CSS Selector to XPath Selector for Objective-C. Support mostly used subset of  [CSS Selector Level 3](http://www.w3.org/TR/css3-selectors/).
 
-I build this converter so that I can use '.class' instead of '//*[contains(concat(' ', normalize-space(@class), ' '), ' class ')]' in [IGHTMLQuery](https://github.com/siuying/IGHTMLQuery/).
+I build this converter so that I can use `.class` instead of `//*[contains(concat(' ', normalize-space(@class), ' '), ' class ')]` in [IGHTMLQuery](https://github.com/siuying/IGHTMLQuery/).
 
 ## Usage
 
