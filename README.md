@@ -33,6 +33,7 @@ H1 ~ P                           "//H1/following-sibling::P"
 ul, ol                           "//ul | //ol"
 p[align]                         "//p[@align]"
 p[class~="intro"]                "//p[contains(concat(\" \", @class, \" \"),concat(\" \", 'intro', \" \"))]"
+div[att|="val"]                  "//div[@att = \"val\" or starts-with(@att, concat(\"val\", '-'))]"
 ```
 
 It supports following pseduo classes:
