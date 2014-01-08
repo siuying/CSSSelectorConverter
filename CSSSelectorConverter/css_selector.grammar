@@ -1,14 +1,17 @@
 /*
 A CSS Selector to XPath Selector Grammar
 */
-@symbols = '=' '~=' '|=' ':';
-
 @start
 @before{
   PKTokenizer *t = self.tokenizer;
   [t.symbolState add:@"~="];
   [t.symbolState add:@"|="];
   [t.symbolState add:@":"];
+  [t.symbolState add:@"-"];
+  [t.wordState setWordChars:NO from:'-' to:'-'];
+  [t.numberState setAllowsScientificNotation:NO];
+  [t.numberState setAllowsTrailingDecimalSeparator:NO];
+
 }                       = selectorsGroup;
 
 selectorsGroup          = selector ( ','! selector )* {
@@ -29,15 +32,15 @@ attributeSelector       = '['! Word (Empty | ((equal | includes | dashmatch) Quo
   PUSH_ATTRIBUTE();
 };
 
-pseudoSelector          = ':'! (nthChild {
-  PUSH_PSEUDO_CLASS();
-}| ( Word | '-')+ {
+pseudoSelector          = ':'! ( (nthChild)  | ( Word | '-')+ {
   PUSH_PSEUDO_CLASS();
 });
 
-nthChild = nthChildName '(' nth ')';
+nthChild = nthChildName '('! nth ')'!  {
+  PUSH_NTH_CHILD();
+};
 
-nth = ( sign? Number? Word (sign Number)? ) | (sign? Number) | even | odd;
+nth = (  Number? nthChildConstant (sign? Number)? ) | Number | even | odd  ;
 
 dimension = Number Word;
 
@@ -57,11 +60,16 @@ universalSelector       = '*'! {
   PUSH_CSS_UNIVERSAL();
 };
 
-nthChildName            = 'nth-child';
+nthChildName            = nthConstant minus childConstant;
+nthChildConstant        = 'n';
+nthConstant             = 'nth';
+childConstant           = 'child';
 odd                     = 'odd';
 even                    = 'even';
-combinator              = '>' | '+' ;
-sign                    = '-' | '+';
+combinator              = '>' | plus ;
+sign                    = minus | plus;
+plus                    = '+';
+minus                   = '-';
 equal                   = "=";
 includes                = "~=";
 dashmatch               = "|=";

@@ -24,4 +24,6 @@
 #import "CSSCombinator.h"
 #import "CSSNamedSelector.h"
 #import "CSSPseudoClass.h"
+#import "CSSNthChild.h"
+
 #endif

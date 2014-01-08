@@ -11,6 +11,7 @@
 static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
 
 #import "CSSPseudoClass.h"
+#import "CSSNthChild.h"
 
 @implementation CSSPseudoClass
 
@@ -30,7 +31,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
                                   @"only-child": @"*[last() = 1 and self::%@]",
                                   @"only-of-type": @"%@[last() = 1]",
                                   @"empty": @"%@[not(node())]",
-                                  @"nth-child": @"%@"
+                                  @"nth-child": @"%@" // implemented in subclass
                                   };
     });
     return _pseudoClassXPathMapping;
@@ -52,18 +53,31 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
 }
 
 +(void) pushPseudoClass:(PKAssembly*)assembly {
-    id token = [assembly pop];
-    if ([token isKindOfClass:[PKToken class]] && [token respondsToSelector:@selector(stringValue)]) {
-        NSString* name = [token stringValue];
-        if ([[CSSPseudoClass supportedPseudoClass] indexOfObject:name] != NSNotFound) {
-            CSSPseudoClass* pseudo = [CSSPseudoClass selectorWithName:[token stringValue]];
-            [assembly push:pseudo];
-            DDLogInfo(@"Push Pseudo class %@", [pseudo description]);
+    id token = nil;
+
+    NSMutableArray* tokens = [[NSMutableArray alloc] init];
+    while (( token = [assembly pop] )) {
+        if ([token isKindOfClass:[PKToken class]] && [token respondsToSelector:@selector(stringValue)]) {
+            NSString* name = [token stringValue];
+            [tokens addObject:name];
         } else {
-            DDLogWarn(@"Not supported pseudo class: %@", name);
+            [assembly push:token];
+            break;
         }
+    }
+    
+    if ([tokens count] == 0) {
+        return;
+    }
+    
+    NSString* className = [[[tokens reverseObjectEnumerator] allObjects] componentsJoinedByString:@""];
+    if ([[CSSPseudoClass supportedPseudoClass] indexOfObject:className] != NSNotFound) {
+        CSSPseudoClass* pseudo = [CSSPseudoClass selectorWithName:[token stringValue]];
+        [assembly push:pseudo];
+        DDLogInfo(@"Push Pseudo class %@", [pseudo description]);
     } else {
-        [assembly push:token];
+        DDLogWarn(@"Not supported pseudo class: %@", className);
+        return;
     }
 }
 
