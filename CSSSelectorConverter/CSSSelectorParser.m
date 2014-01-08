@@ -134,7 +134,6 @@
 
     }];
 
-    [self fireAssemblerSelector:@selector(parser:didMatchSelectorsGroup:)];
 }
 
 - (void)selector {
@@ -165,7 +164,6 @@
 
     }];
 
-    [self fireAssemblerSelector:@selector(parser:didMatchSelector:)];
 }
 
 - (void)simpleSelectorSequence {
@@ -202,7 +200,6 @@
 
     }];
 
-    [self fireAssemblerSelector:@selector(parser:didMatchSimpleSelectorSequence:)];
 }
 
 - (void)attributeSelector {
@@ -228,7 +225,6 @@
 
     }];
 
-    [self fireAssemblerSelector:@selector(parser:didMatchAttributeSelector:)];
 }
 
 - (void)pseudoSelector {
@@ -255,7 +251,6 @@
         [self raise:@"No viable alternative found in rule 'pseudoSelector'."];
     }
 
-    [self fireAssemblerSelector:@selector(parser:didMatchPseudoSelector:)];
 }
 
 - (void)nthChild {
@@ -270,7 +265,6 @@
 
     }];
 
-    [self fireAssemblerSelector:@selector(parser:didMatchNthChild:)];
 }
 
 - (void)nth {
@@ -296,7 +290,6 @@
         [self raise:@"No viable alternative found in rule 'nth'."];
     }
 
-    [self fireAssemblerSelector:@selector(parser:didMatchNth:)];
 }
 
 - (void)dimension {
@@ -304,7 +297,6 @@
     [self matchNumber:NO]; 
     [self matchWord:NO]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchDimension:)];
 }
 
 - (void)classSelector {
@@ -317,7 +309,6 @@
 
     }];
 
-    [self fireAssemblerSelector:@selector(parser:didMatchClassSelector:)];
 }
 
 - (void)idSelector {
@@ -330,7 +321,6 @@
 
     }];
 
-    [self fireAssemblerSelector:@selector(parser:didMatchIdSelector:)];
 }
 
 - (void)typeSelector {
@@ -342,7 +332,6 @@
 
     }];
 
-    [self fireAssemblerSelector:@selector(parser:didMatchTypeSelector:)];
 }
 
 - (void)universalSelector {
@@ -354,7 +343,6 @@
 
     }];
 
-    [self fireAssemblerSelector:@selector(parser:didMatchUniversalSelector:)];
 }
 
 - (void)nthChildName {
@@ -363,42 +351,36 @@
     [self minus]; 
     [self childConstant]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchNthChildName:)];
 }
 
 - (void)nthChildConstant {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_NTHCHILDCONSTANT discard:NO]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchNthChildConstant:)];
 }
 
 - (void)nthConstant {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_NTHCONSTANT discard:NO]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchNthConstant:)];
 }
 
 - (void)childConstant {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_CHILDCONSTANT discard:NO]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchChildConstant:)];
 }
 
 - (void)odd {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_ODD discard:NO]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchOdd:)];
 }
 
 - (void)even {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_EVEN discard:NO]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchEven:)];
 }
 
 - (void)combinator {
@@ -411,7 +393,6 @@
         [self raise:@"No viable alternative found in rule 'combinator'."];
     }
 
-    [self fireAssemblerSelector:@selector(parser:didMatchCombinator:)];
 }
 
 - (void)sign {
@@ -424,42 +405,36 @@
         [self raise:@"No viable alternative found in rule 'sign'."];
     }
 
-    [self fireAssemblerSelector:@selector(parser:didMatchSign:)];
 }
 
 - (void)plus {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_PLUS discard:NO]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchPlus:)];
 }
 
 - (void)minus {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_MINUS discard:NO]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchMinus:)];
 }
 
 - (void)equal {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_EQUAL discard:NO]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchEqual:)];
 }
 
 - (void)includes {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_INCLUDES discard:NO]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchIncludes:)];
 }
 
 - (void)dashmatch {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_DASHMATCH discard:NO]; 
 
-    [self fireAssemblerSelector:@selector(parser:didMatchDashmatch:)];
 }
 
 @end

@@ -93,7 +93,6 @@
 		540AA388187BDD5B0012AA44 /* CSSToXPathConverterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSToXPathConverterSpec.m; sourceTree = "<group>"; };
 		540AA396187BE4900012AA44 /* CSSToXPathConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSToXPathConverter.h; sourceTree = "<group>"; };
 		540AA397187BE4900012AA44 /* CSSToXPathConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSToXPathConverter.m; sourceTree = "<group>"; };
-		540AA39A187BEB5C0012AA44 /* CSSSelectorParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSSelectorParserDelegate.h; sourceTree = "<group>"; };
 		540AA39B187BEE660012AA44 /* CSSSelectorParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorParser.h; sourceTree = "<group>"; };
 		540AA39C187BEE660012AA44 /* CSSSelectorParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorParser.m; sourceTree = "<group>"; };
 		540AA3A0187BEF380012AA44 /* CSSUniversalSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSUniversalSelector.h; sourceTree = "<group>"; };
@@ -195,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				540AA39F187BEEED0012AA44 /* Selector */,
-				540AA39A187BEB5C0012AA44 /* CSSSelectorParserDelegate.h */,
 				54D62F29187D0B0E0075A755 /* CSSSelectorConverter.h */,
 				540AA39B187BEE660012AA44 /* CSSSelectorParser.h */,
 				540AA39C187BEE660012AA44 /* CSSSelectorParser.m */,

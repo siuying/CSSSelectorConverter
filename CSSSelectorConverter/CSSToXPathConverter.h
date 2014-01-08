@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "CSSSelectorParser.h"
-#import "CSSSelectorParserDelegate.h"
 
-@interface CSSToXPathConverter : NSObject <CSSSelectorParserDelegate>
+@interface CSSToXPathConverter : NSObject
 
 @property CSSSelectorParser* parser;
 

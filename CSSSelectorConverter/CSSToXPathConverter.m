@@ -40,33 +40,4 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     return [output copy];
 }
 
-#pragma mark - CSSSelectorParserDelegate
-
--(void) parser:(CSSSelectorParser*)parser didMatchSelectorsGroup:(PKAssembly*)assembly {
-}
-
--(void) parser:(CSSSelectorParser*)parser didMatchSelector:(PKAssembly*)assembly {
-}
-
--(void) parser:(CSSSelectorParser*)parser didMatchSimpleSelectorSequence:(PKAssembly*)assembly {
-}
-
--(void) parser:(CSSSelectorParser*)parser didMatchCombinator:(PKAssembly*)assembly {
-}
-
--(void) parser:(CSSSelectorParser*)parser didMatchAttributeSelector:(PKAssembly*)assembly {
-}
-
--(void) parser:(CSSSelectorParser*)parser didMatchTypeSelector:(PKAssembly*)assembly {
-}
-
--(void) parser:(CSSSelectorParser*)parser didMatchClassSelector:(PKAssembly*)assembly {
-}
-
--(void) parser:(CSSSelectorParser*)parser didMatchIdSelector:(PKAssembly*)assembly {
-}
-
--(void) parser:(CSSSelectorParser*)parser didMatchUniversalSelector:(PKAssembly*)assembly {
-}
-
 @end
