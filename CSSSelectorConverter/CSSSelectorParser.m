@@ -58,6 +58,7 @@
         self._tokenKindTab[@","] = @(CSSSELECTORPARSER_TOKEN_KIND_COMMA);
         self._tokenKindTab[@"="] = @(CSSSELECTORPARSER_TOKEN_KIND_EQUAL);
         self._tokenKindTab[@">"] = @(CSSSELECTORPARSER_TOKEN_KIND_GT);
+        self._tokenKindTab[@"|="] = @(CSSSELECTORPARSER_TOKEN_KIND_DASHMATCH);
         self._tokenKindTab[@"]"] = @(CSSSELECTORPARSER_TOKEN_KIND_CLOSE_BRACKET);
         self._tokenKindTab[@"."] = @(CSSSELECTORPARSER_TOKEN_KIND_DOT);
 
@@ -69,6 +70,7 @@
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_COMMA] = @",";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_EQUAL] = @"=";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_GT] = @">";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_DASHMATCH] = @"|=";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_CLOSE_BRACKET] = @"]";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_DOT] = @".";
 
@@ -83,6 +85,7 @@
     
   PKTokenizer *t = self.tokenizer;
  [t.symbolState add:@"~="];
+  [t.symbolState add:@"|="];
 
     }];
     [self selectorsGroup]; 
@@ -180,11 +183,13 @@
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_OPEN_BRACKET discard:YES]; 
     [self matchWord:NO]; 
-    if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_EQUAL, CSSSELECTORPARSER_TOKEN_KIND_INCLUDES, 0]) {
+    if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_DASHMATCH, CSSSELECTORPARSER_TOKEN_KIND_EQUAL, CSSSELECTORPARSER_TOKEN_KIND_INCLUDES, 0]) {
         if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_EQUAL, 0]) {
             [self equal]; 
         } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_INCLUDES, 0]) {
             [self includes]; 
+        } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_DASHMATCH, 0]) {
+            [self dashmatch]; 
         } else {
             [self raise:@"No viable alternative found in rule 'attributeSelector'."];
         }
@@ -275,6 +280,13 @@
     [self match:CSSSELECTORPARSER_TOKEN_KIND_INCLUDES discard:NO]; 
 
     [self fireAssemblerSelector:@selector(parser:didMatchIncludes:)];
+}
+
+- (void)dashmatch {
+    
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_DASHMATCH discard:NO]; 
+
+    [self fireAssemblerSelector:@selector(parser:didMatchDashmatch:)];
 }
 
 @end

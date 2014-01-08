@@ -21,6 +21,10 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     return attrType;
 }
 
+-(NSString*) description {
+    return [NSString stringWithFormat:@"<CSSSelectorAttributeOperator %@>", self.name];
+}
+
 -(NSString*) toXPath {
     return self.name;
 }
@@ -30,10 +34,12 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
         return CSSSelectorAttributeOperatorTypeEqual;
     } else if ([type isEqualToString:@"~="]) {
         return CSSSelectorAttributeOperatorTypeIncludes;
+    } else if ([type isEqualToString:@"|="]) {
+        return CSSSelectorAttributeOperatorTypeDash;
     }
 
-    DDLogError(@"operator must be = or ~=, given: %@", type);
-    [NSException raise:NSInvalidArgumentException format:@"operator must be = or ~=, given: %@", type];
+    DDLogError(@"operator must be =, ~= or |=, given: %@", type);
+    [NSException raise:NSInvalidArgumentException format:@"operator must be =, ~= or |=, given: %@", type];
     return CSSSelectorAttributeOperatorTypeNone;
 }
 

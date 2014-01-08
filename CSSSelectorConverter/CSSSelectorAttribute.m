@@ -34,7 +34,14 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
                 [result appendString:[NSString stringWithFormat:@"contains(concat(\" \", @%@, \" \"),concat(\" \", %@, \" \"))", self.name, self.value]];
             }
                 break;
-            default:
+            case CSSSelectorAttributeOperatorTypeDash: {
+                [result appendString:[NSString stringWithFormat:@"@%@ = %@ or starts-with(@%@, concat(%@, '-'))", self.name, self.value, self.name, self.value]];
+            }
+                break;
+            case CSSSelectorAttributeOperatorTypeNone: {
+                [result appendString:@"@"];
+                [result appendString:self.name];
+            }
                 break;
         }
     } else {
@@ -45,7 +52,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     return [result copy];
 }
 
-// '['! Word ((equal | includes) QuotedString)? ']'!
+// '['! Word ((equal | includes | dashMatch) QuotedString)? ']'!
 +(void) pushAttribute:(PKAssembly*)assembly {
     DDLogVerbose(@"Push CSSSelectorAttribute ...");
     CSSSelectorAttribute* attribute = [CSSSelectorAttribute selector];

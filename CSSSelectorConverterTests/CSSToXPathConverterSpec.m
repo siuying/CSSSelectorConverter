@@ -96,6 +96,9 @@ describe(@"CSSToXPathParser", ^{
         
         NSString* cssWithIncludesValue = [converter xpathWithCSS:@"div[class~=\"100\"]" error:&error];
         [[cssWithIncludesValue should] equal:@"//div[contains(concat(\" \", @class, \" \"),concat(\" \", \"100\", \" \"))]"];
+
+        NSString* cssWithDashValue = [converter xpathWithCSS:@"div[att|=\"val\"]" error:&error];
+        [[cssWithDashValue should] equal:@"//div[@att = \"val\" or starts-with(@att, concat(\"val\", '-'))]"];
     });
 
 });

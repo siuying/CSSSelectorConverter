@@ -11,7 +11,8 @@
 typedef NS_ENUM(NSInteger, CSSSelectorAttributeOperatorType) {
     CSSSelectorAttributeOperatorTypeNone = 0,
     CSSSelectorAttributeOperatorTypeEqual,
-    CSSSelectorAttributeOperatorTypeIncludes
+    CSSSelectorAttributeOperatorTypeIncludes,
+    CSSSelectorAttributeOperatorTypeDash
 };
 
 @interface CSSSelectorAttributeOperator : CSSNamedSelector

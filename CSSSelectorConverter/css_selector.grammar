@@ -1,12 +1,13 @@
 /*
 A CSS Selector to XPath Selector Grammar
 */
-@symbols = '=' '~=';
+@symbols = '=' '~=' '|=';
 
 @start
 @before{
   PKTokenizer *t = self.tokenizer;
  [t.symbolState add:@"~="];
+  [t.symbolState add:@"|="];
 }                       = selectorsGroup;                        
 selectorsGroup          = selector ( ','! selector )* {
   PUSH_SELECTORS_GROUP();
@@ -20,7 +21,7 @@ selector                = simpleSelectorSequence ((combinator {
 simpleSelectorSequence  = (universalSelector | typeSelector)? (classSelector | idSelector | attributeSelector)* {
   PUSH_SELECTOR_SEQUENCE();
 };
-attributeSelector       = '['! Word (Empty | ((equal | includes) QuotedString )) ']'! {
+attributeSelector       = '['! Word (Empty | ((equal | includes | dashmatch) QuotedString )) ']'! {
   PUSH_ATTRIBUTE();
 };
 classSelector           = '.'! Word {
@@ -39,3 +40,4 @@ universalSelector       = '*'! {
 combinator = '>' | '+' ;
 equal                   = "=";
 includes                = "~=";
+dashmatch    = "|=";
