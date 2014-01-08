@@ -7,6 +7,10 @@
 //
 
 #import "CSSSelectorGroup.h"
+#import "DDLog.h"
+#undef LOG_LEVEL_DEF
+#define LOG_LEVEL_DEF cssSelectorLogLevel
+static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation CSSSelectorGroup
 
@@ -39,17 +43,21 @@
 }
 
 +(instancetype) selectorsGroupWithAssembly:(PKAssembly*)assembly {
+    DDLogVerbose(@"create CSSSelectorGroup ...");
     CSSSelectorGroup* group = [[self alloc] init];
     id token;
 
     while ((token = [assembly pop])) {
         if ([token isKindOfClass:[CSSSelectors class]]) {
-            NSLog(@" token is sequence: %@", token);
+            DDLogVerbose(@"  add a selector: %@", token);
             CSSSelectors* selectors = token;
             [group addSelectors:selectors];
             
         } else {
-            NSLog(@" token unknown: %@", token);
+            DDLogVerbose(@"  %@ is not a selector, push it back and abort sequence", [token class]);
+            [assembly push:token];
+            [assembly push:group];
+            return group;
         }
     }
 

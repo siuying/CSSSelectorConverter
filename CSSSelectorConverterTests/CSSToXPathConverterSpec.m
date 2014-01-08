@@ -20,6 +20,10 @@ describe(@"CSSToXPathParser", ^{
         [DDLog addLogger:ttyLogger];
     });
 
+    afterAll(^{
+        [DDLog flushLog];
+    });
+
     beforeEach(^{
         converter = [[CSSToXPathConverter alloc] init];
     });

@@ -80,7 +80,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 +(instancetype) selectorWithAssembly:(PKAssembly*)assembly {
-    DDLogVerbose(@"create a sequence ...");
+    DDLogVerbose(@"create CSSSelectorSequence ...");
     CSSSelectorSequence* seq = [[self alloc] init];
     CSSBaseSelector* selector = nil;
 
@@ -90,7 +90,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
             DDLogVerbose(@"  add %@ (%@) to sequence", [selector class], selector);
             [seq addSelector:selector];
         } else {
-            DDLogVerbose(@"  not a supported selector, push it back and abort sequence %@(%@)", [selector class], selector);
+            DDLogVerbose(@"  %@ is not a supported selector, push it back and abort sequence", [selector class]);
             [assembly push:selector];
             [assembly push:seq];
             return seq;
