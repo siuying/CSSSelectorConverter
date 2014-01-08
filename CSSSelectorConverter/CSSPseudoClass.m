@@ -15,12 +15,21 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
 @implementation CSSPseudoClass
 
 +(NSArray*) supportedPseudoClass {
-    static NSArray* _supportedPseudoClass;
+    return [[self pseudoClassXPathMapping] allKeys];
+}
+
++(NSDictionary*) pseudoClassXPathMapping {
+    static NSDictionary* _pseudoClassXPathMapping;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _supportedPseudoClass = @[@"first-child", @"last-child", @"first-of-type", @"last-of-type"];
+        _pseudoClassXPathMapping = @{
+                                  @"first-child": @"*[position() = 1 and self::%@]",
+                                  @"last-child": @"*[position() = last() and self::%@]",
+                                  @"first-of-type": @"%@[position() = 1]",
+                                  @"last-of-type":@"%@[position() = last()]"
+                                  };
     });
-    return _supportedPseudoClass;
+    return _pseudoClassXPathMapping;
 }
 
 -(NSString*) description {
@@ -29,14 +38,9 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
 
 -(NSString*) toXPath {
     NSString* parentName = self.parent ? self.parent.name : @"*";
-    if ([self.name isEqualToString:@"first-child"]) {
-        return [NSString stringWithFormat:@"*[position() = 1 and self::%@]", parentName];
-    } else if ([self.name isEqualToString:@"last-child"]) {
-        return [NSString stringWithFormat:@"*[position() = last() and self::%@]", parentName];
-    } else if ([self.name isEqualToString:@"first-of-type"]) {
-        return [NSString stringWithFormat:@"%@[position() = 1]", parentName];
-    } else if ([self.name isEqualToString:@"last-of-type"]) {
-        return [NSString stringWithFormat:@"%@[position() = last()]", parentName];
+    NSString* mapping = [CSSPseudoClass pseudoClassXPathMapping][self.name];
+    if (mapping) {
+        return [NSString stringWithFormat:mapping, parentName];
     } else {
         return @"";
     }
