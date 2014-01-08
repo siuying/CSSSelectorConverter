@@ -80,6 +80,13 @@ describe(@"CSSToXPathParser", ^{
         [[descendantCss should] equal:@"//div[@id = 'main']//p/a//p/div"];
     });
     
+    it(@"should parse adjecnet selector sequence", ^{
+        NSError *error = nil;
+        
+        NSString* adjacentCss = [converter xpathWithCSS:@"h1 ~ p" error:&error];
+        [[adjacentCss should] equal:@"//h1/following-sibling::p"];
+    });
+    
     it(@"should parse selector group", ^{
         NSError *error = nil;
         NSString* css = [converter xpathWithCSS:@"div, p" error:&error];

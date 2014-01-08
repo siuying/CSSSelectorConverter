@@ -41,6 +41,12 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
     return combinator;
 }
 
++(instancetype) generalSiblingCombinator {
+    CSSCombinator* combinator = [[self alloc] init];
+    combinator.type = CSSCombinatorTypeGeneralSibling;
+    return combinator;
+}
+
 -(NSString*) description {
     return [NSString stringWithFormat:@"<CSSCombinator %@>", self.typeString];
 }
@@ -60,6 +66,10 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
         {
             return @"adjacent";
         }
+        case CSSCombinatorTypeGeneralSibling:
+        {
+            return @"general-sibling";
+        }
     }
     return nil;
 }
@@ -78,6 +88,10 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
         case CSSCombinatorTypeAdjacent:
         {
             return @"/following-sibling::*[1]/self::";
+        }
+        case CSSCombinatorTypeGeneralSibling:
+        {
+            return @"/following-sibling::";
         }
     }
     [NSException raise:NSInternalInconsistencyException format:@"unexpected type: %d", self.type];
@@ -101,6 +115,11 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
         } else if ([firstTokenString isEqualToString:@"+"]) {
             DDLogVerbose(@"Push adjacent combinator");
             CSSCombinator* combinator = [CSSCombinator adjacentCombinator];
+            [assembly push:combinator];
+            return;
+        } else if ([firstTokenString isEqualToString:@"~"]) {
+            DDLogVerbose(@"Push general sibling combinator");
+            CSSCombinator* combinator = [CSSCombinator generalSiblingCombinator];
             [assembly push:combinator];
             return;
         }

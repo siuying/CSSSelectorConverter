@@ -72,9 +72,9 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
     
     NSString* className = [[[tokens reverseObjectEnumerator] allObjects] componentsJoinedByString:@""];
     if ([[CSSPseudoClass supportedPseudoClass] indexOfObject:className] != NSNotFound) {
-        CSSPseudoClass* pseudo = [CSSPseudoClass selectorWithName:[token stringValue]];
+        CSSPseudoClass* pseudo = [CSSPseudoClass selectorWithName:className];
         [assembly push:pseudo];
-        DDLogInfo(@"Push Pseudo class %@", [pseudo description]);
+        DDLogInfo(@"Push Pseudo class %@", className);
     } else {
         DDLogWarn(@"Not supported pseudo class: %@", className);
         return;

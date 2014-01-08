@@ -53,44 +53,58 @@
         self._tokenKindTab[@"~="] = @(CSSSELECTORPARSER_TOKEN_KIND_INCLUDES);
         self._tokenKindTab[@","] = @(CSSSELECTORPARSER_TOKEN_KIND_COMMA);
         self._tokenKindTab[@":"] = @(CSSSELECTORPARSER_TOKEN_KIND_COLON);
+        self._tokenKindTab[@"~"] = @(CSSSELECTORPARSER_TOKEN_KIND_TILDE);
         self._tokenKindTab[@"-"] = @(CSSSELECTORPARSER_TOKEN_KIND_MINUS);
         self._tokenKindTab[@"nth"] = @(CSSSELECTORPARSER_TOKEN_KIND_NTHCONSTANT);
         self._tokenKindTab[@"."] = @(CSSSELECTORPARSER_TOKEN_KIND_DOT);
         self._tokenKindTab[@"odd"] = @(CSSSELECTORPARSER_TOKEN_KIND_ODD);
-        self._tokenKindTab[@"="] = @(CSSSELECTORPARSER_TOKEN_KIND_EQUAL);
-        self._tokenKindTab[@"|="] = @(CSSSELECTORPARSER_TOKEN_KIND_DASHMATCH);
-        self._tokenKindTab[@">"] = @(CSSSELECTORPARSER_TOKEN_KIND_GT);
+        self._tokenKindTab[@"last"] = @(CSSSELECTORPARSER_TOKEN_KIND_LAST);
+        self._tokenKindTab[@"first"] = @(CSSSELECTORPARSER_TOKEN_KIND_FIRST);
+        self._tokenKindTab[@"only"] = @(CSSSELECTORPARSER_TOKEN_KIND_ONLY);
+        self._tokenKindTab[@"empty"] = @(CSSSELECTORPARSER_TOKEN_KIND_EMPTY);
         self._tokenKindTab[@"#"] = @(CSSSELECTORPARSER_TOKEN_KIND_POUND);
         self._tokenKindTab[@"even"] = @(CSSSELECTORPARSER_TOKEN_KIND_EVEN);
+        self._tokenKindTab[@">"] = @(CSSSELECTORPARSER_TOKEN_KIND_GT);
+        self._tokenKindTab[@"="] = @(CSSSELECTORPARSER_TOKEN_KIND_EQUAL);
         self._tokenKindTab[@"["] = @(CSSSELECTORPARSER_TOKEN_KIND_OPEN_BRACKET);
+        self._tokenKindTab[@"type"] = @(CSSSELECTORPARSER_TOKEN_KIND_TYPE);
+        self._tokenKindTab[@"|="] = @(CSSSELECTORPARSER_TOKEN_KIND_DASHMATCH);
         self._tokenKindTab[@"]"] = @(CSSSELECTORPARSER_TOKEN_KIND_CLOSE_BRACKET);
         self._tokenKindTab[@"("] = @(CSSSELECTORPARSER_TOKEN_KIND_OPEN_PAREN);
         self._tokenKindTab[@")"] = @(CSSSELECTORPARSER_TOKEN_KIND_CLOSE_PAREN);
-        self._tokenKindTab[@"n"] = @(CSSSELECTORPARSER_TOKEN_KIND_NTHCHILDCONSTANT);
+        self._tokenKindTab[@"of"] = @(CSSSELECTORPARSER_TOKEN_KIND_OF);
         self._tokenKindTab[@"*"] = @(CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR);
+        self._tokenKindTab[@"n"] = @(CSSSELECTORPARSER_TOKEN_KIND_NTHCHILDCONSTANT);
         self._tokenKindTab[@"+"] = @(CSSSELECTORPARSER_TOKEN_KIND_PLUS);
-        self._tokenKindTab[@"child"] = @(CSSSELECTORPARSER_TOKEN_KIND_CHILDCONSTANT);
+        self._tokenKindTab[@"child"] = @(CSSSELECTORPARSER_TOKEN_KIND_CHILD);
 
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_INCLUDES] = @"~=";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_COMMA] = @",";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_COLON] = @":";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_TILDE] = @"~";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_MINUS] = @"-";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_NTHCONSTANT] = @"nth";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_DOT] = @".";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_ODD] = @"odd";
-        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_EQUAL] = @"=";
-        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_DASHMATCH] = @"|=";
-        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_GT] = @">";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_LAST] = @"last";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_FIRST] = @"first";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_ONLY] = @"only";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_EMPTY] = @"empty";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_POUND] = @"#";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_EVEN] = @"even";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_GT] = @">";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_EQUAL] = @"=";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_OPEN_BRACKET] = @"[";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_TYPE] = @"type";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_DASHMATCH] = @"|=";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_CLOSE_BRACKET] = @"]";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_OPEN_PAREN] = @"(";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_CLOSE_PAREN] = @")";
-        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_NTHCHILDCONSTANT] = @"n";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_OF] = @"of";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR] = @"*";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_NTHCHILDCONSTANT] = @"n";
         self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_PLUS] = @"+";
-        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_CHILDCONSTANT] = @"child";
+        self._tokenKindNameTab[CSSSELECTORPARSER_TOKEN_KIND_CHILD] = @"child";
 
     }
     return self;
@@ -139,9 +153,9 @@
 - (void)selector {
     
     [self simpleSelectorSequence]; 
-    while ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, CSSSELECTORPARSER_TOKEN_KIND_PLUS, CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR, TOKEN_KIND_BUILTIN_WORD, 0]) {
-        if ([self speculate:^{ if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {[self combinator]; [self simpleSelectorSequence]; } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR, TOKEN_KIND_BUILTIN_WORD, 0]) {[self simpleSelectorSequence]; } else {[self raise:@"No viable alternative found in rule 'selector'."];}}]) {
-            if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {
+    while ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, CSSSELECTORPARSER_TOKEN_KIND_PLUS, CSSSELECTORPARSER_TOKEN_KIND_TILDE, CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR, TOKEN_KIND_BUILTIN_WORD, 0]) {
+        if ([self speculate:^{ if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, CSSSELECTORPARSER_TOKEN_KIND_PLUS, CSSSELECTORPARSER_TOKEN_KIND_TILDE, 0]) {[self combinator]; [self simpleSelectorSequence]; } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_UNIVERSALSELECTOR, TOKEN_KIND_BUILTIN_WORD, 0]) {[self simpleSelectorSequence]; } else {[self raise:@"No viable alternative found in rule 'selector'."];}}]) {
+            if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, CSSSELECTORPARSER_TOKEN_KIND_PLUS, CSSSELECTORPARSER_TOKEN_KIND_TILDE, 0]) {
                 [self combinator]; 
                 [self execute:(id)^{
                 
@@ -230,18 +244,10 @@
 - (void)pseudoSelector {
     
     [self match:CSSSELECTORPARSER_TOKEN_KIND_COLON discard:YES]; 
-    if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_NTHCONSTANT, 0]) {
+    if ([self speculate:^{ [self nthChild]; }]) {
         [self nthChild]; 
-    } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, TOKEN_KIND_BUILTIN_WORD, 0]) {
-        do {
-            if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
-                [self matchWord:NO]; 
-            } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, 0]) {
-                [self match:CSSSELECTORPARSER_TOKEN_KIND_MINUS discard:NO]; 
-            } else {
-                [self raise:@"No viable alternative found in rule 'pseudoSelector'."];
-            }
-        } while ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_MINUS, TOKEN_KIND_BUILTIN_WORD, 0]);
+    } else if ([self speculate:^{ [self pseudoSelectorName]; }]) {
+        [self pseudoSelectorName]; 
         [self execute:(id)^{
         
   PUSH_PSEUDO_CLASS();
@@ -349,7 +355,51 @@
     
     [self nthConstant]; 
     [self minus]; 
-    [self childConstant]; 
+    [self child]; 
+
+}
+
+- (void)pseudoSelectorName {
+    
+    if ([self speculate:^{ [self first]; [self minus]; [self child]; }]) {
+        [self first]; 
+        [self minus]; 
+        [self child]; 
+    } else if ([self speculate:^{ [self last]; [self minus]; [self child]; }]) {
+        [self last]; 
+        [self minus]; 
+        [self child]; 
+    } else if ([self speculate:^{ [self first]; [self minus]; [self of]; [self minus]; [self type]; }]) {
+        [self first]; 
+        [self minus]; 
+        [self of]; 
+        [self minus]; 
+        [self type]; 
+    } else if ([self speculate:^{ [self last]; [self minus]; [self of]; [self minus]; [self type]; }]) {
+        [self last]; 
+        [self minus]; 
+        [self of]; 
+        [self minus]; 
+        [self type]; 
+    } else if ([self speculate:^{ [self only]; [self minus]; [self child]; }]) {
+        [self only]; 
+        [self minus]; 
+        [self child]; 
+    } else if ([self speculate:^{ [self only]; [self minus]; [self of]; [self minus]; [self type]; }]) {
+        [self only]; 
+        [self minus]; 
+        [self of]; 
+        [self minus]; 
+        [self type]; 
+    } else if ([self speculate:^{ [self nthConstant]; [self minus]; [self child]; }]) {
+        [self nthConstant]; 
+        [self minus]; 
+        [self child]; 
+    } else if ([self speculate:^{ [self empty]; }]) {
+        [self empty]; 
+    } else {
+        [self raise:@"No viable alternative found in rule 'pseudoSelectorName'."];
+    }
 
 }
 
@@ -359,15 +409,51 @@
 
 }
 
-- (void)nthConstant {
+- (void)first {
     
-    [self match:CSSSELECTORPARSER_TOKEN_KIND_NTHCONSTANT discard:NO]; 
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_FIRST discard:NO]; 
 
 }
 
-- (void)childConstant {
+- (void)last {
     
-    [self match:CSSSELECTORPARSER_TOKEN_KIND_CHILDCONSTANT discard:NO]; 
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_LAST discard:NO]; 
+
+}
+
+- (void)child {
+    
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_CHILD discard:NO]; 
+
+}
+
+- (void)type {
+    
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_TYPE discard:NO]; 
+
+}
+
+- (void)of {
+    
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_OF discard:NO]; 
+
+}
+
+- (void)only {
+    
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_ONLY discard:NO]; 
+
+}
+
+- (void)empty {
+    
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_EMPTY discard:NO]; 
+
+}
+
+- (void)nthConstant {
+    
+    [self match:CSSSELECTORPARSER_TOKEN_KIND_NTHCONSTANT discard:NO]; 
 
 }
 
@@ -387,6 +473,8 @@
     
     if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_GT, 0]) {
         [self match:CSSSELECTORPARSER_TOKEN_KIND_GT discard:NO]; 
+    } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_TILDE, 0]) {
+        [self match:CSSSELECTORPARSER_TOKEN_KIND_TILDE discard:NO]; 
     } else if ([self predicts:CSSSELECTORPARSER_TOKEN_KIND_PLUS, 0]) {
         [self plus]; 
     } else {
