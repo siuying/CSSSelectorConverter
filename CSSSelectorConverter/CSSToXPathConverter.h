@@ -11,7 +11,7 @@
 
 @interface CSSToXPathConverter : NSObject
 
-@property CSSSelectorParser* parser;
+@property (nonatomic, strong) CSSSelectorParser* parser;
 
 -(id) init;
 
