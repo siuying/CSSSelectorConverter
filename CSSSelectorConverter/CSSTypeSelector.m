@@ -10,6 +10,17 @@
 
 @implementation CSSTypeSelector
 
+- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+    self = [self init];
+    if (self) {
+        NSArray *components = [syntaxTree children];
+        if ([components count] > 0 && [components[0] isIdentifierToken]) {
+            self.name = [(CPIdentifierToken*)components[0] identifier];
+        }
+    }
+    return self;
+}
+
 -(NSString*) description {
     return [NSString stringWithFormat:@"<TypeSelector %@>", self.name];
 }

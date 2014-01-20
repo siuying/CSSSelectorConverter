@@ -1,0 +1,4 @@
+Expression                 ::= <CSSSelectorSequence>;
+CSSSelectorSequence        ::= universal@<CSSUniversalSelector> | type@<CSSTypeSelector>;
+CSSTypeSelector            ::= typeName@'Identifier';
+CSSUniversalSelector       ::= '*';

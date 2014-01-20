@@ -11,6 +11,6 @@
 
 #define PUSH_CSS_TYPE(name) [self.assembly push:([CSSTypeSelector selectorWithName:(name)])]
 
-@interface CSSTypeSelector : CSSNamedSelector
+@interface CSSTypeSelector : CSSNamedSelector <CPParseResult>
 
 @end

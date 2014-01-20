@@ -10,6 +10,12 @@
 
 @implementation CSSUniversalSelector
 
+- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+    self = [self init];
+    self.name = @"*";
+    return self;
+}
+    
 +(instancetype) selector {
     return [self selectorWithName:@"*"];
 }

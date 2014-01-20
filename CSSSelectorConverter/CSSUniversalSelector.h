@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "CSSTypeSelector.h"
 
-#define PUSH_CSS_UNIVERSAL() [self.assembly push:([CSSUniversalSelector selector])]
-
-@interface CSSUniversalSelector : CSSTypeSelector
+@interface CSSUniversalSelector : CSSNamedSelector <CPParseResult>
 
 @end
