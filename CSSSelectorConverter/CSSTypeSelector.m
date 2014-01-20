@@ -14,8 +14,11 @@
     self = [self init];
     if (self) {
         NSArray *components = [syntaxTree children];
-        if ([components count] > 0 && [components[0] isIdentifierToken]) {
-            self.name = [(CPIdentifierToken*)components[0] identifier];
+        if ([components count] == 1) {
+            CPIdentifierToken* token = components[0];
+            if ([token isIdentifierToken]) {
+                self.name = [token identifier];
+            }
         }
     }
     return self;

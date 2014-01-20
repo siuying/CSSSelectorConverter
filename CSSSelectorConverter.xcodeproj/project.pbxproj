@@ -29,7 +29,7 @@
 		5433BA5E188D136A006C5F59 /* CSSSelectorGrammar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5433BA5D188D136A006C5F59 /* CSSSelectorGrammar.m */; };
 		5433BA5F188D136A006C5F59 /* CSSSelectorGrammar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5433BA5D188D136A006C5F59 /* CSSSelectorGrammar.m */; };
 		5433BA61188D1450006C5F59 /* CSSSelectorGrammar.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5433BA60188D1450006C5F59 /* CSSSelectorGrammar.txt */; };
-		5433BA63188D1629006C5F59 /* CSSSelectorGrammarSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5433BA62188D1629006C5F59 /* CSSSelectorGrammarSpec.m */; };
+		5433BA63188D1629006C5F59 /* CSSSelectorParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5433BA62188D1629006C5F59 /* CSSSelectorParserSpec.m */; };
 		5433BA64188D17CE006C5F59 /* CSSSelectorGrammar.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5433BA60188D1450006C5F59 /* CSSSelectorGrammar.txt */; };
 		5433BA65188D1807006C5F59 /* CSSUniversalSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A1187BEF380012AA44 /* CSSUniversalSelector.m */; };
 		5433BA66188D1808006C5F59 /* CSSUniversalSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A1187BEF380012AA44 /* CSSUniversalSelector.m */; };
@@ -41,6 +41,13 @@
 		5433BA72188D1D9E006C5F59 /* CSSTypeSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A5187BEF8B0012AA44 /* CSSTypeSelector.m */; };
 		5433BA75188D2150006C5F59 /* CSSSelectorParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5433BA74188D2150006C5F59 /* CSSSelectorParserDelegate.m */; };
 		54FA2F6F188D21D60065B628 /* CSSSelectorParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5433BA74188D2150006C5F59 /* CSSSelectorParserDelegate.m */; };
+		54FA2F70188D76A90065B628 /* CSSClassSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3AD187BF1510012AA44 /* CSSClassSelector.m */; };
+		54FA2F71188D76AA0065B628 /* CSSClassSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3AD187BF1510012AA44 /* CSSClassSelector.m */; };
+		54FA2F72188D7AEB0065B628 /* CSSSelectorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA39C187BEE660012AA44 /* CSSSelectorParser.m */; };
+		54FA2F73188D7AEB0065B628 /* CSSSelectorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA39C187BEE660012AA44 /* CSSSelectorParser.m */; };
+		54FA2F74188D7C650065B628 /* CSSToXPathConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA397187BE4900012AA44 /* CSSToXPathConverter.m */; };
+		54FA2F75188D7C660065B628 /* CSSToXPathConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA397187BE4900012AA44 /* CSSToXPathConverter.m */; };
+		54FA2F76188D7CDD0065B628 /* CSSToXPathConverterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA388187BDD5B0012AA44 /* CSSToXPathConverterSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,7 +113,7 @@
 		5433BA5C188D136A006C5F59 /* CSSSelectorGrammar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorGrammar.h; sourceTree = "<group>"; };
 		5433BA5D188D136A006C5F59 /* CSSSelectorGrammar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorGrammar.m; sourceTree = "<group>"; };
 		5433BA60188D1450006C5F59 /* CSSSelectorGrammar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CSSSelectorGrammar.txt; sourceTree = "<group>"; };
-		5433BA62188D1629006C5F59 /* CSSSelectorGrammarSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorGrammarSpec.m; sourceTree = "<group>"; };
+		5433BA62188D1629006C5F59 /* CSSSelectorParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorParserSpec.m; sourceTree = "<group>"; };
 		5433BA73188D2150006C5F59 /* CSSSelectorParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorParserDelegate.h; sourceTree = "<group>"; };
 		5433BA74188D2150006C5F59 /* CSSSelectorParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorParserDelegate.m; sourceTree = "<group>"; };
 		543F5AA5187C0A1D00F3CC22 /* CSSSelectors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectors.h; sourceTree = "<group>"; };
@@ -231,7 +238,7 @@
 				540AA374187BC5F70012AA44 /* Supporting Files */,
 				540AA388187BDD5B0012AA44 /* CSSToXPathConverterSpec.m */,
 				5433BA59188D0D71006C5F59 /* CSSSelectorTokeniserSpec.m */,
-				5433BA62188D1629006C5F59 /* CSSSelectorGrammarSpec.m */,
+				5433BA62188D1629006C5F59 /* CSSSelectorParserSpec.m */,
 			);
 			path = CSSSelectorConverterTests;
 			sourceTree = "<group>";
@@ -448,12 +455,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5433BA75188D2150006C5F59 /* CSSSelectorParserDelegate.m in Sources */,
+				54FA2F72188D7AEB0065B628 /* CSSSelectorParser.m in Sources */,
 				5433BA57188D0C5B006C5F59 /* CSSSelectorTokeniser.m in Sources */,
 				540AA362187BC5F60012AA44 /* IGMasterViewController.m in Sources */,
 				540AA365187BC5F60012AA44 /* IGDetailViewController.m in Sources */,
 				5433BA5E188D136A006C5F59 /* CSSSelectorGrammar.m in Sources */,
+				54FA2F71188D76AA0065B628 /* CSSClassSelector.m in Sources */,
 				5433BA72188D1D9E006C5F59 /* CSSTypeSelector.m in Sources */,
 				5433BA6F188D1940006C5F59 /* CSSNamedSelector.m in Sources */,
+				54FA2F74188D7C650065B628 /* CSSToXPathConverter.m in Sources */,
 				5433BA66188D1808006C5F59 /* CSSUniversalSelector.m in Sources */,
 				540AA35C187BC5F60012AA44 /* IGAppDelegate.m in Sources */,
 				5433BA70188D1949006C5F59 /* CSSBaseSelector.m in Sources */,
@@ -465,14 +475,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54FA2F76188D7CDD0065B628 /* CSSToXPathConverterSpec.m in Sources */,
+				54FA2F73188D7AEB0065B628 /* CSSSelectorParser.m in Sources */,
+				54FA2F75188D7C660065B628 /* CSSToXPathConverter.m in Sources */,
 				5433BA71188D1D9C006C5F59 /* CSSTypeSelector.m in Sources */,
 				5433BA58188D0C5B006C5F59 /* CSSSelectorTokeniser.m in Sources */,
 				5433BA6D188D1905006C5F59 /* CSSBaseSelector.m in Sources */,
 				54FA2F6F188D21D60065B628 /* CSSSelectorParserDelegate.m in Sources */,
 				5433BA5F188D136A006C5F59 /* CSSSelectorGrammar.m in Sources */,
+				54FA2F70188D76A90065B628 /* CSSClassSelector.m in Sources */,
 				5433BA5B188D0D71006C5F59 /* CSSSelectorTokeniserSpec.m in Sources */,
 				5433BA6E188D1907006C5F59 /* CSSNamedSelector.m in Sources */,
-				5433BA63188D1629006C5F59 /* CSSSelectorGrammarSpec.m in Sources */,
+				5433BA63188D1629006C5F59 /* CSSSelectorParserSpec.m in Sources */,
 				5433BA65188D1807006C5F59 /* CSSUniversalSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

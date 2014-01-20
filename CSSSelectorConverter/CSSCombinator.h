@@ -8,8 +8,6 @@
 
 #import "CSSBaseSelector.h"
 
-#define PUSH_COMBINATOR() [CSSCombinator pushCombinator:self.assembly];
-
 typedef NS_ENUM(NSInteger, CSSCombinatorType) {
     CSSCombinatorTypeNone = 0,
     CSSCombinatorTypeDescendant,
@@ -28,7 +26,5 @@ typedef NS_ENUM(NSInteger, CSSCombinatorType) {
 +(instancetype) adjacentCombinator;
 
 +(instancetype) generalSiblingCombinator;
-
-+(void) pushCombinator:(PKAssembly*)assembly;
 
 @end

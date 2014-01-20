@@ -7,7 +7,6 @@
 //
 
 #import "IGAppDelegate.h"
-#import <ParseKit/ParseKit.h>
 
 @implementation IGAppDelegate
 

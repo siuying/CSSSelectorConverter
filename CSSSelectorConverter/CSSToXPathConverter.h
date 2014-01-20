@@ -17,6 +17,6 @@
 
 -(id) initWithParser:(CSSSelectorParser*)parser;
 
--(NSString*)xpathWithCSS:(NSString*)css error:(NSError**)error;
+-(NSString*)xpathWithCSS:(NSString*)css ;
 
 @end

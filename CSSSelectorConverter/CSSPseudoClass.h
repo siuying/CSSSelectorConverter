@@ -8,13 +8,9 @@
 
 #import "CSSNamedSelector.h"
 
-#define PUSH_PSEUDO_CLASS() [CSSPseudoClass pushPseudoClass:self.assembly];
-
 @interface CSSPseudoClass : CSSNamedSelector
 
 @property (nonatomic, weak) CSSNamedSelector* parent;
-
-+(void) pushPseudoClass:(PKAssembly*)assembly;
 
 +(NSArray*) supportedPseudoClass;
 

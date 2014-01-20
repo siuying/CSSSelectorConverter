@@ -11,24 +11,19 @@ PODS:
   - Kiwi/XCTest (2.2.3):
     - Kiwi/ARC
     - Kiwi/NonARC
-  - ParseKit (0.7)
 
 DEPENDENCIES:
   - CocoaLumberjack
   - CoreParse (from `vendor`)
   - Kiwi/XCTest
-  - ParseKit (from `vendor`)
 
 EXTERNAL SOURCES:
   CoreParse:
-    :podspec: vendor
-  ParseKit:
     :podspec: vendor
 
 SPEC CHECKSUMS:
   CocoaLumberjack: be87113f649942f020a37c061c58009b6ee5ff68
   CoreParse: c8da33c94916683f2448e3cbc51ced058aa68c45
   Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
-  ParseKit: b7a059d743342b674bf905792fd66f1027bd3d8d
 
 COCOAPODS: 0.29.0

@@ -11,7 +11,6 @@
 static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 #import "CSSToXPathConverter.h"
-#import <ParseKit/ParseKit.h>
 #import "CSSBaseSelector.h"
 
 @implementation CSSToXPathConverter
@@ -26,11 +25,11 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     return [self initWithParser:[[CSSSelectorParser alloc] init]];
 }
 
--(NSString*)xpathWithCSS:(NSString*)css error:(NSError**)error{
-    PKAssembly* assembly = [self.parser parseString:css assembler:self error:error];
+-(NSString*)xpathWithCSS:(NSString*)css {
+    CPSyntaxTree* tree = [self.parser parse:css];
     
     NSMutableString* output = [[NSMutableString alloc] init];
-    [assembly.stack enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
+    [tree.children enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
         if ([selector respondsToSelector:@selector(toXPath)]) {
             [output appendString:selector.toXPath];
         } else {

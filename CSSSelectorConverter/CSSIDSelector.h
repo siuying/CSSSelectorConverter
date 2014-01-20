@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "CSSNamedSelector.h"
 
-#define PUSH_CSS_ID(name) [self.assembly push:([CSSIDSelector selectorWithName:(name)])]
-
 @interface CSSIDSelector : CSSNamedSelector
 
 @end

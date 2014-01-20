@@ -9,14 +9,10 @@
 #import "CSSBaseSelector.h"
 #import "CSSSelectors.h"
 
-#define PUSH_SELECTORS_GROUP() [CSSSelectorGroup pushSelectorGroup:self.assembly];
-
 @interface CSSSelectorGroup : CSSBaseSelector
 
 @property (nonatomic, strong) NSMutableArray* selectors;
 
 -(void) addSelectors:(CSSSelectors*)selectors;
-
-+(void) pushSelectorGroup:(PKAssembly*)assembly;
 
 @end

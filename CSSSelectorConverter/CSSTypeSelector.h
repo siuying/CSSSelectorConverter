@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "CSSNamedSelector.h"
 
-#define PUSH_CSS_TYPE(name) [self.assembly push:([CSSTypeSelector selectorWithName:(name)])]
-
 @interface CSSTypeSelector : CSSNamedSelector <CPParseResult>
 
 @end

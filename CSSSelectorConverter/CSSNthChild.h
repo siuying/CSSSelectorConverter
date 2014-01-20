@@ -8,8 +8,6 @@
 
 #import "CSSPseudoClass.h"
 
-#define PUSH_NTH_CHILD() [CSSNthChild pushPseudoClass:self.assembly];
-
 /**
  nth-child pseudo class.
  
