@@ -14,7 +14,7 @@ SPEC_BEGIN(CSSSelectorParserSpec)
 describe(@"CSSSelectorParser", ^{
     it(@"parse css", ^{
         CSSSelectorParser *parser = [[CSSSelectorParser alloc] init];
-        CPSyntaxTree* tree = [parser parse:@".content"];
+        CPSyntaxTree* tree = [parser parse:@"*[id='a']"];
         [[tree shouldNot] beNil];
         NSLog(@"result = %@", tree);
     });

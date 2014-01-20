@@ -2,6 +2,12 @@
 #import "CSSSelectorGrammar.h"
 #import "CSSSelectorTokeniser.h"
 
+NSString* const CSSSelectorParserException = @"CSSSelectorParserException";
+
+enum {
+    CSSSelectorParserRuleQuotedString = 1
+};
+
 @interface CSSSelectorParser ()
 @property (nonatomic, strong) CSSSelectorGrammar* grammar;
 @property (nonatomic, strong) CSSSelectorTokeniser *tokeniser;
@@ -30,6 +36,20 @@
 
 - (id)parser:(CPParser *)parser didProduceSyntaxTree:(CPSyntaxTree *)syntaxTree
 {
+    switch ([[syntaxTree rule] tag]) {
+        case CSSSelectorParserRuleQuotedString: {
+            NSArray* children = [syntaxTree children];
+            if ([children count] == 1 && [children[0] isQuotedToken]) {
+                return [children[0] content];
+            } else {
+                [NSException raise:CSSSelectorParserException format:@"unexpected token: should be a quoted token, now: %@", syntaxTree];
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
     return syntaxTree;
 }
 

@@ -15,8 +15,10 @@ typedef NS_ENUM(NSInteger, CSSSelectorAttributeOperatorType) {
     CSSSelectorAttributeOperatorTypeDash
 };
 
-@interface CSSSelectorAttributeOperator : CSSNamedSelector
+@interface CSSSelectorAttributeOperator : CSSNamedSelector <CPParseResult>
 
 @property (nonatomic, assign) CSSSelectorAttributeOperatorType attributeOperator;
+
++(CSSSelectorAttributeOperatorType) operatorWithString:(NSString*) type;
 
 @end

@@ -1,4 +1,12 @@
-Expression                 ::= (universal@<CSSUniversalSelector> | type@<CSSTypeSelector>) (<CSSClassSelector>)* | (<CSSClassSelector>)+;
-CSSClassSelector           ::= '.' className@'Identifier';
-CSSTypeSelector            ::= typeName@'Identifier';
-CSSUniversalSelector       ::= '*';
+Expression                      ::= (universal@<CSSUniversalSelector> | type@<CSSTypeSelector>) (<CSSClassSelector> | <CSSIDSelector> | <CSSSelectorAttribute>)* | (<CSSClassSelector> | <CSSIDSelector> | <CSSSelectorAttribute>)+;
+
+CSSSelectorAttribute            ::= '[' 'Whitespace'* attrName@'Identifier' 'Whitespace'* (op@<CSSSelectorAttributeOperator> 'Whitespace'* attrValue@<QuotedString>) ']';
+CSSSelectorAttributeOperator    ::= <Equal> | <Includes> | <Dashmatch>;
+QuotedString                    ::= 'DoubleQuoted' | 'SingleQuoted';
+Dashmatch                       ::= '|=';
+Includes                        ::= '~=';
+Equal                           ::= '=';
+CSSClassSelector                ::= '.' className@'Identifier';
+CSSIDSelector                   ::= '#' idName@'Identifier';
+CSSTypeSelector                 ::= typeName@'Identifier';
+CSSUniversalSelector            ::= '*';

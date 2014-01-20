@@ -9,9 +9,9 @@
 #import "CSSBaseSelector.h"
 #import "CSSSelectorAttributeOperator.h"
 
-@interface CSSSelectorAttribute : CSSBaseSelector
+@interface CSSSelectorAttribute : CSSBaseSelector <CPParseResult>
 
-@property (nonatomic, strong) CSSSelectorAttributeOperator* type;
+@property (nonatomic, strong) CSSSelectorAttributeOperator* attributeOperator;
 @property (nonatomic, copy) NSString* name;
 @property (nonatomic, copy) NSString* value;
 

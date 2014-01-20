@@ -48,6 +48,12 @@
 		54FA2F74188D7C650065B628 /* CSSToXPathConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA397187BE4900012AA44 /* CSSToXPathConverter.m */; };
 		54FA2F75188D7C660065B628 /* CSSToXPathConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA397187BE4900012AA44 /* CSSToXPathConverter.m */; };
 		54FA2F76188D7CDD0065B628 /* CSSToXPathConverterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA388187BDD5B0012AA44 /* CSSToXPathConverterSpec.m */; };
+		54FA2F79188D826F0065B628 /* CSSIDSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A9187BF1460012AA44 /* CSSIDSelector.m */; };
+		54FA2F7A188D826F0065B628 /* CSSIDSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A9187BF1460012AA44 /* CSSIDSelector.m */; };
+		54FA2F7D188D867F0065B628 /* CSSSelectorAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 548A92A0187D1CF70045D4CA /* CSSSelectorAttribute.m */; };
+		54FA2F7E188D867F0065B628 /* CSSSelectorAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 548A92A0187D1CF70045D4CA /* CSSSelectorAttribute.m */; };
+		54FA2F7F188D88B90065B628 /* CSSSelectorAttributeOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 541EC6FF187D34AB00F08D19 /* CSSSelectorAttributeOperator.m */; };
+		54FA2F80188D88BA0065B628 /* CSSSelectorAttributeOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 541EC6FF187D34AB00F08D19 /* CSSSelectorAttributeOperator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -462,12 +468,15 @@
 				5433BA5E188D136A006C5F59 /* CSSSelectorGrammar.m in Sources */,
 				54FA2F71188D76AA0065B628 /* CSSClassSelector.m in Sources */,
 				5433BA72188D1D9E006C5F59 /* CSSTypeSelector.m in Sources */,
+				54FA2F79188D826F0065B628 /* CSSIDSelector.m in Sources */,
 				5433BA6F188D1940006C5F59 /* CSSNamedSelector.m in Sources */,
 				54FA2F74188D7C650065B628 /* CSSToXPathConverter.m in Sources */,
 				5433BA66188D1808006C5F59 /* CSSUniversalSelector.m in Sources */,
 				540AA35C187BC5F60012AA44 /* IGAppDelegate.m in Sources */,
 				5433BA70188D1949006C5F59 /* CSSBaseSelector.m in Sources */,
 				540AA358187BC5F60012AA44 /* main.m in Sources */,
+				54FA2F7D188D867F0065B628 /* CSSSelectorAttribute.m in Sources */,
+				54FA2F80188D88BA0065B628 /* CSSSelectorAttributeOperator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,14 +487,17 @@
 				54FA2F76188D7CDD0065B628 /* CSSToXPathConverterSpec.m in Sources */,
 				54FA2F73188D7AEB0065B628 /* CSSSelectorParser.m in Sources */,
 				54FA2F75188D7C660065B628 /* CSSToXPathConverter.m in Sources */,
+				54FA2F7F188D88B90065B628 /* CSSSelectorAttributeOperator.m in Sources */,
 				5433BA71188D1D9C006C5F59 /* CSSTypeSelector.m in Sources */,
 				5433BA58188D0C5B006C5F59 /* CSSSelectorTokeniser.m in Sources */,
 				5433BA6D188D1905006C5F59 /* CSSBaseSelector.m in Sources */,
 				54FA2F6F188D21D60065B628 /* CSSSelectorParserDelegate.m in Sources */,
+				54FA2F7E188D867F0065B628 /* CSSSelectorAttribute.m in Sources */,
 				5433BA5F188D136A006C5F59 /* CSSSelectorGrammar.m in Sources */,
 				54FA2F70188D76A90065B628 /* CSSClassSelector.m in Sources */,
 				5433BA5B188D0D71006C5F59 /* CSSSelectorTokeniserSpec.m in Sources */,
 				5433BA6E188D1907006C5F59 /* CSSNamedSelector.m in Sources */,
+				54FA2F7A188D826F0065B628 /* CSSIDSelector.m in Sources */,
 				5433BA63188D1629006C5F59 /* CSSSelectorParserSpec.m in Sources */,
 				5433BA65188D1807006C5F59 /* CSSUniversalSelector.m in Sources */,
 			);

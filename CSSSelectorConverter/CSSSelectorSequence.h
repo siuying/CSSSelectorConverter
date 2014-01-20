@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CSSBaseSelector.h"
 
 @class CSSCombinator;
-@class CSSBaseSelector;
 @class CSSPseudoClass;
 @class CSSTypeSelector;
 

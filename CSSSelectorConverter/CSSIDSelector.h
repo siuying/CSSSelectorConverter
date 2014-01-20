@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "CSSNamedSelector.h"
 
-@interface CSSIDSelector : CSSNamedSelector
+@interface CSSIDSelector : CSSNamedSelector <CPParseResult>
 
 @end

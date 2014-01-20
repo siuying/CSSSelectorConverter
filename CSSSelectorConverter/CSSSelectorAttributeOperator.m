@@ -14,6 +14,21 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation CSSSelectorAttributeOperator
 
+- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+    self = [self init];
+    if (self) {
+        NSArray *components = [syntaxTree children];
+        if ([components count] == 1) {
+            CPKeywordToken* token = [components[0] children][0];
+            if ([token isKeywordToken]) {
+                self.name              = [token keyword];
+                self.attributeOperator = [[self class] operatorWithString:[token keyword]];
+            }
+        }
+    }
+    return self;
+}
+
 +(instancetype) selectorWithName:(NSString*)name {
     CSSSelectorAttributeOperator* attrType = [[self alloc] init];
     attrType.name = name;
