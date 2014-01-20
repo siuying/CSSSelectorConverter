@@ -23,6 +23,22 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation CSSSelectorSequence
 
+- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+    self = [self init];
+    if (self) {
+        if ([syntaxTree valueForTag:@"universal"]) {
+            self.universalOrTypeSelector = [syntaxTree valueForTag:@"universal"];
+            self.otherSelectors = [[syntaxTree valueForTag:@"selectorsWithType"] firstObject];
+        } else if ([syntaxTree valueForTag:@"type"]) {
+            self.universalOrTypeSelector = [syntaxTree valueForTag:@"type"];
+            self.otherSelectors = [[syntaxTree valueForTag:@"selectorsWithType"] firstObject];
+        } else {
+            self.otherSelectors = [[syntaxTree valueForTag:@"selectorsWithoutType"] firstObject];
+        }
+    }
+    return self;
+}
+
 -(instancetype) init {
     self = [super init];
     self.universalOrTypeSelector = nil;
@@ -31,7 +47,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 -(NSString*) description {
-    return [NSString stringWithFormat:@"<CSSSelectorSequence %@ %@>", self.universalOrTypeSelector, self.otherSelectors];
+    return [NSString stringWithFormat:@"<CSSSelectorSequence %@ %@>", self.universalOrTypeSelector, [self.otherSelectors componentsJoinedByString:@" "]];
 }
 
 -(void) addSelector:(CSSBaseSelector*)selector {

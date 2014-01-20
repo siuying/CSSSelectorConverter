@@ -13,7 +13,7 @@
 @class CSSPseudoClass;
 @class CSSTypeSelector;
 
-@interface CSSSelectorSequence : CSSBaseSelector
+@interface CSSSelectorSequence : CSSBaseSelector <CPParseResult>
 
 @property (nonatomic, strong) CSSCombinator* combinator;
 

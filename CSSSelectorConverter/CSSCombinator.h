@@ -15,16 +15,8 @@ typedef NS_ENUM(NSInteger, CSSCombinatorType) {
     CSSCombinatorTypeGeneralSibling
 };
 
-@interface CSSCombinator : CSSBaseSelector
+@interface CSSCombinator : CSSBaseSelector <CPParseResult>
 
 @property (nonatomic, assign) CSSCombinatorType type;
-
-+(instancetype) emptyCombinator;
-
-+(instancetype) descendantCombinator;
-
-+(instancetype) adjacentCombinator;
-
-+(instancetype) generalSiblingCombinator;
 
 @end

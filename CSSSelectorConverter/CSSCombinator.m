@@ -14,6 +14,27 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
 
 @implementation CSSCombinator
 
+- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+    self = [self init];
+    NSArray *components = [syntaxTree children];
+    if ([components count] == 1) {
+        CPKeywordToken* token = [components[0] children][0];
+        if ([token isKeywordToken]) {
+            NSString* keyword = [token keyword];
+            if ([keyword isEqualToString:@">"]) {
+                self.type = CSSCombinatorTypeDescendant;
+            } else if ([keyword isEqualToString:@"+"]) {
+                self.type = CSSCombinatorTypeAdjacent;
+            } else if ([keyword isEqualToString:@"~"]) {
+                self.type = CSSCombinatorTypeGeneralSibling;
+            }
+        } else if ([token isWhiteSpaceToken]) {
+            self.type = CSSCombinatorTypeNone;
+        }
+    }
+    return self;
+}
+
 +(NSArray*) combinatorStrings {
     static dispatch_once_t onceToken;
     static NSArray* _combinatorStrings;
@@ -21,30 +42,6 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
         _combinatorStrings = @[@">", @"+", @"~"];
     });
     return _combinatorStrings;
-}
-
-+(instancetype) emptyCombinator {
-    CSSCombinator* combinator = [[self alloc] init];
-    combinator.type = CSSCombinatorTypeNone;
-    return combinator;
-}
-
-+(instancetype) descendantCombinator {
-    CSSCombinator* combinator = [[self alloc] init];
-    combinator.type = CSSCombinatorTypeDescendant;
-    return combinator;
-}
-
-+(instancetype) adjacentCombinator {
-    CSSCombinator* combinator = [[self alloc] init];
-    combinator.type = CSSCombinatorTypeNone;
-    return combinator;
-}
-
-+(instancetype) generalSiblingCombinator {
-    CSSCombinator* combinator = [[self alloc] init];
-    combinator.type = CSSCombinatorTypeGeneralSibling;
-    return combinator;
 }
 
 -(NSString*) description {
@@ -97,37 +94,5 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
     [NSException raise:NSInternalInconsistencyException format:@"unexpected type: %d", self.type];
 }
 
-+(void) pushCombinator:(PKAssembly*)assembly {
-    id firstToken = [assembly pop];
-
-    // if stack is empty, do nothing.
-    if (!firstToken) {
-        return;
-    }
-
-    if ([firstToken isSymbol]) {
-        NSString* firstTokenString = [firstToken stringValue];
-        if ([firstTokenString isEqualToString:@">"]) {
-            DDLogVerbose(@"Push descendant combinator");
-            CSSCombinator* combinator = [CSSCombinator descendantCombinator];
-            [assembly push:combinator];
-            return;
-        } else if ([firstTokenString isEqualToString:@"+"]) {
-            DDLogVerbose(@"Push adjacent combinator");
-            CSSCombinator* combinator = [CSSCombinator adjacentCombinator];
-            [assembly push:combinator];
-            return;
-        } else if ([firstTokenString isEqualToString:@"~"]) {
-            DDLogVerbose(@"Push general sibling combinator");
-            CSSCombinator* combinator = [CSSCombinator generalSiblingCombinator];
-            [assembly push:combinator];
-            return;
-        }
-    }
-
-    DDLogVerbose(@"  stack is not a valid combinator, abort");
-    [assembly push:firstToken];
-    return;
-}
 
 @end
