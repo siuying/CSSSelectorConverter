@@ -14,7 +14,7 @@ SPEC_BEGIN(CSSSelectorParserSpec)
 describe(@"CSSSelectorParser", ^{
     it(@"parse css", ^{
         CSSSelectorParser *parser = [[CSSSelectorParser alloc] init];
-        CSSSelectorGroup* tree = [parser parse:@"table *[id='a']"];
+        CSSSelectorGroup* tree = [parser parse:@"table:first-child"];
         [[tree shouldNot] beNil];
         NSLog(@"result = %@", tree);
     });

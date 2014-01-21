@@ -15,6 +15,17 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
 
 @implementation CSSPseudoClass
 
+- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+    self = [self init];
+    
+    id token = [syntaxTree valueForTag:@"className"];
+    if ([token isIdentifierToken]) {
+        self.name = [token identifier];
+    }
+
+    return self;
+}
+
 +(NSArray*) supportedPseudoClass {
     return [[self pseudoClassXPathMapping] allKeys];
 }
@@ -52,33 +63,33 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
     }
 }
 
-+(void) pushPseudoClass:(PKAssembly*)assembly {
-    id token = nil;
-
-    NSMutableArray* tokens = [[NSMutableArray alloc] init];
-    while (( token = [assembly pop] )) {
-        if ([token isKindOfClass:[PKToken class]] && [token respondsToSelector:@selector(stringValue)]) {
-            NSString* name = [token stringValue];
-            [tokens addObject:name];
-        } else {
-            [assembly push:token];
-            break;
-        }
-    }
-    
-    if ([tokens count] == 0) {
-        return;
-    }
-    
-    NSString* className = [[[tokens reverseObjectEnumerator] allObjects] componentsJoinedByString:@""];
-    if ([[CSSPseudoClass supportedPseudoClass] indexOfObject:className] != NSNotFound) {
-        CSSPseudoClass* pseudo = [CSSPseudoClass selectorWithName:className];
-        [assembly push:pseudo];
-        DDLogInfo(@"Push Pseudo class %@", className);
-    } else {
-        DDLogWarn(@"Not supported pseudo class: %@", className);
-        return;
-    }
-}
+//+(void) pushPseudoClass:(PKAssembly*)assembly {
+//    id token = nil;
+//
+//    NSMutableArray* tokens = [[NSMutableArray alloc] init];
+//    while (( token = [assembly pop] )) {
+//        if ([token isKindOfClass:[PKToken class]] && [token respondsToSelector:@selector(stringValue)]) {
+//            NSString* name = [token stringValue];
+//            [tokens addObject:name];
+//        } else {
+//            [assembly push:token];
+//            break;
+//        }
+//    }
+//    
+//    if ([tokens count] == 0) {
+//        return;
+//    }
+//    
+//    NSString* className = [[[tokens reverseObjectEnumerator] allObjects] componentsJoinedByString:@""];
+//    if ([[CSSPseudoClass supportedPseudoClass] indexOfObject:className] != NSNotFound) {
+//        CSSPseudoClass* pseudo = [CSSPseudoClass selectorWithName:className];
+//        [assembly push:pseudo];
+//        DDLogInfo(@"Push Pseudo class %@", className);
+//    } else {
+//        DDLogWarn(@"Not supported pseudo class: %@", className);
+//        return;
+//    }
+//}
 
 @end
