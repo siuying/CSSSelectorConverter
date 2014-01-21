@@ -26,7 +26,7 @@ enum {
     return self;
 }
 
-- (id<NSObject>)parse:(NSString *)css
+- (CSSSelectorGroup*)parse:(NSString *)css
 {
     CPTokenStream *tokenStream = [self.tokeniser tokenise:css];
     return [self.parser parse:tokenStream];

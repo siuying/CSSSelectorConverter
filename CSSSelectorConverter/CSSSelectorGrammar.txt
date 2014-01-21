@@ -1,4 +1,4 @@
-Expression                      ::= <CSSSelectors>;
+CSSSelectorGroup                ::= firstSelector@<CSSSelectors> otherSelectors@(',' 'Whitespace'* <CSSSelectors>)*;
 CSSSelectors                    ::= firstSequence@<CSSSelectorSequence> otherSequences@(<CSSCombinator> <CSSSelectorSequence>)*;
 CSSSelectorSequence             ::= (universal@<CSSUniversalSelector> | type@<CSSTypeSelector>) selectorsWithType@(<CSSClassSelector> | <CSSIDSelector> | <CSSSelectorAttribute>)* | selectorsWithoutType@(<CSSClassSelector> | <CSSIDSelector> | <CSSSelectorAttribute>)+;
 CSSSelectorAttribute            ::= '[' 'Whitespace'* attrName@'Identifier' 'Whitespace'* (op@<CSSSelectorAttributeOperator> 'Whitespace'* attrValue@<QuotedString>) ']';
@@ -7,7 +7,7 @@ QuotedString                    ::= 'DoubleQuoted' | 'SingleQuoted';
 Dashmatch                       ::= '|=';
 Includes                        ::= '~=';
 Equal                           ::= '=';
-CSSCombinator                   ::= '>' | '~' | '+' | 'Whitespace'+;
+CSSCombinator                   ::= '>' 'Whitespace'* | '~' 'Whitespace'* | '+' 'Whitespace'* | 'Whitespace'+;
 CSSClassSelector                ::= '.' className@'Identifier';
 CSSIDSelector                   ::= '#' idName@'Identifier';
 CSSTypeSelector                 ::= typeName@'Identifier';

@@ -9,7 +9,7 @@
 #import "CSSBaseSelector.h"
 #import "CSSSelectors.h"
 
-@interface CSSSelectorGroup : CSSBaseSelector
+@interface CSSSelectorGroup : CSSBaseSelector <CPParseResult>
 
 @property (nonatomic, strong) NSMutableArray* selectors;
 

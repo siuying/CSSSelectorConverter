@@ -20,7 +20,7 @@
     if (!grammar) {
         [NSException raise:NSInvalidArgumentException format:@"missing grammar file CSSSelectorGrammar.txt"];
     }
-    self = [super initWithStart:@"Expression" backusNaurForm:grammar error:&error];
+    self = [super initWithStart:@"CSSSelectorGroup" backusNaurForm:grammar error:&error];
     if (!self) {
         if (error) {
             NSLog(@"error compile language = %@", error);

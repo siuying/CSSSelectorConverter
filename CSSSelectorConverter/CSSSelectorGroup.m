@@ -14,6 +14,24 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation CSSSelectorGroup
 
+- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+    self = [self init];
+    if (self) {
+        CSSSelectors* selector = [syntaxTree valueForTag:@"firstSelector"];
+        if (selector) {
+            [self addSelectors:selector];
+        } else {
+            [NSException raise:NSInvalidArgumentException format:@"should at least contain one selector"];
+        }
+        
+        NSArray* selectors = [syntaxTree valueForTag:@"otherSelectors"];
+        [selectors enumerateObjectsUsingBlock:^(CSSSelectors* other, NSUInteger idx, BOOL *stop) {
+            [self addSelectors:other];
+        }];
+    }
+    return self;
+}
+
 -(instancetype) init {
     self = [super init];
     self.selectors = [[NSMutableArray alloc] init];
@@ -40,29 +58,6 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     }];
 
     return [result copy];
-}
-
-+(void) pushSelectorGroup:(PKAssembly*)assembly {
-    DDLogVerbose(@"create CSSSelectorGroup ...");
-    CSSSelectorGroup* group = [[self alloc] init];
-    id token;
-
-    while ((token = [assembly pop])) {
-        if ([token isKindOfClass:[CSSSelectors class]]) {
-            DDLogVerbose(@"  add a selector: %@", token);
-            CSSSelectors* selectors = token;
-            [group addSelectors:selectors];
-            
-        } else {
-            DDLogVerbose(@"  %@ is not a selector, push it back and abort sequence", [token class]);
-            [assembly push:token];
-            [assembly push:group];
-            return;
-        }
-    }
-
-    [assembly push:group];
-    return;
 }
 
 @end

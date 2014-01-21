@@ -26,17 +26,8 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 -(NSString*)xpathWithCSS:(NSString*)css {
-    CPSyntaxTree* tree = [self.parser parse:css];
-    
-    NSMutableString* output = [[NSMutableString alloc] init];
-    [tree.children enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
-        if ([selector respondsToSelector:@selector(toXPath)]) {
-            [output appendString:selector.toXPath];
-        } else {
-            DDLogError(@"not a xpath node! %@", selector);
-        }
-    }];
-    return [output copy];
+    CSSSelectorGroup* group = [self.parser parse:css];
+    return [group toXPath];
 }
 
 @end
