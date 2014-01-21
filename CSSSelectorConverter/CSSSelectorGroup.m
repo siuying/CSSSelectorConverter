@@ -24,9 +24,12 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
             [NSException raise:NSInvalidArgumentException format:@"should at least contain one selector"];
         }
         
-        NSArray* selectors = [syntaxTree valueForTag:@"otherSelectors"];
-        [selectors enumerateObjectsUsingBlock:^(CSSSelectors* other, NSUInteger idx, BOOL *stop) {
-            [self addSelectors:other];
+        NSArray* subtree = [syntaxTree valueForTag:@"otherSelectors"];
+        NSArray* flattenSubtree = [subtree valueForKeyPath: @"@unionOfArrays.self"];
+        [flattenSubtree enumerateObjectsUsingBlock:^(CSSSelectors* other, NSUInteger idx, BOOL *stop) {
+            if ([other isKindOfClass:[CSSSelectors class]]) {
+                [self addSelectors:other];
+            }
         }];
     }
     return self;

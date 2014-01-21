@@ -29,12 +29,15 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     if (self) {
         if ([syntaxTree valueForTag:@"universal"]) {
             self.universalOrTypeSelector = [syntaxTree valueForTag:@"universal"];
-            self.otherSelectors = [[syntaxTree valueForTag:@"selectorsWithType"] firstObject];
+            NSArray* subtree = [syntaxTree valueForTag:@"selectorsWithType"];
+            self.otherSelectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
         } else if ([syntaxTree valueForTag:@"type"]) {
             self.universalOrTypeSelector = [syntaxTree valueForTag:@"type"];
-            self.otherSelectors = [[syntaxTree valueForTag:@"selectorsWithType"] firstObject];
+            NSArray* subtree = [syntaxTree valueForTag:@"selectorsWithType"];
+            self.otherSelectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
         } else {
-            self.otherSelectors = [[syntaxTree valueForTag:@"selectorsWithoutType"] firstObject];
+            NSArray* subtree = [syntaxTree valueForTag:@"selectorsWithoutType"];
+            self.otherSelectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
         }
     }
     return self;

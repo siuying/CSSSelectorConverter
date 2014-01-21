@@ -83,7 +83,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
     switch (self.type) {
         case CSSCombinatorTypeNone:
         {
-            return @"//";
+            return @"";
         }
             break;
         case CSSCombinatorTypeDescendant:
