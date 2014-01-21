@@ -17,7 +17,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
 - (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
     self = [self init];
     NSArray *components = [syntaxTree children];
-    if ([components count] == 1) {
+    if ([components count] >= 1) {
         id component = components[0];
         if ([component isWhiteSpaceToken]) {
             self.type = CSSCombinatorTypeNone;

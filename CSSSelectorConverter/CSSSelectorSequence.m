@@ -20,6 +20,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 #import "CSSClassSelector.h"
 #import "CSSSelectorAttribute.h"
 #import "CSSPseudoClass.h"
+#import "CSSCombinator.h"
 
 @implementation CSSSelectorSequence
 
@@ -61,39 +62,39 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
-//-(NSString*) toXPath {
-//    NSMutableString* result = [[NSMutableString alloc] init];
-//    if (self.combinator) {
-//        [result appendString:self.combinator.toXPath];
-//    } else {
-//        [result appendString:@"//"];
-//    }
-//    
-//    if (!self.universalOrTypeSelector) {
-//        self.universalOrTypeSelector = [CSSUniversalSelector selector];
-//    }
-//
-//    if (self.pseudoClass) {
-//        self.pseudoClass.parent = self.universalOrTypeSelector;
-//        [result appendString:self.pseudoClass.toXPath];
-//    } else {
-//        [result appendString:self.universalOrTypeSelector.toXPath];
-//    }
-//
-//    
-//    if ([self.otherSelectors count] > 0) {
-//        [result appendString:@"["];
-//        NSArray* reversedOtherSelectors = [[self.otherSelectors reverseObjectEnumerator] allObjects];
-//        [reversedOtherSelectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
-//            [result appendString:selector.toXPath];
-//            if (idx < self.otherSelectors.count - 1) {
-//                [result appendString:@" and "];
-//            }
-//        }];
-//        [result appendString:@"]"];
-//    }
-//
-//    return [result copy];
-//}
+-(NSString*) toXPath {
+    NSMutableString* result = [[NSMutableString alloc] init];
+    if (self.combinator) {
+        [result appendString:self.combinator.toXPath];
+    } else {
+        [result appendString:@"//"];
+    }
+    
+    if (!self.universalOrTypeSelector) {
+        self.universalOrTypeSelector = [CSSUniversalSelector selector];
+    }
+
+    if (self.pseudoClass) {
+        self.pseudoClass.parent = self.universalOrTypeSelector;
+        [result appendString:self.pseudoClass.toXPath];
+    } else {
+        [result appendString:self.universalOrTypeSelector.toXPath];
+    }
+
+    
+    if ([self.otherSelectors count] > 0) {
+        [result appendString:@"["];
+        NSArray* reversedOtherSelectors = [[self.otherSelectors reverseObjectEnumerator] allObjects];
+        [reversedOtherSelectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
+            [result appendString:selector.toXPath];
+            if (idx < self.otherSelectors.count - 1) {
+                [result appendString:@" and "];
+            }
+        }];
+        [result appendString:@"]"];
+    }
+
+    return [result copy];
+}
 
 @end
