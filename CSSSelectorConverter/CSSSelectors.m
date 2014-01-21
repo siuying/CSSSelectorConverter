@@ -17,6 +17,24 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation CSSSelectors
 
+- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+    self = [self init];
+    if (self) {
+        CSSSelectorSequence* seq = [syntaxTree valueForTag:@"firstSequence"];
+        if (seq) {
+            [self addSelector:seq];
+        }
+        
+        NSArray* otherSequences = [syntaxTree valueForTag:@"otherSequences"];
+        [otherSequences enumerateObjectsUsingBlock:^(NSArray* sequence, NSUInteger idx, BOOL *stop) {
+            [sequence enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
+                [self addSelector:selector];
+            }];
+        }];
+    }
+    return self;
+}
+
 -(instancetype) init {
     self = [super init];
     self.selectors = [[NSMutableArray alloc] init];
@@ -44,28 +62,6 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     }];
 
     return [result copy];
-}
-
-+(void) pushSelectors:(PKAssembly*)assembly {
-    DDLogVerbose(@"create CSSSelectors ...");
-    CSSSelectors* selectors = [[self alloc] init];
-
-    id token;
-    while ((token = [assembly pop])) {
-        if ([token isKindOfClass:[CSSSelectorSequence class]] || [token isKindOfClass:[CSSCombinator class]]) {
-            DDLogVerbose(@"  add a sequence or combiantor: %@", token);
-            [selectors addSelector:token];
-
-        } else {
-            DDLogVerbose(@"  %@ is not a sequence or separator, push it back and abort sequence", [token class]);
-            [assembly push:token];
-            [assembly push:selectors];
-            return;
-        }
-    }
-
-    [assembly push:selectors];
-    return;
 }
 
 @end

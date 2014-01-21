@@ -18,19 +18,27 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
     self = [self init];
     NSArray *components = [syntaxTree children];
     if ([components count] == 1) {
-        CPKeywordToken* token = [components[0] children][0];
-        if ([token isKeywordToken]) {
-            NSString* keyword = [token keyword];
-            if ([keyword isEqualToString:@">"]) {
-                self.type = CSSCombinatorTypeDescendant;
-            } else if ([keyword isEqualToString:@"+"]) {
-                self.type = CSSCombinatorTypeAdjacent;
-            } else if ([keyword isEqualToString:@"~"]) {
-                self.type = CSSCombinatorTypeGeneralSibling;
-            }
-        } else if ([token isWhiteSpaceToken]) {
+        id component = components[0];
+        if ([component isWhiteSpaceToken]) {
             self.type = CSSCombinatorTypeNone;
+        } else if ([component isSyntaxTree]) {
+            id token = [component children][0];
+            if ([token isKeywordToken]) {
+                NSString* keyword = [token keyword];
+                if ([keyword isEqualToString:@">"]) {
+                    self.type = CSSCombinatorTypeDescendant;
+                } else if ([keyword isEqualToString:@"+"]) {
+                    self.type = CSSCombinatorTypeAdjacent;
+                } else if ([keyword isEqualToString:@"~"]) {
+                    self.type = CSSCombinatorTypeGeneralSibling;
+                } else {
+                    [NSException raise:NSInvalidArgumentException format:@"Unexpected keyword: %@", keyword];
+                }
+            } else {
+                [NSException raise:NSInvalidArgumentException format:@"Unexpected token, not a keyword: %@", token];
+            }
         }
+
     }
     return self;
 }
@@ -91,7 +99,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
             return @"/following-sibling::";
         }
     }
-    [NSException raise:NSInternalInconsistencyException format:@"unexpected type: %d", self.type];
+    [NSException raise:NSInternalInconsistencyException format:@"unexpected type: %ld", self.type];
 }
 
 
