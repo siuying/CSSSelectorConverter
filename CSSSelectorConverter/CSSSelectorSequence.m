@@ -84,8 +84,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     
     if ([self.otherSelectors count] > 0) {
         [result appendString:@"["];
-        NSArray* reversedOtherSelectors = [[self.otherSelectors reverseObjectEnumerator] allObjects];
-        [reversedOtherSelectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
+        [self.otherSelectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
             [result appendString:selector.toXPath];
             if (idx < self.otherSelectors.count - 1) {
                 [result appendString:@" and "];

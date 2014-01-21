@@ -55,9 +55,8 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 -(NSString*) toXPath {
     NSMutableString* result = [[NSMutableString alloc] init];
-    
-    NSArray* reverseSequence = [[self.selectors reverseObjectEnumerator] allObjects];
-    [reverseSequence enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
+
+    [self.selectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
         [result appendString:selector.toXPath];
     }];
 

@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "CSSTypeSelector.h"
 
-@interface CSSUniversalSelector : CSSNamedSelector <CPParseResult>
+@interface CSSUniversalSelector : CSSTypeSelector <CPParseResult>
 
 @end
