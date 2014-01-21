@@ -23,6 +23,8 @@
 		540AA36F187BC5F70012AA44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540AA34B187BC5F60012AA44 /* Foundation.framework */; };
 		540AA370187BC5F70012AA44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540AA34F187BC5F60012AA44 /* UIKit.framework */; };
 		540AA378187BC5F70012AA44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 540AA376187BC5F70012AA44 /* InfoPlist.strings */; };
+		541971F1188ED2A3004240B4 /* libCoreParse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 541971ED188ED293004240B4 /* libCoreParse.a */; };
+		541971F2188ED36A004240B4 /* libCoreParse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 541971ED188ED293004240B4 /* libCoreParse.a */; };
 		5433BA57188D0C5B006C5F59 /* CSSSelectorTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5433BA56188D0C5B006C5F59 /* CSSSelectorTokeniser.m */; };
 		5433BA58188D0C5B006C5F59 /* CSSSelectorTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5433BA56188D0C5B006C5F59 /* CSSSelectorTokeniser.m */; };
 		5433BA5B188D0D71006C5F59 /* CSSSelectorTokeniserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5433BA59188D0D71006C5F59 /* CSSSelectorTokeniserSpec.m */; };
@@ -74,6 +76,41 @@
 			remoteGlobalIDString = 540AA347187BC5F60012AA44;
 			remoteInfo = CSSSelectorConverter;
 		};
+		541971E6188ED293004240B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 541971DE188ED293004240B4 /* CoreParse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F0E88F6130462F300537D04;
+			remoteInfo = CoreParse;
+		};
+		541971E8188ED293004240B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 541971DE188ED293004240B4 /* CoreParse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F0E890B130462F300537D04;
+			remoteInfo = CoreParseTests;
+		};
+		541971EA188ED293004240B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 541971DE188ED293004240B4 /* CoreParse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1FE77D821375EA8F00879A41;
+			remoteInfo = "CoreParse Documentation";
+		};
+		541971EC188ED293004240B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 541971DE188ED293004240B4 /* CoreParse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F92817F145C11050033BC34;
+			remoteInfo = iOSCoreParse;
+		};
+		541971EE188ED293004240B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 541971DE188ED293004240B4 /* CoreParse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F92818C145C11050033BC34;
+			remoteInfo = iOSCoreParseTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +154,7 @@
 		540AA3B5187BF2D60012AA44 /* CSSBaseSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSBaseSelector.m; sourceTree = "<group>"; };
 		540AA3B8187BF3630012AA44 /* CSSSelectorSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorSequence.h; sourceTree = "<group>"; };
 		540AA3B9187BF3630012AA44 /* CSSSelectorSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorSequence.m; sourceTree = "<group>"; };
+		541971DE188ED293004240B4 /* CoreParse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreParse.xcodeproj; path = vendor/CoreParse/CoreParse.xcodeproj; sourceTree = "<group>"; };
 		541EC6FE187D34AB00F08D19 /* CSSSelectorAttributeOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorAttributeOperator.h; sourceTree = "<group>"; };
 		541EC6FF187D34AB00F08D19 /* CSSSelectorAttributeOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorAttributeOperator.m; sourceTree = "<group>"; };
 		541EC702187D43A300F08D19 /* CSSCombinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSCombinator.h; sourceTree = "<group>"; };
@@ -152,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				541971F1188ED2A3004240B4 /* libCoreParse.a in Frameworks */,
 				540AA34E187BC5F60012AA44 /* CoreGraphics.framework in Frameworks */,
 				540AA350187BC5F60012AA44 /* UIKit.framework in Frameworks */,
 				540AA34C187BC5F60012AA44 /* Foundation.framework in Frameworks */,
@@ -163,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				541971F2188ED36A004240B4 /* libCoreParse.a in Frameworks */,
 				540AA36E187BC5F70012AA44 /* XCTest.framework in Frameworks */,
 				540AA370187BC5F70012AA44 /* UIKit.framework in Frameworks */,
 				540AA36F187BC5F70012AA44 /* Foundation.framework in Frameworks */,
@@ -197,6 +237,7 @@
 		540AA34A187BC5F60012AA44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				541971DE188ED293004240B4 /* CoreParse.xcodeproj */,
 				540AA34B187BC5F60012AA44 /* Foundation.framework */,
 				540AA34D187BC5F60012AA44 /* CoreGraphics.framework */,
 				540AA34F187BC5F60012AA44 /* UIKit.framework */,
@@ -303,6 +344,18 @@
 			name = Selector;
 			sourceTree = "<group>";
 		};
+		541971DF188ED293004240B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				541971E7188ED293004240B4 /* CoreParse.framework */,
+				541971E9188ED293004240B4 /* CoreParseTests.octest */,
+				541971EB188ED293004240B4 /* CoreParse Documentation */,
+				541971ED188ED293004240B4 /* libCoreParse.a */,
+				541971EF188ED293004240B4 /* CoreParseTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -371,6 +424,12 @@
 			mainGroup = 540AA33F187BC5F60012AA44;
 			productRefGroup = 540AA349187BC5F60012AA44 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 541971DF188ED293004240B4 /* Products */;
+					ProjectRef = 541971DE188ED293004240B4 /* CoreParse.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				540AA347187BC5F60012AA44 /* CSSSelectorConverter */,
@@ -378,6 +437,44 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		541971E7188ED293004240B4 /* CoreParse.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CoreParse.framework;
+			remoteRef = 541971E6188ED293004240B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		541971E9188ED293004240B4 /* CoreParseTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreParseTests.octest;
+			remoteRef = 541971E8188ED293004240B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		541971EB188ED293004240B4 /* CoreParse Documentation */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = "CoreParse Documentation";
+			remoteRef = 541971EA188ED293004240B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		541971ED188ED293004240B4 /* libCoreParse.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCoreParse.a;
+			remoteRef = 541971EC188ED293004240B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		541971EF188ED293004240B4 /* CoreParseTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreParseTests.octest;
+			remoteRef = 541971EE188ED293004240B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		540AA346187BC5F60012AA44 /* Resources */ = {
@@ -641,6 +738,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSSSelectorConverter/CSSSelectorConverter-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"vendor/CoreParse/CoreParse/**",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "CSSSelectorConverter/CSSSelectorConverter-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -655,6 +756,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSSSelectorConverter/CSSSelectorConverter-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"vendor/CoreParse/CoreParse/**",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "CSSSelectorConverter/CSSSelectorConverter-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -677,6 +782,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"vendor/CoreParse/CoreParse/**",
+				);
 				INFOPLIST_FILE = "CSSSelectorConverterTests/CSSSelectorConverterTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
@@ -695,6 +804,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSSSelectorConverter/CSSSelectorConverter-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"vendor/CoreParse/CoreParse/**",
+				);
 				INFOPLIST_FILE = "CSSSelectorConverterTests/CSSSelectorConverterTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;

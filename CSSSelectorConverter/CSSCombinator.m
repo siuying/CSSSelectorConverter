@@ -99,7 +99,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
             return @"/following-sibling::";
         }
     }
-    [NSException raise:NSInternalInconsistencyException format:@"unexpected type: %ld", self.type];
+    [NSException raise:NSInternalInconsistencyException format:@"unexpected type: %d", self.type];
 }
 
 

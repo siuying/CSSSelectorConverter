@@ -1,0 +1,3 @@
+[submodule "vendor/CoreParse"]
+	path = vendor/CoreParse
+	url = https://github.com/beelsebob/CoreParse.git

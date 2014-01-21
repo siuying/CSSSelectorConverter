@@ -12,6 +12,8 @@
 	<dict>
 		<key>36A6D4CA-6BB3-414E-BFBE-97B75EEBBCA3</key>
 		<string>ssh://github.com/siuying/CSSSelectorConverter.git</string>
+		<key>933D72C4-BB34-468B-8A2A-F9A5F6A06A65</key>
+		<string>https://github.com/beelsebob/CoreParse.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>CSSSelectorConverter.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>36A6D4CA-6BB3-414E-BFBE-97B75EEBBCA3</key>
 		<string>..</string>
+		<key>933D72C4-BB34-468B-8A2A-F9A5F6A06A65</key>
+		<string>../vendor/CoreParse</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/siuying/CSSSelectorConverter.git</string>
@@ -28,6 +32,14 @@
 	<string>36A6D4CA-6BB3-414E-BFBE-97B75EEBBCA3</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>933D72C4-BB34-468B-8A2A-F9A5F6A06A65</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CoreParse</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
