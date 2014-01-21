@@ -23,11 +23,10 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
         self.name = [[syntaxTree valueForTag:@"attrName"] identifier];
         
         NSArray* valChildren = [[syntaxTree valueForTag:@"attrValue"] children];
-        if ([valChildren count] == 1 && [valChildren[0] isQuotedToken]) {
-            self.value = [valChildren[0] content];
-        } else {
-            [NSException raise:CSSSelectorParserException
-                        format:@"Expected a quoted token, now: %@", valChildren];
+        if (valChildren) {
+            if ([valChildren count] == 1 && [valChildren[0] isQuotedToken]) {
+                self.value = [valChildren[0] content];
+            }
         }
     }
     return self;
@@ -45,16 +44,17 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
             case CSSSelectorAttributeOperatorTypeEqual: {
                 [result appendString:@"@"];
                 [result appendString:self.name];
-                [result appendString:@" = "];
+                [result appendString:@" = \""];
                 [result appendString:self.value];
+                [result appendString:@"\""];
             }
                 break;
             case CSSSelectorAttributeOperatorTypeIncludes: {
-                [result appendString:[NSString stringWithFormat:@"contains(concat(\" \", @%@, \" \"),concat(\" \", %@, \" \"))", self.name, self.value]];
+                [result appendString:[NSString stringWithFormat:@"contains(concat(\" \", @%@, \" \"),concat(\" \", \"%@\", \" \"))", self.name, self.value]];
             }
                 break;
             case CSSSelectorAttributeOperatorTypeDash: {
-                [result appendString:[NSString stringWithFormat:@"@%@ = %@ or starts-with(@%@, concat(%@, '-'))", self.name, self.value, self.name, self.value]];
+                [result appendString:[NSString stringWithFormat:@"@%@ = \"%@\" or starts-with(@%@, concat(\"%@\", '-'))", self.name, self.value, self.name, self.value]];
             }
                 break;
             case CSSSelectorAttributeOperatorTypeNone: {
