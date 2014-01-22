@@ -30,14 +30,23 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
         if ([syntaxTree valueForTag:@"universal"]) {
             self.universalOrTypeSelector = [syntaxTree valueForTag:@"universal"];
             NSArray* subtree = [syntaxTree valueForTag:@"selectorsWithType"];
-            self.otherSelectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
+            NSArray* selectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
+            [selectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
+                [self addSelector:selector];
+            }];
         } else if ([syntaxTree valueForTag:@"type"]) {
             self.universalOrTypeSelector = [syntaxTree valueForTag:@"type"];
             NSArray* subtree = [syntaxTree valueForTag:@"selectorsWithType"];
-            self.otherSelectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
+            NSArray* selectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
+            [selectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
+                [self addSelector:selector];
+            }];
         } else {
             NSArray* subtree = [syntaxTree valueForTag:@"selectorsWithoutType"];
-            self.otherSelectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
+            NSArray* selectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
+            [selectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
+                [self addSelector:selector];
+            }];
         }
     }
     return self;
@@ -59,6 +68,10 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
         [selector isKindOfClass:[CSSClassSelector class]] ||
         [selector isKindOfClass:[CSSSelectorAttribute class]]) {
         [self.otherSelectors addObject:selector];
+
+    } else if ([selector isKindOfClass:[CSSPseudoClass class]]) {
+        self.pseudoClass = (CSSPseudoClass*) selector;
+
     } else {
         DDLogError(@"attempt to add unknown selector to sequence: %@", selector);
         [NSException raise:NSInternalInconsistencyException format:@"attempt to add unknown selector to sequence: %@", selector];
