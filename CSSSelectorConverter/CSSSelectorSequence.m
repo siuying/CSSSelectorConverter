@@ -81,32 +81,4 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
--(NSString*) toXPath {
-    NSMutableString* result = [[NSMutableString alloc] init];
-    
-    if (!self.universalOrTypeSelector) {
-        self.universalOrTypeSelector = [CSSUniversalSelector selector];
-    }
-
-    if (self.pseudoClass) {
-        self.pseudoClass.parent = self.universalOrTypeSelector;
-        [result appendString:self.pseudoClass.toXPath];
-    } else {
-        [result appendString:self.universalOrTypeSelector.toXPath];
-    }
-
-    if ([self.otherSelectors count] > 0) {
-        [result appendString:@"["];
-        [self.otherSelectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
-            [result appendString:selector.toXPath];
-            if (idx < self.otherSelectors.count - 1) {
-                [result appendString:@" and "];
-            }
-        }];
-        [result appendString:@"]"];
-    }
-
-    return [result copy];
-}
-
 @end

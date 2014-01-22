@@ -12,6 +12,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 #import "CSSToXPathConverter.h"
 #import "CSSBaseSelector.h"
+#import "CSSSelectorXPathVisitor.h"
 
 @implementation CSSToXPathConverter
 
@@ -27,7 +28,9 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 -(NSString*)xpathWithCSS:(NSString*)css {
     CSSSelectorGroup* group = [self.parser parse:css];
-    return [group toXPath];
+    CSSSelectorXPathVisitor* visitor = [[CSSSelectorXPathVisitor alloc] init];
+    [visitor visit:group];
+    return [visitor xpathString];
 }
 
 @end

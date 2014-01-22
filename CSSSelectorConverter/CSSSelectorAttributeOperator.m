@@ -40,10 +40,6 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     return [NSString stringWithFormat:@"<CSSSelectorAttributeOperator %@>", self.name];
 }
 
--(NSString*) toXPath {
-    return self.name;
-}
-
 +(CSSSelectorAttributeOperatorType) operatorWithString:(NSString*) type {
     if ([type isEqualToString:@"="]) {
         return CSSSelectorAttributeOperatorTypeEqual;

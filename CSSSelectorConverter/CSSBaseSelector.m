@@ -14,10 +14,6 @@
     return @"<BaseSeletor>";
 }
 
--(NSString*) toXPath {
-    return @"";
-}
-
 +(instancetype) selector {
     return [[self alloc] init];
 }

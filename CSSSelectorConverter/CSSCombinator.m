@@ -96,28 +96,4 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
     return nil;
 }
 
--(NSString*) toXPath {
-    switch (self.type) {
-        case CSSCombinatorTypeNone:
-        {
-            return @"//";
-        }
-            break;
-        case CSSCombinatorTypeDescendant:
-        {
-            return @"/";
-        }
-        case CSSCombinatorTypeAdjacent:
-        {
-            return @"/following-sibling::*[1]/self::";
-        }
-        case CSSCombinatorTypeGeneralSibling:
-        {
-            return @"/following-sibling::";
-        }
-    }
-    [NSException raise:NSInternalInconsistencyException format:@"unexpected type: %d", self.type];
-}
-
-
 @end

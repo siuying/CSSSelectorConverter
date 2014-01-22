@@ -12,6 +12,4 @@
 
 @property (nonatomic, weak) CSSNamedSelector* parent;
 
-+(NSArray*) supportedPseudoClass;
-
 @end

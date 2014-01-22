@@ -28,8 +28,4 @@
     return [NSString stringWithFormat:@"<ClassSelector %@>", self.name];
 }
 
--(NSString*) toXPath {
-    return [NSString stringWithFormat:@"contains(concat(' ', normalize-space(@class), ' '), ' %@ ')", self.name];
-}
-
 @end

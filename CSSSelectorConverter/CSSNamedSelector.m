@@ -20,8 +20,4 @@
     return [NSString stringWithFormat:@"<NamedSeletor %@>", _name];
 }
 
--(NSString*) toXPath {
-    return @"";
-}
-
 @end

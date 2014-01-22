@@ -28,8 +28,4 @@
     return [NSString stringWithFormat:@"<TypeSelector %@>", self.name];
 }
 
--(NSString*) toXPath {
-    return [NSString stringWithFormat:@"%@", self.name];
-}
-
 @end

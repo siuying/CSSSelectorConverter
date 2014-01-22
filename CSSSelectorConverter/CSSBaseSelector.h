@@ -10,8 +10,6 @@
 
 @interface CSSBaseSelector : NSObject
 
--(NSString*) toXPath;
-
 +(instancetype) selector;
 
 @end

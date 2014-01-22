@@ -49,18 +49,4 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     return [NSString stringWithFormat:@"<CSSSelectorGroup %@>", [self.selectors componentsJoinedByString:@", "]];
 }
 
--(NSString*) toXPath {
-    NSMutableString* result = [[NSMutableString alloc] init];
-    
-    NSArray* sequence = [self.selectors copy];
-    [sequence enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
-        [result appendString:selector.toXPath];
-        if (idx < sequence.count-1) {
-            [result appendString:@" | "];
-        }
-    }];
-
-    return [result copy];
-}
-
 @end

@@ -28,8 +28,4 @@
     return [NSString stringWithFormat:@"<IDSelector %@>", self.name];
 }
 
--(NSString*) toXPath {
-    return [NSString stringWithFormat:@"@id = '%@'", self.name];
-}
-
 @end

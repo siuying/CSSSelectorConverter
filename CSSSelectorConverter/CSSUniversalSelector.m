@@ -28,8 +28,4 @@
     return @"<UniversalSelector>";
 }
 
--(NSString*) toXPath {
-    return @"*";
-}
-
 @end

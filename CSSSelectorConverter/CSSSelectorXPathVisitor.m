@@ -7,12 +7,16 @@
 //
 
 #import "CSSSelectorXPathVisitor.h"
+
 #import "CSSSelectorGroup.h"
 #import "CSSUniversalSelector.h"
 #import "CSSIDSelector.h"
 #import "CSSClassSelector.h"
 #import "CSSSelectorSequence.h"
 #import "CSSPseudoClass.h"
+#import "CSSCombinator.h"
+#import "CSSSelectors.h"
+#import "CSSSelectorAttribute.h"
 
 @interface CSSSelectorXPathVisitor()
 @property (nonatomic, strong) NSMutableString* output;
@@ -52,6 +56,11 @@
     return [_output copy];
 }
 
+-(void) appendXPath:(NSString*)string
+{
+    [self.output appendString:string];
+}
+
 #pragma mark - Visitors
 
 -(void) visitCSSSelectorGroup:(CSSSelectorGroup*)node
@@ -60,29 +69,29 @@
     [sequence enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
         [self visit:selector];
         if (idx < sequence.count-1) {
-            [self.output appendString:@" | "];
+            [self appendXPath:@" | "];
         }
     }];
 }
 
 -(void) visitCSSUniversalSelector:(CSSUniversalSelector*)node
 {
-    [self.output appendString:@"*"];
+    [self appendXPath:@"*"];
 }
 
 -(void) visitCSSTypeSelector:(CSSTypeSelector*)node
 {
-    [self.output appendString:[NSString stringWithFormat:@"%@", node.name]];
+    [self appendXPath:[NSString stringWithFormat:@"%@", node.name]];
 }
 
 -(void) visitCSSIDSelector:(CSSIDSelector*)node
 {
-    [self.output appendString:[NSString stringWithFormat:@"@id = '%@'", node.name]];
+    [self appendXPath:[NSString stringWithFormat:@"@id = '%@'", node.name]];
 }
 
 -(void) visitCSSClassSelector:(CSSClassSelector*)node
 {
-    [self.output appendString:[NSString stringWithFormat:@"contains(concat(' ', normalize-space(@class), ' '), ' %@ ')", node.name]];
+    [self appendXPath:[NSString stringWithFormat:@"contains(concat(' ', normalize-space(@class), ' '), ' %@ ')", node.name]];
 }
 
 -(void) visitCSSSelectorSequence:(CSSSelectorSequence*)node
@@ -99,16 +108,114 @@
     }
     
     if ([node.otherSelectors count] > 0) {
-        [self.output appendString:@"["];
+        [self appendXPath:@"["];
         [node.otherSelectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
             [self visit:selector];
             if (idx < node.otherSelectors.count - 1) {
-                [self.output appendString:@" and "];
+                [self appendXPath:@" and "];
             }
         }];
-        [self.output appendString:@"]"];
+        [self appendXPath:@"]"];
+    }
+}
+
+-(void) visitCSSCombinator:(CSSCombinator*)node
+{
+    switch (node.type) {
+        case CSSCombinatorTypeNone:
+        {
+            [self appendXPath:@"//"];
+        }
+            break;
+        case CSSCombinatorTypeDescendant:
+        {
+            [self appendXPath:@"/"];
+        }
+            break;
+        case CSSCombinatorTypeAdjacent:
+        {
+            [self appendXPath:@"/following-sibling::*[1]/self::"];
+        }
+            break;
+        case CSSCombinatorTypeGeneralSibling:
+        {
+            [self appendXPath:@"/following-sibling::"];
+        }
+            break;
+    }
+}
+
+-(void) visitCSSSelectors:(CSSSelectors*)node
+{
+    [node.selectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
+        if ([selector isKindOfClass:[CSSSelectorSequence class]]) {
+            // if not specified, the combinator is none
+            if (idx == 0 || ![[node.selectors objectAtIndex:idx - 1] isKindOfClass:[CSSCombinator class]]) {
+                [self visit:[CSSCombinator noneCombinator]];
+            }
+        }
+        [self visit:selector];
+    }];
+}
+
+-(void) visitCSSSelectorAttribute:(CSSSelectorAttribute*)node
+{
+    if (node.value) {
+        switch (node.attributeOperator.attributeOperator) {
+            case CSSSelectorAttributeOperatorTypeEqual: {
+                [self appendXPath:[NSString stringWithFormat:@"@%@ = \"%@\"", node.name, node.value]];
+            }
+                break;
+            case CSSSelectorAttributeOperatorTypeIncludes: {
+                [self appendXPath:[NSString stringWithFormat:@"contains(concat(\" \", @%@, \" \"),concat(\" \", \"%@\", \" \"))", node.name, node.value]];
+            }
+                break;
+            case CSSSelectorAttributeOperatorTypeDash: {
+                [self appendXPath:[NSString stringWithFormat:@"@%@ = \"%@\" or starts-with(@%@, concat(\"%@\", '-'))", node.name, node.value, node.name, node.value]];
+            }
+                break;
+            case CSSSelectorAttributeOperatorTypeNone: {
+                [self appendXPath:[NSString stringWithFormat:@"@%@", node.name]];
+            }
+                break;
+        }
+    } else {
+        [self appendXPath:[NSString stringWithFormat:@"@%@", node.name]];
     }
 
+}
+
+-(void) visitCSSPseudoClass:(CSSPseudoClass*)node
+{
+    NSString* parentName = node.parent ? node.parent.name : @"*";
+    NSString* mapping = [[self class] pseudoClassXPathMapping][node.name];
+    if (mapping) {
+        [self appendXPath:[NSString stringWithFormat:mapping, parentName]];
+    }
+}
+
+#pragma mark - 
+
+
++(NSArray*) supportedPseudoClass {
+    return [[self pseudoClassXPathMapping] allKeys];
+}
+
++(NSDictionary*) pseudoClassXPathMapping {
+    static NSDictionary* _pseudoClassXPathMapping;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _pseudoClassXPathMapping = @{
+                                     @"first-child": @"*[position() = 1 and self::%@]",
+                                     @"last-child": @"*[position() = last() and self::%@]",
+                                     @"first-of-type": @"%@[position() = 1]",
+                                     @"last-of-type":@"%@[position() = last()]",
+                                     @"only-child": @"*[last() = 1 and self::%@]",
+                                     @"only-of-type": @"%@[last() = 1]",
+                                     @"empty": @"%@[not(node())]"
+                                     };
+    });
+    return _pseudoClassXPathMapping;
 }
 
 @end
