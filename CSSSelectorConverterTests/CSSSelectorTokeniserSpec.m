@@ -21,6 +21,9 @@ describe(@"CSSSelectorTokeniser", ^{
         tokenStream = [tokeniser tokenise:@"table a"];
         [[[tokenStream description] should] containString:@"<Identifier: table> <Whitespace> <Identifier: a>"];
 
+        tokenStream = [tokeniser tokenise:@"table ~ .a"];
+        [[[tokenStream description] should] containString:@"<Identifier: table> <Whitespace> <Keyword: ~> <Whitespace> <Keyword: .> <Identifier: a>"];
+
         tokenStream = [tokeniser tokenise:@"table > .a"];
         [[[tokenStream description] should] containString:@"<Identifier: table> <Whitespace> <Keyword: >> <Whitespace> <Keyword: .> <Identifier: a>"];
 
