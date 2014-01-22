@@ -27,26 +27,29 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 - (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
     self = [self init];
     if (self) {
+        NSArray* selectors = nil;
         if ([syntaxTree valueForTag:@"universal"]) {
             self.universalOrTypeSelector = [syntaxTree valueForTag:@"universal"];
             NSArray* subtree = [syntaxTree valueForTag:@"selectorsWithType"];
-            NSArray* selectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
-            [selectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
-                [self addSelector:selector];
-            }];
+            selectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
+
         } else if ([syntaxTree valueForTag:@"type"]) {
             self.universalOrTypeSelector = [syntaxTree valueForTag:@"type"];
             NSArray* subtree = [syntaxTree valueForTag:@"selectorsWithType"];
-            NSArray* selectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
+            selectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
+
+        } else {
+            NSArray* subtree = [syntaxTree valueForTag:@"selectorsWithoutType"];
+            selectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
+
+        }
+
+        if (selectors && [selectors isKindOfClass:[NSArray class]]) {
             [selectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
                 [self addSelector:selector];
             }];
         } else {
-            NSArray* subtree = [syntaxTree valueForTag:@"selectorsWithoutType"];
-            NSArray* selectors = [subtree valueForKeyPath:@"@unionOfArrays.self"];
-            [selectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
-                [self addSelector:selector];
-            }];
+            [NSException raise:NSInvalidArgumentException format:@"expected NSArray, receive: %@", selectors];
         }
     }
     return self;
@@ -92,7 +95,6 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
         [result appendString:self.universalOrTypeSelector.toXPath];
     }
 
-    
     if ([self.otherSelectors count] > 0) {
         [result appendString:@"["];
         [self.otherSelectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {

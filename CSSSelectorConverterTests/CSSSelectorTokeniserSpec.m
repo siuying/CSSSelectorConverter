@@ -80,6 +80,19 @@ describe(@"CSSSelectorTokeniser", ^{
         [[tokenStream should] equal:expected];
     });
     
+    it(@"tokenize pseudo class", ^{
+        CSSSelectorTokeniser* tokeniser = [[CSSSelectorTokeniser alloc] init];
+        CPTokenStream *tokenStream = [tokeniser tokenise:@"div > p:first-child"];
+        CPTokenStream *expected = [CPTokenStream tokenStreamWithTokens:@[
+                                                                         [CPIdentifierToken tokenWithIdentifier:@"div"],
+                                                                         [CPKeywordToken tokenWithKeyword:@">"],
+                                                                         [CPIdentifierToken tokenWithIdentifier:@"p"],
+                                                                         [CPKeywordToken tokenWithKeyword:@":"],
+                                                                         [CPIdentifierToken tokenWithIdentifier:@"first-child"],
+                                                                         [CPEOFToken eof]]];
+        [[tokenStream should] equal:expected];
+    });
+    
     it(@"tokenize attribute", ^{
         CSSSelectorTokeniser* tokeniser = [[CSSSelectorTokeniser alloc] init];
         CPTokenStream *tokenStream = [tokeniser tokenise:@"div[class~=\"100\"]"];
