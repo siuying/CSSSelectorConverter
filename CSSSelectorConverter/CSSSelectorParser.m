@@ -2,6 +2,12 @@
 #import "CSSSelectorGrammar.h"
 #import "CSSSelectorTokeniser.h"
 
+#import "DDLog.h"
+
+#undef LOG_LEVEL_DEF
+#define LOG_LEVEL_DEF cssSelectorLogLevel
+static const int cssSelectorLogLevel = LOG_LEVEL_ERROR;
+
 NSString* const CSSSelectorParserException = @"CSSSelectorParserException";
 
 enum {
@@ -53,10 +59,13 @@ enum {
     return syntaxTree;
 }
 
-//- (CPRecoveryAction *)parser:(CPParser *)parser didEncounterErrorOnInput:(CPTokenStream *)inputStream expecting:(NSSet *)acceptableTokens
-//{
-//    return [CPRecoveryAction recoveryActionStop];
-//}
+- (CPRecoveryAction *)parser:(CPParser *)parser didEncounterErrorOnInput:(CPTokenStream *)inputStream expecting:(NSSet *)acceptableTokens
+{
+    DDLogError(@"Error parsing input: %@ tokens: %@",
+               [inputStream description],
+               [acceptableTokens description]);
+    return [CPRecoveryAction recoveryActionStop];
+}
 
 #pragma mark - CPTokeniserDelegate
 
