@@ -13,6 +13,7 @@
 #import "CSSIDSelector.h"
 #import "CSSTypeSelector.h"
 #import "CSSClassSelector.h"
+#import "CSSSelectorSequence.h"
 
 SPEC_BEGIN(CSSSelectorXPathVisitorSpec)
 
@@ -52,6 +53,19 @@ describe(@"CSSSelectorXPathVisitor", ^{
         [visitor visit:selector];
         NSString* xpath = [visitor xpathString];
         [[xpath should] equal:@"contains(concat(' ', normalize-space(@class), ' '), ' red ')"];
+    });
+    
+    it(@"render xpath for CSSSelectorSequence", ^{
+        CSSClassSelector* classSelector = [[CSSClassSelector alloc] init];
+        classSelector.name = @"red";
+        
+        CSSSelectorSequence* seq = [[CSSSelectorSequence alloc] init];
+        seq.universalOrTypeSelector = [[CSSUniversalSelector alloc] init];
+        [seq addSelector:classSelector];
+        [visitor visit:seq];
+
+        NSString* xpath = [visitor xpathString];
+        [[xpath should] equal:@"*[contains(concat(' ', normalize-space(@class), ' '), ' red ')]"];
     });
 });
 

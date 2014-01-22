@@ -11,6 +11,8 @@
 #import "CSSUniversalSelector.h"
 #import "CSSIDSelector.h"
 #import "CSSClassSelector.h"
+#import "CSSSelectorSequence.h"
+#import "CSSPseudoClass.h"
 
 @interface CSSSelectorXPathVisitor()
 @property (nonatomic, strong) NSMutableString* output;
@@ -26,7 +28,7 @@
 
 #pragma mark - Public
 
--(void) visit:(id)object {
+-(void) visit:(CSSBaseSelector*)object {
     Class class = [object class];
     while (class && class != [NSObject class])
     {
@@ -81,6 +83,32 @@
 -(void) visitCSSClassSelector:(CSSClassSelector*)node
 {
     [self.output appendString:[NSString stringWithFormat:@"contains(concat(' ', normalize-space(@class), ' '), ' %@ ')", node.name]];
+}
+
+-(void) visitCSSSelectorSequence:(CSSSelectorSequence*)node
+{
+    if (!node.universalOrTypeSelector) {
+        node.universalOrTypeSelector = [CSSUniversalSelector selector];
+    }
+    
+    if (node.pseudoClass) {
+        node.pseudoClass.parent = node.universalOrTypeSelector;
+        [self visit:node.pseudoClass];
+    } else {
+        [self visit:node.universalOrTypeSelector];
+    }
+    
+    if ([node.otherSelectors count] > 0) {
+        [self.output appendString:@"["];
+        [node.otherSelectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
+            [self visit:selector];
+            if (idx < node.otherSelectors.count - 1) {
+                [self.output appendString:@" and "];
+            }
+        }];
+        [self.output appendString:@"]"];
+    }
+
 }
 
 @end

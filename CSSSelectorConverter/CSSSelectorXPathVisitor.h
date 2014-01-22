@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class CSSBaseSelector;
+
 @interface CSSSelectorXPathVisitor : NSObject
 
--(void) visit:(id)node;
+-(void) visit:(CSSBaseSelector*)node;
 
 -(NSString*) xpathString;
 
