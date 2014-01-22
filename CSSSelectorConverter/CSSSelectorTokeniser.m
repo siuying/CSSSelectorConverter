@@ -20,30 +20,44 @@
 
     [self addTokenRecogniser:[CPIdentifierRecogniser identifierRecogniser]];
     [self addTokenRecogniser:[CPNumberRecogniser numberRecogniser]];
-    [self addTokenRecogniser:[CPWhiteSpaceRecogniser whiteSpaceRecogniser]];
     [self addTokenRecogniser:[CPQuotedRecogniser quotedRecogniserWithStartQuote:@"\""
                                                                        endQuote:@"\""
-                                                                           name:@"DoubleQuoted"]];
+                                                                           name:@"String"]];
     [self addTokenRecogniser:[CPQuotedRecogniser quotedRecogniserWithStartQuote:@"\'"
                                                                        endQuote:@"\'"
-                                                                           name:@"SingleQuoted"]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"|="]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"~="]];
+                                                                           name:@"String"]];
+    
+    CPRegexpKeywordRecogniserMatchHandler trimSpaceHandler = ^(NSString* tokenString, NSTextCheckingResult* match){
+        NSString* matched = [tokenString substringWithRange:match.range];
+        return [CPKeywordToken tokenWithKeyword:[matched stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    };
+    
+    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\~\\=)[ \t\r\n\f]*" options:0 error:nil]
+                                                        matchHandler:trimSpaceHandler]];
+    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\|\\=)[ \t\r\n\f]*" options:0 error:nil]
+                                                        matchHandler:trimSpaceHandler]];
+    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\=)[ \t\r\n\f]*" options:0 error:nil]
+                                                        matchHandler:trimSpaceHandler]];
+    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\~)[ \t\r\n\f]*" options:0 error:nil]
+                                                        matchHandler:trimSpaceHandler]];
+    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\+)[ \t\r\n\f]*" options:0 error:nil]
+                                                        matchHandler:trimSpaceHandler]];
+    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\>)[ \t\r\n\f]*" options:0 error:nil]
+                                                        matchHandler:trimSpaceHandler]];
+    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\,)[ \t\r\n\f]*" options:0 error:nil]
+                                                        matchHandler:trimSpaceHandler]];
+
+    [self addTokenRecogniser:[CPWhiteSpaceRecogniser whiteSpaceRecogniser]];
     [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@":"]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@","]];
     [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"."]];
     [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"#"]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"+"]];
     [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"-"]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"="]];
     [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"("]];
     [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@")"]];
     [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"["]];
     [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"]"]];
     [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"*"]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@">"]];
     [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"@"]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"~"]];
 
     return self;
 }

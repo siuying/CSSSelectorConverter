@@ -53,10 +53,10 @@ enum {
     return syntaxTree;
 }
 
-- (CPRecoveryAction *)parser:(CPParser *)parser didEncounterErrorOnInput:(CPTokenStream *)inputStream expecting:(NSSet *)acceptableTokens
-{
-    return [CPRecoveryAction recoveryActionStop];
-}
+//- (CPRecoveryAction *)parser:(CPParser *)parser didEncounterErrorOnInput:(CPTokenStream *)inputStream expecting:(NSSet *)acceptableTokens
+//{
+//    return [CPRecoveryAction recoveryActionStop];
+//}
 
 #pragma mark - CPTokeniserDelegate
 

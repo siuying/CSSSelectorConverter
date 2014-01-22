@@ -1,21 +1,22 @@
-CSSSelectorGroup                ::= firstSelector@<CSSSelectors> otherSelectors@(',' 'Whitespace'* <CSSSelectors>)*;
+CSSSelectorGroup                ::= firstSelector@<CSSSelectors> otherSelectors@(<Comma> <CSSSelectors>)*;
 CSSSelectors                    ::= firstSequence@<CSSSelectorSequence> otherSequences@(<CSSCombinator> <CSSSelectorSequence>)*;
 CSSSelectorSequence             ::= (universal@<CSSUniversalSelector> | type@<CSSTypeSelector>) selectorsWithType@(<CSSClassSelector> | <CSSIDSelector> | <CSSSelectorAttribute> | <CSSPseudoClass>)* | selectorsWithoutType@(<CSSClassSelector> | <CSSIDSelector> | <CSSSelectorAttribute> | <CSSPseudoClass>)+;
-CSSSelectorAttribute            ::= '[' 'Whitespace'* attrName@'Identifier' 'Whitespace'* (op@<CSSSelectorAttributeOperator> 'Whitespace'* attrValue@<QuotedString>)? ']';
+CSSSelectorAttribute            ::= '[' 'Whitespace'* attrName@'Identifier' (op@<CSSSelectorAttributeOperator> attrValue@<QuotedString>)? ']';
 CSSSelectorAttributeOperator    ::= <Equal> | <Includes> | <Dashmatch>;
 CSSPseudoClass                  ::= ':' ':'? (className@'Identifier');
-CSSCombinator                   ::= <Greater>  'Whitespace'* | <Plus>  'Whitespace'* | <Tilde> 'Whitespace'*| 'Whitespace'+;
+CSSCombinator                   ::= <Greater> | <Plus> | <Tilde> | 'Whitespace'+;
 CSSClassSelector                ::= '.' className@'Identifier';
 CSSIDSelector                   ::= '#' idName@'Identifier';
 CSSTypeSelector                 ::= typeName@'Identifier';
 CSSUniversalSelector            ::= '*';
 CSSPseudoExpression             ::= (( '+' | '-' | 'Number' 'Identifier' | 'Number' | 'Identifier' ) 'Whitespace'* )+;
 
-QuotedString                    ::= 'DoubleQuoted' | 'SingleQuoted';
+QuotedString                    ::= 'String';
 Dashmatch                       ::= '|=';
 Includes                        ::= '~=';
 Equal                           ::= '=';
 
+Comma                           ::= ',';
 Plus                            ::= '+';
 Greater                         ::= '>';
 Tilde                           ::= '~';
