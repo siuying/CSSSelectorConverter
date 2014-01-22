@@ -37,10 +37,27 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
             } else {
                 [NSException raise:NSInvalidArgumentException format:@"Unexpected token, not a keyword: %@", token];
             }
+        } else if ([component isKeywordToken]) {
+            NSString* keyword = [component keyword];
+            if ([keyword isEqualToString:@">"]) {
+                self.type = CSSCombinatorTypeDescendant;
+            } else if ([keyword isEqualToString:@"+"]) {
+                self.type = CSSCombinatorTypeAdjacent;
+            } else if ([keyword isEqualToString:@"~"]) {
+                self.type = CSSCombinatorTypeGeneralSibling;
+            } else {
+                [NSException raise:NSInvalidArgumentException format:@"Unexpected keyword: %@", keyword];
+            }
         }
 
     }
     return self;
+}
+
++(CSSCombinator*) noneCombinator {
+    CSSCombinator* combinator = [[CSSCombinator alloc] init];
+    combinator.type = CSSCombinatorTypeNone;
+    return combinator;
 }
 
 +(NSArray*) combinatorStrings {
@@ -60,20 +77,20 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
     switch (self.type) {
         case CSSCombinatorTypeNone:
         {
-            return @"none";
+            return @"(none)";
         }
             break;
         case CSSCombinatorTypeDescendant:
         {
-            return @"descendant";
+            return @">";
         }
         case CSSCombinatorTypeAdjacent:
         {
-            return @"adjacent";
+            return @"+";
         }
         case CSSCombinatorTypeGeneralSibling:
         {
-            return @"general-sibling";
+            return @"~";
         }
     }
     return nil;
@@ -83,7 +100,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
     switch (self.type) {
         case CSSCombinatorTypeNone:
         {
-            return @"";
+            return @"//";
         }
             break;
         case CSSCombinatorTypeDescendant:

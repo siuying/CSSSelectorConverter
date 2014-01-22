@@ -46,7 +46,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 -(NSString*) description {
-    return [NSString stringWithFormat:@"<CSSSelectorGroup %@>", self.selectors];
+    return [NSString stringWithFormat:@"<CSSSelectorGroup %@>", [self.selectors componentsJoinedByString:@", "]];
 }
 
 -(NSString*) toXPath {

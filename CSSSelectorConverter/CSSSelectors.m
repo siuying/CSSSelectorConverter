@@ -57,6 +57,12 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     NSMutableString* result = [[NSMutableString alloc] init];
 
     [self.selectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
+        if ([selector isKindOfClass:[CSSSelectorSequence class]]) {
+            // if not specified, the combinator is none
+            if (idx == 0 || ![[self.selectors objectAtIndex:idx - 1] isKindOfClass:[CSSCombinator class]]) {
+                [result appendString:[[CSSCombinator noneCombinator] toXPath]];
+            }
+        }
         [result appendString:selector.toXPath];
     }];
 

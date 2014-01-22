@@ -73,7 +73,7 @@ describe(@"CSSToXPathParser", ^{
     });
     
     it(@"should parse adjecnet selector sequence", ^{
-        NSString* adjacentCss = [converter xpathWithCSS:@"h1 ~ p"];
+        NSString* adjacentCss = [converter xpathWithCSS:@"h1~p"];
         [[adjacentCss should] equal:@"//h1/following-sibling::p"];
     });
     

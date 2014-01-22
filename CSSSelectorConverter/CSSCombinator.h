@@ -19,4 +19,6 @@ typedef NS_ENUM(NSInteger, CSSCombinatorType) {
 
 @property (nonatomic, assign) CSSCombinatorType type;
 
++(CSSCombinator*) noneCombinator;
+
 @end

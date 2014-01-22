@@ -67,11 +67,6 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 -(NSString*) toXPath {
     NSMutableString* result = [[NSMutableString alloc] init];
-    if (self.combinator) {
-        [result appendString:self.combinator.toXPath];
-    } else {
-        [result appendString:@"//"];
-    }
     
     if (!self.universalOrTypeSelector) {
         self.universalOrTypeSelector = [CSSUniversalSelector selector];

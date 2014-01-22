@@ -15,8 +15,6 @@
 
 @interface CSSSelectorSequence : CSSBaseSelector <CPParseResult>
 
-@property (nonatomic, strong) CSSCombinator* combinator;
-
 @property (nonatomic, strong) CSSPseudoClass* pseudoClass;
 
 @property (nonatomic, strong) CSSTypeSelector* universalOrTypeSelector;
