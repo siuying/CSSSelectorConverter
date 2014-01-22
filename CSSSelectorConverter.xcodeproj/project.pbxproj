@@ -25,6 +25,9 @@
 		540AA378187BC5F70012AA44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 540AA376187BC5F70012AA44 /* InfoPlist.strings */; };
 		541971F1188ED2A3004240B4 /* libCoreParse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 541971ED188ED293004240B4 /* libCoreParse.a */; };
 		541971F2188ED36A004240B4 /* libCoreParse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 541971ED188ED293004240B4 /* libCoreParse.a */; };
+		5419722F188FB97E004240B4 /* CSSSelectorXPathVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5419722E188FB97E004240B4 /* CSSSelectorXPathVisitor.m */; };
+		54197231188FBAF0004240B4 /* CSSSelectorXPathVisitorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 54197230188FBAF0004240B4 /* CSSSelectorXPathVisitorSpec.m */; };
+		54197232188FBBA6004240B4 /* CSSSelectorXPathVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5419722E188FB97E004240B4 /* CSSSelectorXPathVisitor.m */; };
 		5433BA57188D0C5B006C5F59 /* CSSSelectorTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5433BA56188D0C5B006C5F59 /* CSSSelectorTokeniser.m */; };
 		5433BA58188D0C5B006C5F59 /* CSSSelectorTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5433BA56188D0C5B006C5F59 /* CSSSelectorTokeniser.m */; };
 		5433BA5B188D0D71006C5F59 /* CSSSelectorTokeniserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5433BA59188D0D71006C5F59 /* CSSSelectorTokeniserSpec.m */; };
@@ -153,6 +156,9 @@
 		540AA3B8187BF3630012AA44 /* CSSSelectorSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorSequence.h; sourceTree = "<group>"; };
 		540AA3B9187BF3630012AA44 /* CSSSelectorSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorSequence.m; sourceTree = "<group>"; };
 		541971DE188ED293004240B4 /* CoreParse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreParse.xcodeproj; path = vendor/CoreParse/CoreParse.xcodeproj; sourceTree = "<group>"; };
+		5419722D188FB97E004240B4 /* CSSSelectorXPathVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorXPathVisitor.h; sourceTree = "<group>"; };
+		5419722E188FB97E004240B4 /* CSSSelectorXPathVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorXPathVisitor.m; sourceTree = "<group>"; };
+		54197230188FBAF0004240B4 /* CSSSelectorXPathVisitorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorXPathVisitorSpec.m; sourceTree = "<group>"; };
 		541EC6FE187D34AB00F08D19 /* CSSSelectorAttributeOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorAttributeOperator.h; sourceTree = "<group>"; };
 		541EC6FF187D34AB00F08D19 /* CSSSelectorAttributeOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorAttributeOperator.m; sourceTree = "<group>"; };
 		541EC702187D43A300F08D19 /* CSSCombinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSCombinator.h; sourceTree = "<group>"; };
@@ -255,6 +261,8 @@
 				540AA397187BE4900012AA44 /* CSSToXPathConverter.m */,
 				5433BA55188D0C5B006C5F59 /* CSSSelectorTokeniser.h */,
 				5433BA56188D0C5B006C5F59 /* CSSSelectorTokeniser.m */,
+				5419722D188FB97E004240B4 /* CSSSelectorXPathVisitor.h */,
+				5419722E188FB97E004240B4 /* CSSSelectorXPathVisitor.m */,
 				5433BA5C188D136A006C5F59 /* CSSSelectorGrammar.h */,
 				5433BA5D188D136A006C5F59 /* CSSSelectorGrammar.m */,
 				5433BA60188D1450006C5F59 /* CSSSelectorGrammar.txt */,
@@ -290,6 +298,7 @@
 				540AA388187BDD5B0012AA44 /* CSSToXPathConverterSpec.m */,
 				5433BA59188D0D71006C5F59 /* CSSSelectorTokeniserSpec.m */,
 				5433BA62188D1629006C5F59 /* CSSSelectorParserSpec.m */,
+				54197230188FBAF0004240B4 /* CSSSelectorXPathVisitorSpec.m */,
 			);
 			path = CSSSelectorConverterTests;
 			sourceTree = "<group>";
@@ -572,6 +581,7 @@
 				5433BA72188D1D9E006C5F59 /* CSSTypeSelector.m in Sources */,
 				54FA2F79188D826F0065B628 /* CSSIDSelector.m in Sources */,
 				5433BA6F188D1940006C5F59 /* CSSNamedSelector.m in Sources */,
+				5419722F188FB97E004240B4 /* CSSSelectorXPathVisitor.m in Sources */,
 				54FA2F74188D7C650065B628 /* CSSToXPathConverter.m in Sources */,
 				5433BA66188D1808006C5F59 /* CSSUniversalSelector.m in Sources */,
 				54D41BAA188E7A9D00D8521A /* CSSPseudoClass.m in Sources */,
@@ -600,10 +610,12 @@
 				54FA2F81188D8E6C0065B628 /* CSSCombinator.m in Sources */,
 				5433BA58188D0C5B006C5F59 /* CSSSelectorTokeniser.m in Sources */,
 				54FA2F83188D8F610065B628 /* CSSSelectorSequence.m in Sources */,
+				54197232188FBBA6004240B4 /* CSSSelectorXPathVisitor.m in Sources */,
 				5433BA6D188D1905006C5F59 /* CSSBaseSelector.m in Sources */,
 				54FA2F7E188D867F0065B628 /* CSSSelectorAttribute.m in Sources */,
 				5433BA5F188D136A006C5F59 /* CSSSelectorGrammar.m in Sources */,
 				54FA2F70188D76A90065B628 /* CSSClassSelector.m in Sources */,
+				54197231188FBAF0004240B4 /* CSSSelectorXPathVisitorSpec.m in Sources */,
 				5433BA5B188D0D71006C5F59 /* CSSSelectorTokeniserSpec.m in Sources */,
 				5433BA6E188D1907006C5F59 /* CSSNamedSelector.m in Sources */,
 				54FA2F7A188D826F0065B628 /* CSSIDSelector.m in Sources */,

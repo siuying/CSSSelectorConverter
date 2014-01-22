@@ -11,7 +11,11 @@
 @implementation CSSUniversalSelector
 
 - (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
-    self = [self init];
+    return [self init];
+}
+
+- (id)init {
+    self = [super init];
     self.name = @"*";
     return self;
 }
