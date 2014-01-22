@@ -54,8 +54,8 @@
 		54FA2F71188D76AA0065B628 /* CSSClassSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3AD187BF1510012AA44 /* CSSClassSelector.m */; };
 		54FA2F72188D7AEB0065B628 /* CSSSelectorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA39C187BEE660012AA44 /* CSSSelectorParser.m */; };
 		54FA2F73188D7AEB0065B628 /* CSSSelectorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA39C187BEE660012AA44 /* CSSSelectorParser.m */; };
-		54FA2F74188D7C650065B628 /* CSSToXPathConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA397187BE4900012AA44 /* CSSToXPathConverter.m */; };
-		54FA2F75188D7C660065B628 /* CSSToXPathConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA397187BE4900012AA44 /* CSSToXPathConverter.m */; };
+		54FA2F74188D7C650065B628 /* CSSSelectorToXPathConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA397187BE4900012AA44 /* CSSSelectorToXPathConverter.m */; };
+		54FA2F75188D7C660065B628 /* CSSSelectorToXPathConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA397187BE4900012AA44 /* CSSSelectorToXPathConverter.m */; };
 		54FA2F76188D7CDD0065B628 /* CSSToXPathConverterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA388187BDD5B0012AA44 /* CSSToXPathConverterSpec.m */; };
 		54FA2F79188D826F0065B628 /* CSSIDSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A9187BF1460012AA44 /* CSSIDSelector.m */; };
 		54FA2F7A188D826F0065B628 /* CSSIDSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 540AA3A9187BF1460012AA44 /* CSSIDSelector.m */; };
@@ -137,8 +137,8 @@
 		540AA375187BC5F70012AA44 /* CSSSelectorConverterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CSSSelectorConverterTests-Info.plist"; sourceTree = "<group>"; };
 		540AA377187BC5F70012AA44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		540AA388187BDD5B0012AA44 /* CSSToXPathConverterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSToXPathConverterSpec.m; sourceTree = "<group>"; };
-		540AA396187BE4900012AA44 /* CSSToXPathConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSToXPathConverter.h; sourceTree = "<group>"; };
-		540AA397187BE4900012AA44 /* CSSToXPathConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSToXPathConverter.m; sourceTree = "<group>"; };
+		540AA396187BE4900012AA44 /* CSSSelectorToXPathConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorToXPathConverter.h; sourceTree = "<group>"; };
+		540AA397187BE4900012AA44 /* CSSSelectorToXPathConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorToXPathConverter.m; sourceTree = "<group>"; };
 		540AA39B187BEE660012AA44 /* CSSSelectorParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorParser.h; sourceTree = "<group>"; };
 		540AA39C187BEE660012AA44 /* CSSSelectorParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorParser.m; sourceTree = "<group>"; };
 		540AA3A0187BEF380012AA44 /* CSSUniversalSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSUniversalSelector.h; sourceTree = "<group>"; };
@@ -257,8 +257,8 @@
 				54D62F29187D0B0E0075A755 /* CSSSelectorConverter.h */,
 				540AA39B187BEE660012AA44 /* CSSSelectorParser.h */,
 				540AA39C187BEE660012AA44 /* CSSSelectorParser.m */,
-				540AA396187BE4900012AA44 /* CSSToXPathConverter.h */,
-				540AA397187BE4900012AA44 /* CSSToXPathConverter.m */,
+				540AA396187BE4900012AA44 /* CSSSelectorToXPathConverter.h */,
+				540AA397187BE4900012AA44 /* CSSSelectorToXPathConverter.m */,
 				5433BA55188D0C5B006C5F59 /* CSSSelectorTokeniser.h */,
 				5433BA56188D0C5B006C5F59 /* CSSSelectorTokeniser.m */,
 				5419722D188FB97E004240B4 /* CSSSelectorXPathVisitor.h */,
@@ -582,7 +582,7 @@
 				54FA2F79188D826F0065B628 /* CSSIDSelector.m in Sources */,
 				5433BA6F188D1940006C5F59 /* CSSNamedSelector.m in Sources */,
 				5419722F188FB97E004240B4 /* CSSSelectorXPathVisitor.m in Sources */,
-				54FA2F74188D7C650065B628 /* CSSToXPathConverter.m in Sources */,
+				54FA2F74188D7C650065B628 /* CSSSelectorToXPathConverter.m in Sources */,
 				5433BA66188D1808006C5F59 /* CSSUniversalSelector.m in Sources */,
 				54D41BAA188E7A9D00D8521A /* CSSPseudoClass.m in Sources */,
 				540AA35C187BC5F60012AA44 /* IGAppDelegate.m in Sources */,
@@ -603,7 +603,7 @@
 				54D41BAB188E7A9D00D8521A /* CSSPseudoClass.m in Sources */,
 				54FA2F76188D7CDD0065B628 /* CSSToXPathConverterSpec.m in Sources */,
 				54FA2F73188D7AEB0065B628 /* CSSSelectorParser.m in Sources */,
-				54FA2F75188D7C660065B628 /* CSSToXPathConverter.m in Sources */,
+				54FA2F75188D7C660065B628 /* CSSSelectorToXPathConverter.m in Sources */,
 				54BC925E188E770A00443230 /* CSSSelectorGroup.m in Sources */,
 				54FA2F7F188D88B90065B628 /* CSSSelectorAttributeOperator.m in Sources */,
 				5433BA71188D1D9C006C5F59 /* CSSTypeSelector.m in Sources */,

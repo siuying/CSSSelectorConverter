@@ -12,7 +12,7 @@
 #import "CSSSelectorConverter.h"
 
 SPEC_BEGIN(CSSToXPathConverterSpec)
-__block CSSToXPathConverter *converter;
+__block CSSSelectorToXPathConverter *converter;
 
 describe(@"CSSToXPathParser", ^{
     beforeAll(^{
@@ -25,7 +25,7 @@ describe(@"CSSToXPathParser", ^{
     });
 
     beforeEach(^{
-        converter = [[CSSToXPathConverter alloc] init];
+        converter = [[CSSSelectorToXPathConverter alloc] init];
     });
     
     it(@"should parse universal selector", ^{

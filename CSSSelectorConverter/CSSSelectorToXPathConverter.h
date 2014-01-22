@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CSSSelectorParser.h"
 
-@interface CSSToXPathConverter : NSObject
+@interface CSSSelectorToXPathConverter : NSObject
 
 @property (nonatomic, strong) CSSSelectorParser* parser;
 

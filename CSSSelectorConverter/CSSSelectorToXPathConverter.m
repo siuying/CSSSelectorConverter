@@ -10,11 +10,11 @@
 #define LOG_LEVEL_DEF cssSelectorLogLevel
 static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
-#import "CSSToXPathConverter.h"
+#import "CSSSelectorToXPathConverter.h"
 #import "CSSBaseSelector.h"
 #import "CSSSelectorXPathVisitor.h"
 
-@implementation CSSToXPathConverter
+@implementation CSSSelectorToXPathConverter
 
 -(id) initWithParser:(CSSSelectorParser*)parser {
     self = [super init];

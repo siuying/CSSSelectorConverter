@@ -18,7 +18,7 @@
 #import "CSSSelectors.h"
 #import "CSSSelectorGroup.h"
 #import "CSSSelectorParser.h"
-#import "CSSToXPathConverter.h"
+#import "CSSSelectorToXPathConverter.h"
 #import "CSSSelectorAttribute.h"
 #import "CSSNamedSelector.h"
 #import "CSSCombinator.h"
