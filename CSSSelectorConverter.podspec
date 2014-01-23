@@ -19,8 +19,11 @@ Pod::Spec.new do |s|
   s.requires_arc           =  true
 
   s.subspec 'Core' do |ss|
-    ss.source_files           =  'CSSSelectorConverter/CSS*.{m,h}'
+    ss.source_files           = 'CSSSelectorConverter/CSS*.{m,h}'
     ss.prefix_header_contents = "#import \"CSSSelectorConverter.h\""
+
+    # the grammar and the serialized parser
+    ss.resources              = 'CSSSelectorConverter/*.{txt,par}'
   end
 
   # Use the submodule version of CoreParse
