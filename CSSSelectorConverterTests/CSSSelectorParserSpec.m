@@ -8,6 +8,7 @@
 
 #import <Kiwi/Kiwi.h>
 #import "CSSSelectorParser.h"
+#import "CoreParse.h"
 
 SPEC_BEGIN(CSSSelectorParserSpec)
 

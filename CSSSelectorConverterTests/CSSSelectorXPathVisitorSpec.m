@@ -18,6 +18,7 @@
 #import "CSSCombinator.h"
 #import "CSSSelectorAttribute.h"
 #import "CSSSelectorAttributeOperator.h"
+#import "CoreParse.h"
 
 SPEC_BEGIN(CSSSelectorXPathVisitorSpec)
 

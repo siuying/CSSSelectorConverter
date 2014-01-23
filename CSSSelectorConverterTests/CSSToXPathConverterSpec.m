@@ -10,6 +10,7 @@
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "CSSSelectorConverter.h"
+#import "CoreParse.h"
 
 SPEC_BEGIN(CSSToXPathConverterSpec)
 __block CSSSelectorToXPathConverter *converter;
