@@ -70,11 +70,6 @@ Following pseduo classes will not be supported:
 2. Install pods: ``pod install``
 3. Get submodule (CoreParse): ``git submodule update --init``
 
-### Serialize the parser
-
-1. Install objc-run ``brew install objc-run``
-2. Run the generator: ``objc-run ./bin/ParserGenerator.m CSSSelectorConverter/CSSSelectorParser.par``
-
 ## License
 
 MIT License. See License.txt.
