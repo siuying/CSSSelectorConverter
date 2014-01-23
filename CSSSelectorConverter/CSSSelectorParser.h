@@ -14,7 +14,7 @@ extern NSString* const CSSSelectorParserErrorAcceptableTokenKey;
  * Use ``CSSSelectorXPathVisitor`` to convert the returned tree into a XPath.
  * @see CSSSelectorParser
  */
-@interface CSSSelectorParser : NSObject <CPParserDelegate, CPTokeniserDelegate>
+@interface CSSSelectorParser : NSObject <CPParserDelegate, CPTokeniserDelegate, NSCoding>
 
 /**
  Last error encountered by the parser.

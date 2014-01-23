@@ -18,10 +18,11 @@ enum {
 };
 
 @interface CSSSelectorParser ()
-@property (nonatomic, strong) CSSSelectorGrammar* grammar;
 @property (nonatomic, strong) CSSSelectorTokeniser *tokeniser;
 @property (nonatomic, strong) CPParser* parser;
 @end
+
+#define CSSSelectorParserParserKey     @"p"
 
 @implementation CSSSelectorParser
 
@@ -29,8 +30,7 @@ enum {
     self = [super init];
     self.tokeniser = [[CSSSelectorTokeniser alloc] init];
     self.tokeniser.delegate = self;
-    self.grammar = [[CSSSelectorGrammar alloc] init];
-    self.parser = [CPLALR1Parser parserWithGrammar:self.grammar];
+    self.parser = [CPLALR1Parser parserWithGrammar:[[CSSSelectorGrammar alloc] init]];
     self.parser.delegate = self;
     return self;
 }
@@ -47,6 +47,30 @@ enum {
         }
     }
     return result;
+}
+
+#pragma mark - NSCoding
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    
+    if (nil != self)
+    {
+        self.parser = [aDecoder decodeObjectForKey:CSSSelectorParserParserKey];
+        self.parser.delegate = self;
+        
+        // CSSSelectorTokeniser is not nscoder compatible!
+        self.tokeniser = [[CSSSelectorTokeniser alloc] init];
+        self.tokeniser.delegate = self;
+    }
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.parser forKey:CSSSelectorParserParserKey];
 }
 
 #pragma mark - CPParserDelegate
