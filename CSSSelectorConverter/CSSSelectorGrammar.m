@@ -10,6 +10,11 @@
 #import "CSSTypeSelector.h"
 #import "CSSUniversalSelector.h"
 
+#import "DDLog.h"
+#undef LOG_LEVEL_DEF
+#define LOG_LEVEL_DEF cssSelectorLogLevel
+static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
+
 @implementation CSSSelectorGrammar
 
 -(instancetype) init
@@ -24,15 +29,17 @@
     NSString* grammar = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
     if (!grammar) {
         if (error) {
+            DDLogError(@"missing grammar file %@, error: %@", path, error);
             [NSException raise:NSInvalidArgumentException format:@"missing grammar file %@, error: %@", path, error];
         } else {
+            DDLogError(@"missing grammar file %@", path);
             [NSException raise:NSInvalidArgumentException format:@"missing grammar file %@", path];
         }
     }
     self = [super initWithStart:@"CSSSelectorGroup" backusNaurForm:grammar error:&error];
     if (!self) {
         if (error) {
-            NSLog(@"error compile language = %@", error);
+            DDLogError(@"error compile language = %@", error);
         }
     }
     return self;
