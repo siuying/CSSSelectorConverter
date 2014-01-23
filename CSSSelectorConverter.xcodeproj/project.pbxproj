@@ -159,6 +159,7 @@
 		5419722D188FB97E004240B4 /* CSSSelectorXPathVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorXPathVisitor.h; sourceTree = "<group>"; };
 		5419722E188FB97E004240B4 /* CSSSelectorXPathVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorXPathVisitor.m; sourceTree = "<group>"; };
 		54197230188FBAF0004240B4 /* CSSSelectorXPathVisitorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorXPathVisitorSpec.m; sourceTree = "<group>"; };
+		5419723B1890C5B1004240B4 /* ParserGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParserGenerator.m; sourceTree = "<group>"; };
 		541EC6FE187D34AB00F08D19 /* CSSSelectorAttributeOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorAttributeOperator.h; sourceTree = "<group>"; };
 		541EC6FF187D34AB00F08D19 /* CSSSelectorAttributeOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorAttributeOperator.m; sourceTree = "<group>"; };
 		541EC702187D43A300F08D19 /* CSSCombinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSCombinator.h; sourceTree = "<group>"; };
@@ -217,6 +218,7 @@
 		540AA33F187BC5F60012AA44 = {
 			isa = PBXGroup;
 			children = (
+				5419723A1890C5B1004240B4 /* bin */,
 				540AA351187BC5F60012AA44 /* CSSSelectorConverter */,
 				540AA373187BC5F70012AA44 /* CSSSelectorConverterTests */,
 				540AA34A187BC5F60012AA44 /* Frameworks */,
@@ -355,6 +357,14 @@
 				541971EF188ED293004240B4 /* CoreParseTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5419723A1890C5B1004240B4 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				5419723B1890C5B1004240B4 /* ParserGenerator.m */,
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
