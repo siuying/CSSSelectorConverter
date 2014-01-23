@@ -7,6 +7,7 @@
 //
 
 #import "CSSNamedSelector.h"
+#import "CPParser.h"
 
 @interface CSSPseudoClass : CSSNamedSelector <CPParseResult>
 

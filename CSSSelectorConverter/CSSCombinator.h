@@ -7,6 +7,7 @@
 //
 
 #import "CSSBaseSelector.h"
+#import "CPParser.h"
 
 typedef NS_ENUM(NSInteger, CSSCombinatorType) {
     CSSCombinatorTypeNone = 0,

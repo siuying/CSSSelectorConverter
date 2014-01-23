@@ -12,6 +12,7 @@
 #import "CPQuotedRecogniser.h"
 #import "CPKeywordRecogniser.h"
 #import "CPIdentifierRecogniser.h"
+#import "CPRegexpRecogniser.h"
 
 @implementation CSSSelectorTokeniser
     

@@ -1,7 +1,7 @@
 #import "CSSSelectorParser.h"
 #import "CSSSelectorGrammar.h"
 #import "CSSSelectorTokeniser.h"
-
+#import "CoreParse.h"
 #import "DDLog.h"
 
 #undef LOG_LEVEL_DEF

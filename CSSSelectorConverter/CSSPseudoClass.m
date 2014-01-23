@@ -11,7 +11,7 @@
 static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
 
 #import "CSSPseudoClass.h"
-#import "CSSNthChild.h"
+#import "CoreParse.h"
 
 @implementation CSSPseudoClass
 

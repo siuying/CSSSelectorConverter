@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CSSTypeSelector.h"
+#import "CPParser.h"
 
 @interface CSSUniversalSelector : CSSTypeSelector <CPParseResult>
 

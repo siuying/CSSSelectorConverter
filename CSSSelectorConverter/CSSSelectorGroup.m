@@ -7,6 +7,8 @@
 //
 
 #import "CSSSelectorGroup.h"
+#import "CoreParse.h"
+
 #import "DDLog.h"
 #undef LOG_LEVEL_DEF
 #define LOG_LEVEL_DEF cssSelectorLogLevel

@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "CSSSelectorGroup.h"
+#import "CPParser.h"
+#import "CPTokeniser.h"
 
 extern NSString* const CSSSelectorParserException;
 extern NSString* const CSSSelectorParserErrorDomain;

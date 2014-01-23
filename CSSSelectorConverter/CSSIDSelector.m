@@ -7,6 +7,7 @@
 //
 
 #import "CSSIDSelector.h"
+#import "CoreParse.h"
 
 @implementation CSSIDSelector
 

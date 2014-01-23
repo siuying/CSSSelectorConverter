@@ -7,6 +7,7 @@
 //
 
 #import "CSSClassSelector.h"
+#import "CoreParse.h"
 
 @implementation CSSClassSelector
 

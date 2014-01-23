@@ -7,6 +7,7 @@
 //
 
 #import "CSSNamedSelector.h"
+#import "CPParser.h"
 
 typedef NS_ENUM(NSInteger, CSSSelectorAttributeOperatorType) {
     CSSSelectorAttributeOperatorTypeNone = 0,

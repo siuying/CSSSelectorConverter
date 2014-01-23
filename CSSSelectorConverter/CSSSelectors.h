@@ -7,6 +7,7 @@
 //
 
 #import "CSSBaseSelector.h"
+#import "CPParser.h"
 
 @interface CSSSelectors : CSSBaseSelector <CPParseResult>
 

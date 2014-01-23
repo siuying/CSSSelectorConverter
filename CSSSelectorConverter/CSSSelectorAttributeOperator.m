@@ -9,6 +9,7 @@
 #undef LOG_LEVEL_DEF
 #define LOG_LEVEL_DEF cssSelectorLogLevel
 static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
+#import "CoreParse.h"
 
 #import "CSSSelectorAttributeOperator.h"
 

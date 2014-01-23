@@ -8,6 +8,7 @@
 
 #import "CSSBaseSelector.h"
 #import "CSSSelectorAttributeOperator.h"
+#import "CPParser.h"
 
 @interface CSSSelectorAttribute : CSSBaseSelector <CPParseResult>
 

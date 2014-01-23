@@ -11,6 +11,8 @@
 #define LOG_LEVEL_DEF cssSelectorLogLevel
 static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
+#import "CoreParse.h"
+
 #import "CSSSelectors.h"
 #import "CSSCombinator.h"
 #import "CSSSelectorSequence.h"

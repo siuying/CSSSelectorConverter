@@ -1,11 +1,9 @@
 /*
 podfile-start
 platform :osx, '10.9'
-pod 'CSSSelectorConverter', '1.1.0'
+pod 'CSSSelectorConverter', :local => '/Users/siuying/workspace/opensource/CSSSelectorConverter'
 podfile-end
 */
-
-
 @import Foundation;
 #import "CSSSelectorParser.h"
 

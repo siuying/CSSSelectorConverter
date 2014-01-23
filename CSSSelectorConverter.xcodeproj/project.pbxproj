@@ -175,8 +175,6 @@
 		5433BA62188D1629006C5F59 /* CSSSelectorParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorParserSpec.m; sourceTree = "<group>"; };
 		543F5AA5187C0A1D00F3CC22 /* CSSSelectors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectors.h; sourceTree = "<group>"; };
 		543F5AA6187C0A1D00F3CC22 /* CSSSelectors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectors.m; sourceTree = "<group>"; };
-		5454C0D3187D79AA005C034F /* CSSNthChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSNthChild.h; sourceTree = "<group>"; };
-		5454C0D4187D79AA005C034F /* CSSNthChild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSNthChild.m; sourceTree = "<group>"; };
 		548A929F187D1CF70045D4CA /* CSSSelectorAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorAttribute.h; sourceTree = "<group>"; };
 		548A92A0187D1CF70045D4CA /* CSSSelectorAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorAttribute.m; sourceTree = "<group>"; };
 		54D62F25187D06150075A755 /* CSSSelectorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorGroup.h; sourceTree = "<group>"; };
@@ -341,8 +339,6 @@
 				541EC703187D43A300F08D19 /* CSSCombinator.m */,
 				541EC706187D589000F08D19 /* CSSPseudoClass.h */,
 				541EC707187D589000F08D19 /* CSSPseudoClass.m */,
-				5454C0D3187D79AA005C034F /* CSSNthChild.h */,
-				5454C0D4187D79AA005C034F /* CSSNthChild.m */,
 			);
 			name = Selector;
 			sourceTree = "<group>";

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CSSBaseSelector.h"
+#import "CPParser.h"
 
 @class CSSCombinator;
 @class CSSPseudoClass;

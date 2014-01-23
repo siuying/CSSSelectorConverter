@@ -7,6 +7,7 @@
 //
 
 #import "CSSUniversalSelector.h"
+#import "CoreParse.h"
 
 @implementation CSSUniversalSelector
 
