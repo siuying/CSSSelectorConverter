@@ -19,6 +19,7 @@ Pod::Spec.new do |s|
   s.requires_arc           =  true
 
   s.subspec 'Core' do |ss|
+    ss.dependency 'CSSSelectorConverter/CoreParse'
     ss.source_files           = 'CSSSelectorConverter/CSS*.{m,h}'
     ss.prefix_header_contents = "#import \"CSSSelectorConverter.h\""
 
@@ -27,11 +28,10 @@ Pod::Spec.new do |s|
   end
 
   # Use the submodule version of CoreParse
-  # If you are using your own version of CoreParse
-  # only add 'CSSSelectorConverter/Core'
   s.subspec 'CoreParse' do |ss|
     ss.requires_arc   = false
     ss.source_files   = 'vendor/CoreParse/CoreParse/**/*.{h,m}'
+    ss.public_header_files   = 'vendor/CoreParse/CoreParse/**/*.{h}'
     ss.osx.frameworks = 'Cocoa'
     ss.ios.frameworks = 'Foundation'
     ss.requires_arc   = false
