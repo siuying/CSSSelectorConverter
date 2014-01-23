@@ -10,4 +10,15 @@
 
 @interface CSSSelectorGrammar : CPGrammar
 
+/**
+ * Create a Grammar object using the grammar file in the bundle.
+ */
+-(instancetype) init;
+
+/**
+ * Create a Grammar object using the grammar file supplied.
+ * @param path Path to the grammar defintion
+ */
+-(instancetype) initWithPath:(NSString*)path;
+
 @end

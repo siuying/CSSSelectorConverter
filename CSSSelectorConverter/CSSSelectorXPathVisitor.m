@@ -8,15 +8,20 @@
 
 #import "CSSSelectorXPathVisitor.h"
 
-#import "CSSSelectorGroup.h"
 #import "CSSUniversalSelector.h"
+#import "CSSNamedSelector.h"
+#import "CSSTypeSelector.h"
 #import "CSSIDSelector.h"
 #import "CSSClassSelector.h"
 #import "CSSSelectorSequence.h"
-#import "CSSPseudoClass.h"
-#import "CSSCombinator.h"
 #import "CSSSelectors.h"
+#import "CSSSelectorGroup.h"
+#import "CSSSelectorParser.h"
 #import "CSSSelectorAttribute.h"
+#import "CSSNamedSelector.h"
+#import "CSSCombinator.h"
+#import "CSSNamedSelector.h"
+#import "CSSPseudoClass.h"
 
 @interface CSSSelectorXPathVisitor()
 @property (nonatomic, strong) NSMutableString* output;

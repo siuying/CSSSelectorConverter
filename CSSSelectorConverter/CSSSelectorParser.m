@@ -22,15 +22,29 @@ enum {
 @property (nonatomic, strong) CPParser* parser;
 @end
 
-#define CSSSelectorParserParserKey     @"p"
-
 @implementation CSSSelectorParser
 
 - (id)init {
+//    NSString* path = [[NSBundle bundleForClass:[self class]] pathForResource:@"CSSSelectorParser" ofType:@"plist"];
+//    if (!path) {
+//        [NSException raise:NSInternalInconsistencyException format:@"Cannot find parser file CSSSelectorParser.plist"];
+//    }
+//
+//    NSDictionary *pt = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+//    CPParser* parser = pt[@"parser"];
+//    if (!parser) {
+//        [NSException raise:NSInternalInconsistencyException format:@"Cannot load parser from CSSSelectorParser.plist (%@)", path];
+//    }
+    CPLALR1Parser* parser = [CPLALR1Parser parserWithGrammar:[[CSSSelectorGrammar alloc] initWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"CSSSelectorGrammar" ofType:@"txt"]]];
+    return [self initWithParser:parser];
+}
+
+-(instancetype) initWithParser:(CPParser*)parser
+{
     self = [super init];
     self.tokeniser = [[CSSSelectorTokeniser alloc] init];
     self.tokeniser.delegate = self;
-    self.parser = [CPLALR1Parser parserWithGrammar:[[CSSSelectorGrammar alloc] init]];
+    self.parser = parser;
     self.parser.delegate = self;
     return self;
 }
@@ -47,30 +61,6 @@ enum {
         }
     }
     return result;
-}
-
-#pragma mark - NSCoding
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super init];
-    
-    if (nil != self)
-    {
-        self.parser = [aDecoder decodeObjectForKey:CSSSelectorParserParserKey];
-        self.parser.delegate = self;
-        
-        // CSSSelectorTokeniser is not nscoder compatible!
-        self.tokeniser = [[CSSSelectorTokeniser alloc] init];
-        self.tokeniser.delegate = self;
-    }
-    
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [aCoder encodeObject:self.parser forKey:CSSSelectorParserParserKey];
 }
 
 #pragma mark - CPParserDelegate

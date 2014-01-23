@@ -14,11 +14,20 @@
 
 -(instancetype) init
 {
-    NSError* error;
     NSString* path = [[NSBundle bundleForClass:[self class]] pathForResource:@"CSSSelectorGrammar" ofType:@"txt"];
-    NSString* grammar = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    return [self initWithPath:path];
+}
+
+-(instancetype) initWithPath:(NSString*)path
+{
+    NSError* error;
+    NSString* grammar = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
     if (!grammar) {
-        [NSException raise:NSInvalidArgumentException format:@"missing grammar file CSSSelectorGrammar.txt"];
+        if (error) {
+            [NSException raise:NSInvalidArgumentException format:@"missing grammar file %@, error: %@", path, error];
+        } else {
+            [NSException raise:NSInvalidArgumentException format:@"missing grammar file %@", path];
+        }
     }
     self = [super initWithStart:@"CSSSelectorGroup" backusNaurForm:grammar error:&error];
     if (!self) {

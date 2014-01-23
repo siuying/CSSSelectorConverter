@@ -10,12 +10,10 @@ CSSIDSelector                   ::= '#' idName@'Identifier';
 CSSTypeSelector                 ::= typeName@'Identifier';
 CSSUniversalSelector            ::= '*';
 CSSPseudoExpression             ::= (( '+' | '-' | 'Number' 'Identifier' | 'Number' | 'Identifier' ) 'Whitespace'* )+;
-
 QuotedString                    ::= 'String';
 Dashmatch                       ::= '|=';
 Includes                        ::= '~=';
 Equal                           ::= '=';
-
 Comma                           ::= ',';
 Plus                            ::= '+';
 Greater                         ::= '>';

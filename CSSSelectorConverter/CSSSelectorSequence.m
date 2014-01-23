@@ -50,7 +50,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
                 [self addSelector:selector];
             }];
         } else {
-            [NSException raise:NSInvalidArgumentException format:@"expected NSArray, receive: %@", selectors];
+            [NSException raise:NSInvalidArgumentException format:@"expected NSArray, receive: %@", syntaxTree];
         }
     }
     return self;

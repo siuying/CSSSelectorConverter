@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
     ss.prefix_header_contents = "#import \"CSSSelectorConverter.h\""
 
     # the grammar and the serialized parser
-    ss.resources              = 'CSSSelectorConverter/*.{txt,par}'
+    ss.resources              = 'CSSSelectorConverter/*.{txt,plist}'
   end
 
   # Use the submodule version of CoreParse
