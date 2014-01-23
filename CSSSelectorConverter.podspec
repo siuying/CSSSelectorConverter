@@ -30,7 +30,6 @@ Pod::Spec.new do |s|
   # If you are using your own version of CoreParse
   # only add 'CSSSelectorConverter/Core'
   s.subspec 'CoreParse' do |ss|
-    ss.prefix_header_contents = "#import \"CoreParse.h\""
     ss.requires_arc   = false
     ss.source_files   = 'vendor/CoreParse/CoreParse/**/*.{h,m}'
     ss.osx.frameworks = 'Cocoa'
