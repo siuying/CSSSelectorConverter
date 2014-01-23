@@ -1,0 +1,8 @@
+## 1.1.0
+
+- Use [CoreParse](https://github.com/beelsebob/CoreParse) instead of [ParseKit](https://github.com/itod/parsekit) as parser generator.
+- Fix #1, properly handle selector sequence.
+
+## 1.0.0
+
+- Initial version.

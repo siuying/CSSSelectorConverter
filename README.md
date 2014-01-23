@@ -9,7 +9,7 @@ I build this converter so that I can use `.class` instead of `//*[contains(conca
 ```objective-c
 #import "CSSSelectorConverter.h"
 
-CSSToXPathConverter* converter = [[CSSToXPathConverter alloc] init];
+CSSSelectorToXPathConverter* converter = [[CSSSelectorToXPathConverter alloc] init];
 [converter xpathWithCSS:@"p" error:nil];
 // => "//p"
 
