@@ -9,6 +9,9 @@
 static const int cssSelectorLogLevel = LOG_LEVEL_ERROR;
 
 NSString* const CSSSelectorParserException = @"CSSSelectorParserException";
+NSString* const CSSSelectorParserErrorDomain = @"CSSSelectorParserErrorDomain";
+NSString* const CSSSelectorParserErrorInputStreamKey = @"input stream";
+NSString* const CSSSelectorParserErrorAcceptableTokenKey = @"acceptable token";
 
 enum {
     CSSSelectorParserRuleQuotedString = 1
@@ -32,10 +35,18 @@ enum {
     return self;
 }
 
-- (CSSSelectorGroup*)parse:(NSString *)css
+- (CSSSelectorGroup*)parse:(NSString *)css error:(NSError*__autoreleasing*)error
 {
     CPTokenStream *tokenStream = [self.tokeniser tokenise:css];
-    return [self.parser parse:tokenStream];
+    CSSSelectorGroup* result = [self.parser parse:tokenStream];
+    if (!result) {
+        if (error) {
+            *error = self.lastError;
+        } else {
+            DDLogError(@"CSSSelectorParser: parse error: %@", self.lastError);
+        }
+    }
+    return result;
 }
 
 #pragma mark - CPParserDelegate
@@ -48,7 +59,8 @@ enum {
             if ([children count] == 1 && [children[0] isQuotedToken]) {
                 return [children[0] content];
             } else {
-                [NSException raise:CSSSelectorParserException format:@"unexpected token: should be a quoted token, now: %@", syntaxTree];
+                [NSException raise:CSSSelectorParserException
+                            format:@"unexpected token: should be a quoted token, now: %@", syntaxTree];
             }
         }
             break;
@@ -61,9 +73,10 @@ enum {
 
 - (CPRecoveryAction *)parser:(CPParser *)parser didEncounterErrorOnInput:(CPTokenStream *)inputStream expecting:(NSSet *)acceptableTokens
 {
-    DDLogError(@"Error parsing input: %@ tokens: %@",
-               [inputStream description],
-               [acceptableTokens description]);
+    NSError* error = [NSError errorWithDomain:CSSSelectorParserErrorDomain
+                                         code:1
+                                     userInfo:@{CSSSelectorParserErrorInputStreamKey: inputStream, CSSSelectorParserErrorAcceptableTokenKey: acceptableTokens}];
+    self.lastError = error;
     return [CPRecoveryAction recoveryActionStop];
 }
 

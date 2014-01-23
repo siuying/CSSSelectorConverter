@@ -26,11 +26,15 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
     return [self initWithParser:[[CSSSelectorParser alloc] init]];
 }
 
--(NSString*)xpathWithCSS:(NSString*)css {
-    CSSSelectorGroup* group = [self.parser parse:css];
-    CSSSelectorXPathVisitor* visitor = [[CSSSelectorXPathVisitor alloc] init];
-    [visitor visit:group];
-    return [visitor xpathString];
+-(NSString*)xpathWithCSS:(NSString*)css error:(NSError*__autoreleasing*)error{
+    CSSSelectorGroup* group = [self.parser parse:css error:error];
+    if (group) {
+        CSSSelectorXPathVisitor* visitor = [[CSSSelectorXPathVisitor alloc] init];
+        [visitor visit:group];
+        return [visitor xpathString];
+    } else {
+        return nil;
+    }
 }
 
 @end

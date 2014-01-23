@@ -8,6 +8,11 @@
 
 #import "CPTokeniser.h"
 
+/**
+ * Tokenize the CSS Selector for the CSSSelectorGrammar to consume.
+ *
+ * @see CSSSelectorGrammar
+ */
 @interface CSSSelectorTokeniser : CPTokeniser
 
 @end

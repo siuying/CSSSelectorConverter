@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "CSSSelectorParser.h"
 
+/**
+ * Convert a CSS Selector to XPath.
+ *
+ * @see CSSSelectorParser
+ * @see CSSSelectorXPathVisitor
+ */
 @interface CSSSelectorToXPathConverter : NSObject
 
 @property (nonatomic, strong) CSSSelectorParser* parser;
@@ -17,6 +23,14 @@
 
 -(id) initWithParser:(CSSSelectorParser*)parser;
 
--(NSString*)xpathWithCSS:(NSString*)css ;
+/**
+ * Parse a CSS Selector and return a XPath string.
+ *
+ *
+ * @param css The css selector
+ * @param error If the parse failed and parser return nil, error is set to last known error.
+ * @return XPath representation of the given CSS Selector.
+ */
+-(NSString*)xpathWithCSS:(NSString*)css error:(NSError*__autoreleasing*)error;
 
 @end

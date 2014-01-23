@@ -29,94 +29,94 @@ describe(@"CSSToXPathParser", ^{
     });
     
     it(@"should parse universal selector", ^{
-        NSString* css = [converter xpathWithCSS:@"*"];
+        NSString* css = [converter xpathWithCSS:@"*" error:nil];
         [[css should] equal:@"//*"];
     });
 
     it(@"should parse type selector", ^{
-        NSString* css = [converter xpathWithCSS:@"p"];
+        NSString* css = [converter xpathWithCSS:@"p" error:nil];
         [[css should] equal:@"//p"];
     });
 
     it(@"should parse id selector", ^{
-        NSString* css = [converter xpathWithCSS:@"#header"];
+        NSString* css = [converter xpathWithCSS:@"#header" error:nil];
         [[css should] equal:@"//*[@id = 'header']"];
     });
 
     it(@"should parse class selector", ^{
-        NSString* css = [converter xpathWithCSS:@".header"];
+        NSString* css = [converter xpathWithCSS:@".header" error:nil];
         [[css should] equal:@"//*[contains(concat(' ', normalize-space(@class), ' '), ' header ')]"];
     });
     
     it(@"should parse type with mixed class and id selector", ^{
-        NSString* css = [converter xpathWithCSS:@"p#header.red"];
+        NSString* css = [converter xpathWithCSS:@"p#header.red" error:nil];
         [[css should] equal:@"//p[@id = 'header' and contains(concat(' ', normalize-space(@class), ' '), ' red ')]"];
     });
 
     it(@"should parse simple selector sequence", ^{
-        NSString* css = [converter xpathWithCSS:@"div p"];
+        NSString* css = [converter xpathWithCSS:@"div p" error:nil];
         [[css should] equal:@"//div//p"];
         
-        css = [converter xpathWithCSS:@"div *"];
+        css = [converter xpathWithCSS:@"div *" error:nil];
         [[css should] equal:@"//div//*"];
         
-        css = [converter xpathWithCSS:@"div#main p"];
+        css = [converter xpathWithCSS:@"div#main p" error:nil];
         [[css should] equal:@"//div[@id = 'main']//p"];
     });
     
     it(@"should parse descendant selector sequence", ^{
-        NSString* descendantCss = [converter xpathWithCSS:@"div#main p > a"];
+        NSString* descendantCss = [converter xpathWithCSS:@"div#main p > a" error:nil];
         [[descendantCss should] equal:@"//div[@id = 'main']//p/a"];
         
-        descendantCss = [converter xpathWithCSS:@"div#main p > a p > div"];
+        descendantCss = [converter xpathWithCSS:@"div#main p > a p > div" error:nil];
         [[descendantCss shouldNot] beNil];
         [[descendantCss should] equal:@"//div[@id = 'main']//p/a//p/div"];
     });
     
     it(@"should parse adjacent selector sequence", ^{
-        NSString* adjacentCss = [converter xpathWithCSS:@"h1 ~ p"];
+        NSString* adjacentCss = [converter xpathWithCSS:@"h1 ~ p" error:nil];
         [[adjacentCss should] equal:@"//h1/following-sibling::p"];
     });
     
     it(@"should parse selector group", ^{
-        NSString* css = [converter xpathWithCSS:@"div, p"];
+        NSString* css = [converter xpathWithCSS:@"div, p" error:nil];
         [[css should] equal:@"//div | //p"];
     });
 
     it(@"should parse attribute", ^{
-        NSString* css = [converter xpathWithCSS:@"div[foo]"];
+        NSString* css = [converter xpathWithCSS:@"div[foo]" error:nil];
         [[css should] equal:@"//div[@foo]"];
 
-        NSString* cssWithValue = [converter xpathWithCSS:@"div[width=\"100\"]"];
+        NSString* cssWithValue = [converter xpathWithCSS:@"div[width=\"100\"]" error:nil];
         [[cssWithValue should] equal:@"//div[@width = \"100\"]"];
         
-        NSString* cssWithIncludesValue = [converter xpathWithCSS:@"div[class~=\"100\"]"];
+        NSString* cssWithIncludesValue = [converter xpathWithCSS:@"div[class~=\"100\"]" error:nil];
         [[cssWithIncludesValue should] equal:@"//div[contains(concat(\" \", @class, \" \"),concat(\" \", \"100\", \" \"))]"];
 
-        NSString* cssWithDashValue = [converter xpathWithCSS:@"div[att|=\"val\"]"];
+        NSString* cssWithDashValue = [converter xpathWithCSS:@"div[att|=\"val\"]" error:nil];
         [[cssWithDashValue should] equal:@"//div[@att = \"val\" or starts-with(@att, concat(\"val\", '-'))]"];
     });
 
     it(@"should parse pseudo class", ^{
-        NSString* firstChild = [converter xpathWithCSS:@"div > p:first-child"];
+        NSString* firstChild = [converter xpathWithCSS:@"div > p:first-child" error:nil];
         [[firstChild should] equal:@"//div/*[position() = 1 and self::p]"];
         
-        NSString* lastChild = [converter xpathWithCSS:@"ol > li:last-child"];
+        NSString* lastChild = [converter xpathWithCSS:@"ol > li:last-child" error:nil];
         [[lastChild should] equal:@"//ol/*[position() = last() and self::li]"];
         
-        NSString* firstOfType = [converter xpathWithCSS:@"dl dt:first-of-type"];
+        NSString* firstOfType = [converter xpathWithCSS:@"dl dt:first-of-type" error:nil];
         [[firstOfType should] equal:@"//dl//dt[position() = 1]"];
         
-        NSString* lastOfType = [converter xpathWithCSS:@"tr > td:last-of-type"];
+        NSString* lastOfType = [converter xpathWithCSS:@"tr > td:last-of-type" error:nil];
         [[lastOfType should] equal:@"//tr/td[position() = last()]"];
         
-        NSString* onlyChild = [converter xpathWithCSS:@"p:only-child"];
+        NSString* onlyChild = [converter xpathWithCSS:@"p:only-child" error:nil];
         [[onlyChild should] equal:@"//*[last() = 1 and self::p]"];
         
-        NSString* onlyOfType = [converter xpathWithCSS:@"p:only-of-type"];
+        NSString* onlyOfType = [converter xpathWithCSS:@"p:only-of-type" error:nil];
         [[onlyOfType should] equal:@"//p[last() = 1]"];
 
-        NSString* empty = [converter xpathWithCSS:@"div:empty"];
+        NSString* empty = [converter xpathWithCSS:@"div:empty" error:nil];
         [[empty should] equal:@"//div[not(node())]"];
     });
 
