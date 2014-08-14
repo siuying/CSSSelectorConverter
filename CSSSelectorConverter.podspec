@@ -15,7 +15,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target  = '6.0'
   s.osx.deployment_target  = '10.8'
 
-  s.dependency 'CocoaLumberjack', '>= 1.6.4'
+  s.dependency 'CocoaLumberjack', '~> 1.9'
+  s.requires_arc = true
 
   s.subspec 'Core' do |ss|
     ss.source_files           = 'CSSSelectorConverter/CSS*.{m,h}'
