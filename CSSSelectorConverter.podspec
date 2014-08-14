@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name     = 'CSSSelectorConverter'
-  s.version  = '1.1.0'
+  s.version  = '1.1.1'
   s.license  = 'MIT'
   s.summary  = 'Objective-C/Cocoa String Tokenizer and Parser toolkit. Supports Grammars.'
   s.homepage = 'https://github.com/siuying/CSSSelectorConverter'
   s.author   = { 'Francis Chong' => 'francis@ignition.hk' }
 
-  s.source   = { :git => 'https://github.com/siuying/CSSSelectorConverter.git', :tag => '1.1.0', :submodules => true}
+  s.source   = { :git => 'https://github.com/siuying/CSSSelectorConverter.git', :tag => '1.1.1', :submodules => true}
 
   s.description = %{
     A CSS Selector to XPath Selector for Objective-C. Support mostly used subset of CSS Selector Level 3.
