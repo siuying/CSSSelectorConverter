@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "CSSSelectorGroup.h"
-#import "CPParser.h"
-#import "CPTokeniser.h"
+#import "NUIPParser.h"
+#import "NUIPTokeniser.h"
 
 extern NSString* const CSSSelectorParserException;
 extern NSString* const CSSSelectorParserErrorDomain;
@@ -16,7 +16,7 @@ extern NSString* const CSSSelectorParserErrorAcceptableTokenKey;
  * Use ``CSSSelectorXPathVisitor`` to convert the returned tree into a XPath.
  * @see CSSSelectorParser
  */
-@interface CSSSelectorParser : NSObject <CPParserDelegate, CPTokeniserDelegate>
+@interface CSSSelectorParser : NSObject <NUIPParserDelegate, NUIPTokeniserDelegate>
 
 /**
  Last error encountered by the parser.
@@ -25,7 +25,7 @@ extern NSString* const CSSSelectorParserErrorAcceptableTokenKey;
 
 -(instancetype) init;
 
--(instancetype) initWithParser:(CPParser*)parser;
+-(instancetype) initWithParser:(NUIPParser*)parser;
 
 /**
  * Parse a CSS Selector and return a CSSSelectorGroup object.

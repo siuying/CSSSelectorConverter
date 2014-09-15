@@ -8,9 +8,9 @@
 
 #import "CSSBaseSelector.h"
 #import "CSSSelectors.h"
-#import "CPParser.h"
+#import "NUIPParser.h"
 
-@interface CSSSelectorGroup : CSSBaseSelector <CPParseResult>
+@interface CSSSelectorGroup : CSSBaseSelector <NUIPParseResult>
 
 @property (nonatomic, strong) NSMutableArray* selectors;
 

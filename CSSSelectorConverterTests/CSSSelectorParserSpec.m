@@ -8,7 +8,7 @@
 
 #import <Kiwi/Kiwi.h>
 #import "CSSSelectorParser.h"
-#import "CoreParse.h"
+#import "NUIParse.h"
 #import "CSSSelectorGrammar.h"
 #import "CSSSelectorTokeniser.h"
 

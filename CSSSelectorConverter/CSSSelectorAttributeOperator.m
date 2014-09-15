@@ -9,18 +9,18 @@
 #undef LOG_LEVEL_DEF
 #define LOG_LEVEL_DEF cssSelectorLogLevel
 static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
-#import "CoreParse.h"
+#import "NUIParse.h"
 
 #import "CSSSelectorAttributeOperator.h"
 
 @implementation CSSSelectorAttributeOperator
 
-- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+- (id)initWithSyntaxTree:(NUIPSyntaxTree *)syntaxTree {
     self = [self init];
     if (self) {
         NSArray *components = [syntaxTree children];
         if ([components count] == 1) {
-            CPKeywordToken* token = [components[0] children][0];
+            NUIPKeywordToken* token = [components[0] children][0];
             if ([token isKeywordToken]) {
                 self.name              = [token keyword];
                 self.attributeOperator = [[self class] operatorWithString:[token keyword]];

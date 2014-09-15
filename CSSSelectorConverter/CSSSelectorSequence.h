@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "CSSBaseSelector.h"
-#import "CPParser.h"
+#import "NUIPParser.h"
 
 @class CSSCombinator;
 @class CSSPseudoClass;
 @class CSSTypeSelector;
 
-@interface CSSSelectorSequence : CSSBaseSelector <CPParseResult>
+@interface CSSSelectorSequence : CSSBaseSelector <NUIPParseResult>
 
 @property (nonatomic, strong) CSSPseudoClass* pseudoClass;
 

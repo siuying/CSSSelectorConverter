@@ -1,7 +1,7 @@
 #import "CSSSelectorParser.h"
 #import "CSSSelectorGrammar.h"
 #import "CSSSelectorTokeniser.h"
-#import "CoreParse.h"
+#import "NUIParse.h"
 #import "DDLog.h"
 
 #undef LOG_LEVEL_DEF
@@ -19,27 +19,17 @@ enum {
 
 @interface CSSSelectorParser ()
 @property (nonatomic, strong) CSSSelectorTokeniser *tokeniser;
-@property (nonatomic, strong) CPParser* parser;
+@property (nonatomic, strong) NUIPParser* parser;
 @end
 
 @implementation CSSSelectorParser
 
 - (id)init {
-//    NSString* path = [[NSBundle bundleForClass:[self class]] pathForResource:@"CSSSelectorParser" ofType:@"plist"];
-//    if (!path) {
-//        [NSException raise:NSInternalInconsistencyException format:@"Cannot find parser file CSSSelectorParser.plist"];
-//    }
-//
-//    NSDictionary *pt = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-//    CPParser* parser = pt[@"parser"];
-//    if (!parser) {
-//        [NSException raise:NSInternalInconsistencyException format:@"Cannot load parser from CSSSelectorParser.plist (%@)", path];
-//    }
-    CPLALR1Parser* parser = [CPLALR1Parser parserWithGrammar:[[CSSSelectorGrammar alloc] initWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"CSSSelectorGrammar" ofType:@"txt"]]];
+    NUIPLALR1Parser* parser = [NUIPLALR1Parser parserWithGrammar:[[CSSSelectorGrammar alloc] initWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"CSSSelectorGrammar" ofType:@"txt"]]];
     return [self initWithParser:parser];
 }
 
--(instancetype) initWithParser:(CPParser*)parser
+-(instancetype) initWithParser:(NUIPParser*)parser
 {
     self = [super init];
     self.tokeniser = [[CSSSelectorTokeniser alloc] init];
@@ -51,7 +41,7 @@ enum {
 
 - (CSSSelectorGroup*)parse:(NSString *)css error:(NSError*__autoreleasing*)error
 {
-    CPTokenStream *tokenStream = [self.tokeniser tokenise:css];
+    NUIPTokenStream *tokenStream = [self.tokeniser tokenise:css];
     CSSSelectorGroup* result = [self.parser parse:tokenStream];
     if (!result) {
         if (error) {
@@ -65,7 +55,7 @@ enum {
 
 #pragma mark - CPParserDelegate
 
-- (id)parser:(CPParser *)parser didProduceSyntaxTree:(CPSyntaxTree *)syntaxTree
+- (id)parser:(NUIPParser *)parser didProduceSyntaxTree:(NUIPSyntaxTree *)syntaxTree
 {
     switch ([[syntaxTree rule] tag]) {
         case CSSSelectorParserRuleQuotedString: {
@@ -85,18 +75,18 @@ enum {
     return syntaxTree;
 }
 
-- (CPRecoveryAction *)parser:(CPParser *)parser didEncounterErrorOnInput:(CPTokenStream *)inputStream expecting:(NSSet *)acceptableTokens
+- (NUIPRecoveryAction *)parser:(NUIPParser *)parser didEncounterErrorOnInput:(NUIPTokenStream *)inputStream expecting:(NSSet *)acceptableTokens
 {
     NSError* error = [NSError errorWithDomain:CSSSelectorParserErrorDomain
                                          code:1
                                      userInfo:@{CSSSelectorParserErrorInputStreamKey: inputStream, CSSSelectorParserErrorAcceptableTokenKey: acceptableTokens}];
     self.lastError = error;
-    return [CPRecoveryAction recoveryActionStop];
+    return [NUIPRecoveryAction recoveryActionStop];
 }
 
 #pragma mark - CPTokeniserDelegate
 
-- (BOOL)tokeniser:(CPTokeniser *)tokeniser shouldConsumeToken:(CPToken *)token
+- (BOOL)tokeniser:(NUIPTokeniser *)tokeniser shouldConsumeToken:(NUIPToken *)token
 {
     return YES;
 }

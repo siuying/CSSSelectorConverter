@@ -8,7 +8,7 @@
 
 #import "CSSCombinator.h"
 #import "DDLog.h"
-#import "CoreParse.h"
+#import "NUIParse.h"
 
 #undef LOG_LEVEL_DEF
 #define LOG_LEVEL_DEF cssSelectorLogLevel
@@ -16,7 +16,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
 
 @implementation CSSCombinator
 
-- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+- (id)initWithSyntaxTree:(NUIPSyntaxTree *)syntaxTree {
     self = [self init];
     NSArray *components = [syntaxTree children];
     if ([components count] >= 1) {

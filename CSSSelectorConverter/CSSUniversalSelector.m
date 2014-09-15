@@ -7,11 +7,11 @@
 //
 
 #import "CSSUniversalSelector.h"
-#import "CoreParse.h"
+#import "NUIParse.h"
 
 @implementation CSSUniversalSelector
 
-- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+- (id)initWithSyntaxTree:(NUIPSyntaxTree *)syntaxTree {
     return [self init];
 }
 

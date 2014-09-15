@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name     = 'CSSSelectorConverter'
-  s.version  = '1.1.1'
+  s.version  = '1.1.2'
   s.license  = 'MIT'
   s.summary  = 'Objective-C/Cocoa String Tokenizer and Parser toolkit. Supports Grammars.'
   s.homepage = 'https://github.com/siuying/CSSSelectorConverter'
   s.author   = { 'Francis Chong' => 'francis@ignition.hk' }
 
-  s.source   = { :git => 'https://github.com/siuying/CSSSelectorConverter.git', :tag => '1.1.1', :submodules => true}
+  s.source   = { :git => 'https://github.com/siuying/CSSSelectorConverter.git', :tag => '1.1.2'}
 
   s.description = %{
     A CSS Selector to XPath Selector for Objective-C. Support mostly used subset of CSS Selector Level 3.
@@ -16,22 +16,11 @@ Pod::Spec.new do |s|
   s.osx.deployment_target  = '10.8'
 
   s.dependency 'CocoaLumberjack', '~> 1.9.0'
+  s.dependency 'NUIParse'
   s.requires_arc           = true
 
-  s.subspec 'Core' do |ss|
-    ss.source_files           = 'CSSSelectorConverter/CSS*.{m,h}'
-    ss.prefix_header_contents = "#import \"CSSSelectorConverter.h\""
-    ss.requires_arc           = true
-
-    # the grammar and the serialized parser
-    ss.resources              = 'CSSSelectorConverter/*.{txt,plist}'
-    ss.dependency 'CSSSelectorConverter/CoreParse'
-  end
-
-  # Until CoreParse release a new update, we're force to use our own version
-  s.subspec 'CoreParse' do |ss|
-    ss.source_files        = 'vendor/CoreParse/CoreParse/**/*.{h,m}'
-    ss.exclude_files       = 'vendor/CoreParse/CoreParse/CPSenTestKitAssertions.h'
-    ss.requires_arc        = false
-  end
+  s.source_files           = 'CSSSelectorConverter/CSS*.{m,h}'
+  s.prefix_header_contents = "#import \"CSSSelectorConverter.h\""
+  s.requires_arc           = true
+  s.resources              = 'CSSSelectorConverter/*.{txt,plist}'
 end

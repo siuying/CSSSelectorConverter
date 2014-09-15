@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Ignition Soft. All rights reserved.
 //
 
-#import "CPGrammar.h"
+#import "NUIPGrammar.h"
 
-@interface CSSSelectorGrammar : CPGrammar
+@interface CSSSelectorGrammar : NUIPGrammar
 
 /**
  * Create a Grammar object using the grammar file in the bundle.

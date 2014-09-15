@@ -8,126 +8,126 @@
 
 #import <Kiwi/Kiwi.h>
 #import "CSSSelectorTokeniser.h"
-#import "CoreParse.h"
+#import "NUIParse.h"
 
 SPEC_BEGIN(CSSSelectorTokeniserSpec)
 
 describe(@"CSSSelectorTokeniser", ^{
     it(@"tokenize basic css", ^{
         CSSSelectorTokeniser* tokeniser = [[CSSSelectorTokeniser alloc] init];
-        CPTokenStream *tokenStream = [tokeniser tokenise:@"table"];
-        CPTokenStream *expected = [CPTokenStream tokenStreamWithTokens:[NSArray arrayWithObjects:
-                                                                        [CPIdentifierToken tokenWithIdentifier:@"table"],
-                                                                        [CPEOFToken eof],
+        NUIPTokenStream *tokenStream = [tokeniser tokenise:@"table"];
+        NUIPTokenStream *expected = [NUIPTokenStream tokenStreamWithTokens:[NSArray arrayWithObjects:
+                                                                        [NUIPIdentifierToken tokenWithIdentifier:@"table"],
+                                                                        [NUIPEOFToken eof],
                                                                         nil]];
         [[tokenStream should] equal:expected];
         
         tokenStream = [tokeniser tokenise:@"table.a"];
-        expected = [CPTokenStream tokenStreamWithTokens:@[
-                                                          [CPIdentifierToken tokenWithIdentifier:@"table"],
-                                                          [CPKeywordToken tokenWithKeyword:@"."],
-                                                          [CPIdentifierToken tokenWithIdentifier:@"a"],
-                                                          [CPEOFToken eof]
+        expected = [NUIPTokenStream tokenStreamWithTokens:@[
+                                                          [NUIPIdentifierToken tokenWithIdentifier:@"table"],
+                                                          [NUIPKeywordToken tokenWithKeyword:@"."],
+                                                          [NUIPIdentifierToken tokenWithIdentifier:@"a"],
+                                                          [NUIPEOFToken eof]
                                                           ]];
         [[tokenStream should] equal:expected];
     });
     
     it(@"tokenize complex selector", ^{
         CSSSelectorTokeniser* tokeniser = [[CSSSelectorTokeniser alloc] init];
-        CPTokenStream *tokenStream = [tokeniser tokenise:@"table a"];
-        CPTokenStream *expected = [CPTokenStream tokenStreamWithTokens:@[
-                                                          [CPIdentifierToken tokenWithIdentifier:@"table"],
-                                                          [CPWhiteSpaceToken whiteSpace:@" "],
-                                                          [CPIdentifierToken tokenWithIdentifier:@"a"],
-                                                          [CPEOFToken eof]
+        NUIPTokenStream *tokenStream = [tokeniser tokenise:@"table a"];
+        NUIPTokenStream *expected = [NUIPTokenStream tokenStreamWithTokens:@[
+                                                          [NUIPIdentifierToken tokenWithIdentifier:@"table"],
+                                                          [NUIPWhiteSpaceToken whiteSpace:@" "],
+                                                          [NUIPIdentifierToken tokenWithIdentifier:@"a"],
+                                                          [NUIPEOFToken eof]
                                                           ]];
         [[tokenStream should] equal:expected];
         
         tokenStream = [tokeniser tokenise:@"table > a"];
-        expected = [CPTokenStream tokenStreamWithTokens:@[
-                                                          [CPIdentifierToken tokenWithIdentifier:@"table"],
-                                                          [CPKeywordToken tokenWithKeyword:@">"],
-                                                          [CPIdentifierToken tokenWithIdentifier:@"a"],
-                                                          [CPEOFToken eof]
+        expected = [NUIPTokenStream tokenStreamWithTokens:@[
+                                                          [NUIPIdentifierToken tokenWithIdentifier:@"table"],
+                                                          [NUIPKeywordToken tokenWithKeyword:@">"],
+                                                          [NUIPIdentifierToken tokenWithIdentifier:@"a"],
+                                                          [NUIPEOFToken eof]
                                                           ]];
         [[tokenStream should] equal:expected];
         
         tokenStream = [tokeniser tokenise:@"table ~ a"];
-        expected = [CPTokenStream tokenStreamWithTokens:@[
-                                                          [CPIdentifierToken tokenWithIdentifier:@"table"],
-                                                          [CPKeywordToken tokenWithKeyword:@"~"],
-                                                          [CPIdentifierToken tokenWithIdentifier:@"a"],
-                                                          [CPEOFToken eof]
+        expected = [NUIPTokenStream tokenStreamWithTokens:@[
+                                                          [NUIPIdentifierToken tokenWithIdentifier:@"table"],
+                                                          [NUIPKeywordToken tokenWithKeyword:@"~"],
+                                                          [NUIPIdentifierToken tokenWithIdentifier:@"a"],
+                                                          [NUIPEOFToken eof]
                                                           ]];
         [[tokenStream should] equal:expected];
         
         tokenStream = [tokeniser tokenise:@"table ~ a"];
-        expected = [CPTokenStream tokenStreamWithTokens:@[
-                                                          [CPIdentifierToken tokenWithIdentifier:@"table"],
-                                                          [CPKeywordToken tokenWithKeyword:@"~"],
-                                                          [CPIdentifierToken tokenWithIdentifier:@"a"],
-                                                          [CPEOFToken eof]
+        expected = [NUIPTokenStream tokenStreamWithTokens:@[
+                                                          [NUIPIdentifierToken tokenWithIdentifier:@"table"],
+                                                          [NUIPKeywordToken tokenWithKeyword:@"~"],
+                                                          [NUIPIdentifierToken tokenWithIdentifier:@"a"],
+                                                          [NUIPEOFToken eof]
                                                           ]];
         [[tokenStream should] equal:expected];
         
         tokenStream = [tokeniser tokenise:@"table , a"];
-        expected = [CPTokenStream tokenStreamWithTokens:@[
-                                                          [CPIdentifierToken tokenWithIdentifier:@"table"],
-                                                          [CPKeywordToken tokenWithKeyword:@","],
-                                                          [CPIdentifierToken tokenWithIdentifier:@"a"],
-                                                          [CPEOFToken eof]
+        expected = [NUIPTokenStream tokenStreamWithTokens:@[
+                                                          [NUIPIdentifierToken tokenWithIdentifier:@"table"],
+                                                          [NUIPKeywordToken tokenWithKeyword:@","],
+                                                          [NUIPIdentifierToken tokenWithIdentifier:@"a"],
+                                                          [NUIPEOFToken eof]
                                                           ]];
         [[tokenStream should] equal:expected];
     });
     
     it(@"tokenize pseudo class", ^{
         CSSSelectorTokeniser* tokeniser = [[CSSSelectorTokeniser alloc] init];
-        CPTokenStream *tokenStream = [tokeniser tokenise:@"div > p:first-child"];
-        CPTokenStream *expected = [CPTokenStream tokenStreamWithTokens:@[
-                                                                         [CPIdentifierToken tokenWithIdentifier:@"div"],
-                                                                         [CPKeywordToken tokenWithKeyword:@">"],
-                                                                         [CPIdentifierToken tokenWithIdentifier:@"p"],
-                                                                         [CPKeywordToken tokenWithKeyword:@":"],
-                                                                         [CPIdentifierToken tokenWithIdentifier:@"first-child"],
-                                                                         [CPEOFToken eof]]];
+        NUIPTokenStream *tokenStream = [tokeniser tokenise:@"div > p:first-child"];
+        NUIPTokenStream *expected = [NUIPTokenStream tokenStreamWithTokens:@[
+                                                                         [NUIPIdentifierToken tokenWithIdentifier:@"div"],
+                                                                         [NUIPKeywordToken tokenWithKeyword:@">"],
+                                                                         [NUIPIdentifierToken tokenWithIdentifier:@"p"],
+                                                                         [NUIPKeywordToken tokenWithKeyword:@":"],
+                                                                         [NUIPIdentifierToken tokenWithIdentifier:@"first-child"],
+                                                                         [NUIPEOFToken eof]]];
         [[tokenStream should] equal:expected];
     });
     
     it(@"tokenize attribute", ^{
         CSSSelectorTokeniser* tokeniser = [[CSSSelectorTokeniser alloc] init];
-        CPTokenStream *tokenStream = [tokeniser tokenise:@"div[class~=\"100\"]"];
-        CPTokenStream *expected = [CPTokenStream tokenStreamWithTokens:[NSArray arrayWithObjects:
-                                                                  [CPIdentifierToken tokenWithIdentifier:@"div"],
-                                                                  [CPKeywordToken tokenWithKeyword:@"["],
-                                                                  [CPIdentifierToken tokenWithIdentifier:@"class"],
-                                                                  [CPKeywordToken tokenWithKeyword:@"~="],
-                                                                  [CPQuotedToken content:@"100" quotedWith:@"\"" name:@"String"],
-                                                                  [CPKeywordToken tokenWithKeyword:@"]"],
-                                                                  [CPEOFToken eof],
+        NUIPTokenStream *tokenStream = [tokeniser tokenise:@"div[class~=\"100\"]"];
+        NUIPTokenStream *expected = [NUIPTokenStream tokenStreamWithTokens:[NSArray arrayWithObjects:
+                                                                  [NUIPIdentifierToken tokenWithIdentifier:@"div"],
+                                                                  [NUIPKeywordToken tokenWithKeyword:@"["],
+                                                                  [NUIPIdentifierToken tokenWithIdentifier:@"class"],
+                                                                  [NUIPKeywordToken tokenWithKeyword:@"~="],
+                                                                  [NUIPQuotedToken content:@"100" quotedWith:@"\"" name:@"String"],
+                                                                  [NUIPKeywordToken tokenWithKeyword:@"]"],
+                                                                  [NUIPEOFToken eof],
                                                                   nil]];
         [[tokenStream should] equal:expected];
         
         tokenStream = [tokeniser tokenise:@"div[class  |= \"100\"]"];
-        expected = [CPTokenStream tokenStreamWithTokens:[NSArray arrayWithObjects:
-                                                                        [CPIdentifierToken tokenWithIdentifier:@"div"],
-                                                                        [CPKeywordToken tokenWithKeyword:@"["],
-                                                                        [CPIdentifierToken tokenWithIdentifier:@"class"],
-                                                                        [CPKeywordToken tokenWithKeyword:@"|="],
-                                                                        [CPQuotedToken content:@"100" quotedWith:@"\"" name:@"String"],
-                                                                        [CPKeywordToken tokenWithKeyword:@"]"],
-                                                                        [CPEOFToken eof],
+        expected = [NUIPTokenStream tokenStreamWithTokens:[NSArray arrayWithObjects:
+                                                                        [NUIPIdentifierToken tokenWithIdentifier:@"div"],
+                                                                        [NUIPKeywordToken tokenWithKeyword:@"["],
+                                                                        [NUIPIdentifierToken tokenWithIdentifier:@"class"],
+                                                                        [NUIPKeywordToken tokenWithKeyword:@"|="],
+                                                                        [NUIPQuotedToken content:@"100" quotedWith:@"\"" name:@"String"],
+                                                                        [NUIPKeywordToken tokenWithKeyword:@"]"],
+                                                                        [NUIPEOFToken eof],
                                                                         nil]];
         [[tokenStream should] equal:expected];
         
         tokenStream = [tokeniser tokenise:@"div[class = '100']"];
-        expected = [CPTokenStream tokenStreamWithTokens:[NSArray arrayWithObjects:
-                                                         [CPIdentifierToken tokenWithIdentifier:@"div"],
-                                                         [CPKeywordToken tokenWithKeyword:@"["],
-                                                         [CPIdentifierToken tokenWithIdentifier:@"class"],
-                                                         [CPKeywordToken tokenWithKeyword:@"="],
-                                                         [CPQuotedToken content:@"100" quotedWith:@"'" name:@"String"],
-                                                         [CPKeywordToken tokenWithKeyword:@"]"],
-                                                         [CPEOFToken eof],
+        expected = [NUIPTokenStream tokenStreamWithTokens:[NSArray arrayWithObjects:
+                                                         [NUIPIdentifierToken tokenWithIdentifier:@"div"],
+                                                         [NUIPKeywordToken tokenWithKeyword:@"["],
+                                                         [NUIPIdentifierToken tokenWithIdentifier:@"class"],
+                                                         [NUIPKeywordToken tokenWithKeyword:@"="],
+                                                         [NUIPQuotedToken content:@"100" quotedWith:@"'" name:@"String"],
+                                                         [NUIPKeywordToken tokenWithKeyword:@"]"],
+                                                         [NUIPEOFToken eof],
                                                          nil]];
         [[tokenStream should] equal:expected];
     });

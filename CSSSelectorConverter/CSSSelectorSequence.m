@@ -7,7 +7,7 @@
 //
 
 #import "DDLog.h"
-#import "CoreParse.h"
+#import "NUIParse.h"
 
 #undef LOG_LEVEL_DEF
 #define LOG_LEVEL_DEF cssSelectorLogLevel
@@ -25,7 +25,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation CSSSelectorSequence
 
-- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+- (id)initWithSyntaxTree:(NUIPSyntaxTree *)syntaxTree {
     self = [self init];
     if (self) {
         NSArray* selectors = nil;

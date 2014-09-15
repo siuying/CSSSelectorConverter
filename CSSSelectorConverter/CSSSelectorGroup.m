@@ -7,7 +7,7 @@
 //
 
 #import "CSSSelectorGroup.h"
-#import "CoreParse.h"
+#import "NUIParse.h"
 
 #import "DDLog.h"
 #undef LOG_LEVEL_DEF
@@ -16,7 +16,7 @@ static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation CSSSelectorGroup
 
-- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+- (id)initWithSyntaxTree:(NUIPSyntaxTree *)syntaxTree {
     self = [self init];
     if (self) {
         CSSSelectors* selector = [syntaxTree valueForTag:@"firstSelector"];

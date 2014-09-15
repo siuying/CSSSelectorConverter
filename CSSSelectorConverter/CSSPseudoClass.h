@@ -7,9 +7,9 @@
 //
 
 #import "CSSNamedSelector.h"
-#import "CPParser.h"
+#import "NUIPParser.h"
 
-@interface CSSPseudoClass : CSSNamedSelector <CPParseResult>
+@interface CSSPseudoClass : CSSNamedSelector <NUIPParseResult>
 
 @property (nonatomic, weak) CSSNamedSelector* parent;
 

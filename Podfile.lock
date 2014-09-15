@@ -1,22 +1,20 @@
 PODS:
-  - CocoaLumberjack (1.7.0):
-    - CocoaLumberjack/Core
+  - CocoaLumberjack (1.9.2):
     - CocoaLumberjack/Extensions
-  - CocoaLumberjack/Core (1.7.0)
-  - CocoaLumberjack/Extensions (1.7.0):
+  - CocoaLumberjack/Core (1.9.2)
+  - CocoaLumberjack/Extensions (1.9.2):
     - CocoaLumberjack/Core
-  - Kiwi/ARC (2.2.3)
-  - Kiwi/NonARC (2.2.3)
-  - Kiwi/XCTest (2.2.3):
-    - Kiwi/ARC
-    - Kiwi/NonARC
+  - Kiwi (2.3.0)
+  - NUIParse (1.2.1)
 
 DEPENDENCIES:
-  - CocoaLumberjack
-  - Kiwi/XCTest
+  - CocoaLumberjack (~> 1.9.0)
+  - Kiwi (>= 2.3.0)
+  - NUIParse
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: be87113f649942f020a37c061c58009b6ee5ff68
-  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
+  CocoaLumberjack: 205769c032b5fef85b92472046bcc8b7e7c8a817
+  Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
+  NUIParse: f29eb240cfc9848b216c827884f37ae64abd19e4
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.34.0.rc1

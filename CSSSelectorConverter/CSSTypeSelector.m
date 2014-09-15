@@ -7,16 +7,16 @@
 //
 
 #import "CSSTypeSelector.h"
-#import "CoreParse.h"
+#import "NUIParse.h"
 
 @implementation CSSTypeSelector
 
-- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+- (id)initWithSyntaxTree:(NUIPSyntaxTree *)syntaxTree {
     self = [self init];
     if (self) {
         NSArray *components = [syntaxTree children];
         if ([components count] == 1) {
-            CPIdentifierToken* token = components[0];
+            NUIPIdentifierToken* token = components[0];
             if ([token isIdentifierToken]) {
                 self.name = [token identifier];
             }

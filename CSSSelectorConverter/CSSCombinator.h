@@ -7,7 +7,7 @@
 //
 
 #import "CSSBaseSelector.h"
-#import "CPParser.h"
+#import "NUIPParser.h"
 
 typedef NS_ENUM(NSInteger, CSSCombinatorType) {
     CSSCombinatorTypeNone = 0,
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, CSSCombinatorType) {
     CSSCombinatorTypeGeneralSibling
 };
 
-@interface CSSCombinator : CSSBaseSelector <CPParseResult>
+@interface CSSCombinator : CSSBaseSelector <NUIPParseResult>
 
 @property (nonatomic, assign) CSSCombinatorType type;
 

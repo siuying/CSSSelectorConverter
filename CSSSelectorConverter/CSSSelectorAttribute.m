@@ -13,11 +13,11 @@
 #undef LOG_LEVEL_DEF
 #define LOG_LEVEL_DEF cssSelectorLogLevel
 static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
-#import "CoreParse.h"
+#import "NUIParse.h"
 
 @implementation CSSSelectorAttribute
 
-- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+- (id)initWithSyntaxTree:(NUIPSyntaxTree *)syntaxTree {
     self = [self init];
     if (self) {
         self.attributeOperator = [syntaxTree valueForTag:@"op"];

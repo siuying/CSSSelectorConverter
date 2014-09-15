@@ -7,7 +7,7 @@
 //
 
 #import "CSSNamedSelector.h"
-#import "CPParser.h"
+#import "NUIPParser.h"
 
 typedef NS_ENUM(NSInteger, CSSSelectorAttributeOperatorType) {
     CSSSelectorAttributeOperatorTypeNone = 0,
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, CSSSelectorAttributeOperatorType) {
     CSSSelectorAttributeOperatorTypeDash
 };
 
-@interface CSSSelectorAttributeOperator : CSSNamedSelector <CPParseResult>
+@interface CSSSelectorAttributeOperator : CSSNamedSelector <NUIPParseResult>
 
 @property (nonatomic, assign) CSSSelectorAttributeOperatorType attributeOperator;
 

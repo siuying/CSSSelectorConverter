@@ -7,58 +7,58 @@
 //
 
 #import "CSSSelectorTokeniser.h"
-#import "CPNumberRecogniser.h"
-#import "CPWhiteSpaceRecogniser.h"
-#import "CPQuotedRecogniser.h"
-#import "CPKeywordRecogniser.h"
-#import "CPIdentifierRecogniser.h"
-#import "CPRegexpRecogniser.h"
+#import "NUIPNumberRecogniser.h"
+#import "NUIPWhiteSpaceRecogniser.h"
+#import "NUIPQuotedRecogniser.h"
+#import "NUIPKeywordRecogniser.h"
+#import "NUIPIdentifierRecogniser.h"
+#import "NUIPRegexpRecogniser.h"
 
 @implementation CSSSelectorTokeniser
     
 -(id) init {
     self = [super init];
 
-    [self addTokenRecogniser:[CPIdentifierRecogniser identifierRecogniser]];
-    [self addTokenRecogniser:[CPNumberRecogniser numberRecogniser]];
-    [self addTokenRecogniser:[CPQuotedRecogniser quotedRecogniserWithStartQuote:@"\""
+    [self addTokenRecogniser:[NUIPIdentifierRecogniser identifierRecogniser]];
+    [self addTokenRecogniser:[NUIPNumberRecogniser numberRecogniser]];
+    [self addTokenRecogniser:[NUIPQuotedRecogniser quotedRecogniserWithStartQuote:@"\""
                                                                        endQuote:@"\""
                                                                            name:@"String"]];
-    [self addTokenRecogniser:[CPQuotedRecogniser quotedRecogniserWithStartQuote:@"\'"
+    [self addTokenRecogniser:[NUIPQuotedRecogniser quotedRecogniserWithStartQuote:@"\'"
                                                                        endQuote:@"\'"
                                                                            name:@"String"]];
     
-    CPRegexpKeywordRecogniserMatchHandler trimSpaceHandler = ^(NSString* tokenString, NSTextCheckingResult* match){
+    NUIPRegexpKeywordRecogniserMatchHandler trimSpaceHandler = ^(NSString* tokenString, NSTextCheckingResult* match){
         NSString* matched = [tokenString substringWithRange:match.range];
-        return [CPKeywordToken tokenWithKeyword:[matched stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        return [NUIPKeywordToken tokenWithKeyword:[matched stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
     };
     
-    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\~\\=)[ \t\r\n\f]*" options:0 error:nil]
+    [self addTokenRecogniser:[NUIPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\~\\=)[ \t\r\n\f]*" options:0 error:nil]
                                                         matchHandler:trimSpaceHandler]];
-    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\|\\=)[ \t\r\n\f]*" options:0 error:nil]
+    [self addTokenRecogniser:[NUIPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\|\\=)[ \t\r\n\f]*" options:0 error:nil]
                                                         matchHandler:trimSpaceHandler]];
-    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\=)[ \t\r\n\f]*" options:0 error:nil]
+    [self addTokenRecogniser:[NUIPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\=)[ \t\r\n\f]*" options:0 error:nil]
                                                         matchHandler:trimSpaceHandler]];
-    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\~)[ \t\r\n\f]*" options:0 error:nil]
+    [self addTokenRecogniser:[NUIPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\~)[ \t\r\n\f]*" options:0 error:nil]
                                                         matchHandler:trimSpaceHandler]];
-    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\+)[ \t\r\n\f]*" options:0 error:nil]
+    [self addTokenRecogniser:[NUIPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\+)[ \t\r\n\f]*" options:0 error:nil]
                                                         matchHandler:trimSpaceHandler]];
-    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\>)[ \t\r\n\f]*" options:0 error:nil]
+    [self addTokenRecogniser:[NUIPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\>)[ \t\r\n\f]*" options:0 error:nil]
                                                         matchHandler:trimSpaceHandler]];
-    [self addTokenRecogniser:[CPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\,)[ \t\r\n\f]*" options:0 error:nil]
+    [self addTokenRecogniser:[NUIPRegexpRecogniser recogniserForRegexp:[NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n\f]*(\\,)[ \t\r\n\f]*" options:0 error:nil]
                                                         matchHandler:trimSpaceHandler]];
 
-    [self addTokenRecogniser:[CPWhiteSpaceRecogniser whiteSpaceRecogniser]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@":"]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"."]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"#"]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"-"]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"("]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@")"]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"["]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"]"]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"*"]];
-    [self addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"@"]];
+    [self addTokenRecogniser:[NUIPWhiteSpaceRecogniser whiteSpaceRecogniser]];
+    [self addTokenRecogniser:[NUIPKeywordRecogniser recogniserForKeyword:@":"]];
+    [self addTokenRecogniser:[NUIPKeywordRecogniser recogniserForKeyword:@"."]];
+    [self addTokenRecogniser:[NUIPKeywordRecogniser recogniserForKeyword:@"#"]];
+    [self addTokenRecogniser:[NUIPKeywordRecogniser recogniserForKeyword:@"-"]];
+    [self addTokenRecogniser:[NUIPKeywordRecogniser recogniserForKeyword:@"("]];
+    [self addTokenRecogniser:[NUIPKeywordRecogniser recogniserForKeyword:@")"]];
+    [self addTokenRecogniser:[NUIPKeywordRecogniser recogniserForKeyword:@"["]];
+    [self addTokenRecogniser:[NUIPKeywordRecogniser recogniserForKeyword:@"]"]];
+    [self addTokenRecogniser:[NUIPKeywordRecogniser recogniserForKeyword:@"*"]];
+    [self addTokenRecogniser:[NUIPKeywordRecogniser recogniserForKeyword:@"@"]];
 
     return self;
 }

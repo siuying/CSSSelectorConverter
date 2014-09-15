@@ -11,11 +11,11 @@
 static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
 
 #import "CSSPseudoClass.h"
-#import "CoreParse.h"
+#import "NUIParse.h"
 
 @implementation CSSPseudoClass
 
-- (id)initWithSyntaxTree:(CPSyntaxTree *)syntaxTree {
+- (id)initWithSyntaxTree:(NUIPSyntaxTree *)syntaxTree {
     self = [self init];
     
     id token = [syntaxTree valueForTag:@"className"];

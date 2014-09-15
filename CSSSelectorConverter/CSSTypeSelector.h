@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "CSSNamedSelector.h"
-#import "CPParser.h"
+#import "NUIPParser.h"
 
-@interface CSSTypeSelector : CSSNamedSelector <CPParseResult>
+@interface CSSTypeSelector : CSSNamedSelector <NUIPParseResult>
 
 @end
