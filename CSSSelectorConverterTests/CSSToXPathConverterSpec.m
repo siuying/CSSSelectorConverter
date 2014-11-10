@@ -38,6 +38,11 @@ describe(@"CSSToXPathParser", ^{
         NSString* css = [converter xpathWithCSS:@"p" error:nil];
         [[css should] equal:@"//p"];
     });
+    
+    it(@"should parse multiple type selector", ^{
+        NSString* css = [converter xpathWithCSS:@"h3 strong a, #fbPhotoPageAuthorName, title" error:nil];
+        [[css should] equal:@"//h3//strong//a | //*[@id = 'fbPhotoPageAuthorName'] | //title"];
+    });
 
     it(@"should parse id selector", ^{
         NSString* css = [converter xpathWithCSS:@"#header" error:nil];

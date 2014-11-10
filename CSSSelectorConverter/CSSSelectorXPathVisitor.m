@@ -153,12 +153,12 @@
 -(void) visitCSSSelectors:(CSSSelectors*)node
 {
     [node.selectors enumerateObjectsUsingBlock:^(CSSBaseSelector* selector, NSUInteger idx, BOOL *stop) {
-        if ([selector isKindOfClass:[CSSSelectorSequence class]] ||
-            [NSStringFromClass([selector class]) isEqualToString:NSStringFromClass([CSSSelectorSequence class])]) { // work around for isKindOfClass: match error in unit test
-            // if not specified, the combinator is none
-            if (idx == 0 || ![[node.selectors objectAtIndex:idx - 1] isKindOfClass:[CSSCombinator class]]) {
-                [self visit:[CSSCombinator noneCombinator]];
-            }
+        // added NSStringFromClass() to work around for isKindOfClass: match error in unit test
+        BOOL isSequence = [selector isKindOfClass:[CSSSelectorSequence class]] || [NSStringFromClass([selector class]) isEqualToString:NSStringFromClass([CSSSelectorSequence class])];
+        BOOL hasCombinator = idx == 0 || (![[node.selectors objectAtIndex:idx - 1] isKindOfClass:[CSSCombinator class]] && ![NSStringFromClass([[node.selectors objectAtIndex:idx - 1] class]) isEqualToString:NSStringFromClass([CSSCombinator class])]);
+
+        if (isSequence && hasCombinator) {
+            [self visit:[CSSCombinator noneCombinator]];
         }
         [self visit:selector];
     }];
