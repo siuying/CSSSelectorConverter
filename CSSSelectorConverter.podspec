@@ -22,5 +22,5 @@ Pod::Spec.new do |s|
   s.source_files           = 'CSSSelectorConverter/CSS*.{m,h}'
   s.prefix_header_contents = "#import \"CSSSelectorConverter.h\""
   s.requires_arc           = true
-  s.resources              = 'CSSSelectorConverter/*.{txt,plist}'
+  s.resources              = ['CSSSelectorConverter/*.{txt}', 'CSSSelectorConverter/CSSSelectorParser.plist']
 end
