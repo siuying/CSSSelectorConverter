@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'CSSSelectorConverter'
-  s.version  = '1.1.4'
+  s.version  = '1.1.5'
   s.license  = 'MIT'
   s.summary  = 'Objective-C/Cocoa String Tokenizer and Parser toolkit. Supports Grammars.'
   s.homepage = 'https://github.com/siuying/CSSSelectorConverter'
