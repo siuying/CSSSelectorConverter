@@ -68,7 +68,6 @@ Following pseduo classes will not be supported:
 
 1. Install cocoapods
 2. Install pods: ``pod install``
-3. Get submodule (CoreParse): ``git submodule update --init``
 
 ## License
 
