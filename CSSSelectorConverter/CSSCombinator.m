@@ -7,12 +7,7 @@
 //
 
 #import "CSSCombinator.h"
-#import "DDLog.h"
 #import "NUIParse.h"
-
-#undef LOG_LEVEL_DEF
-#define LOG_LEVEL_DEF cssSelectorLogLevel
-static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
 
 @implementation CSSCombinator
 

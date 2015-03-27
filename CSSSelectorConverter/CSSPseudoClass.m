@@ -5,11 +5,6 @@
 //  Created by Chong Francis on 14年1月8日.
 //  Copyright (c) 2014年 Ignition Soft. All rights reserved.
 //
-#import "DDLog.h"
-#undef LOG_LEVEL_DEF
-#define LOG_LEVEL_DEF cssSelectorLogLevel
-static const int cssSelectorLogLevel = LOG_LEVEL_WARN;
-
 #import "CSSPseudoClass.h"
 #import "NUIParse.h"
 
