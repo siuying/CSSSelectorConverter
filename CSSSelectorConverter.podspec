@@ -19,6 +19,7 @@ Pod::Spec.new do |s|
   s.dependency 'NUIParse'
   s.requires_arc           = true
 
+  s.public_header_files    = "CSSSelectorConverter/CSSSelectorConverter.h", "CSSSelectorConverter/CSSSelectorToXPathConverter.h"
   s.source_files           = 'CSSSelectorConverter/CSS*.{m,h}'
   s.prefix_header_contents = "#import \"CSSSelectorConverter.h\""
   s.requires_arc           = true
