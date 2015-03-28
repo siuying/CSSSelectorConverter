@@ -1,6 +1,21 @@
 Changelog
 ---------
 
+1.2.1
+-----
+
+- Added [CSSSelectorToXPathConverter sharedConverter].
+
+1.2.0
+-----
+
+- Update podspec to only expose minimal files.
+
+1.1.2
+-----
+
+- Use NUIParse.
+
 1.1.0 (28/01/2014)
 ------------------
 

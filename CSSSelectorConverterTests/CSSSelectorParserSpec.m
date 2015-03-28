@@ -15,33 +15,21 @@
 SPEC_BEGIN(CSSSelectorParserSpec)
 
 describe(@"CSSSelectorParser", ^{
-    it(@"parse css", ^{
-        CSSSelectorParser *parser = [[CSSSelectorParser alloc] init];
-        CSSSelectorGroup* tree = [parser parse:@"table:first-child" error:nil];
-        [[tree shouldNot] beNil];
-        NSLog(@"result = %@", tree);
+    context(@"serialization", ^{
+        xit(@"should serialize and deserialize a parser", ^{
+            CSSSelectorTokeniser* tokenizer1 = [[CSSSelectorTokeniser alloc] init];
+            CSSSelectorTokeniser* tokenizer2 = [[CSSSelectorTokeniser alloc] init];
+
+            NUIPLALR1Parser* parser1 = [NUIPLALR1Parser parserWithGrammar:[[CSSSelectorGrammar alloc] initWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"CSSSelectorGrammar" ofType:@"txt"]]];
+            NUIPSyntaxTree* result1 = [parser1 parse:[tokenizer1 tokenise:@"title .article"]];
+            
+            NSData* data = [NSKeyedArchiver archivedDataWithRootObject:parser1];
+            NUIPLALR1Parser *parser2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            NUIPSyntaxTree* result2 = [parser2 parse:[tokenizer2 tokenise:@"title .article"]];
+            
+            [[result1 should] equal:result2];
+        });
     });
-    
-//    context(@"serialization", ^{
-//        it(@"should serialize and deserialize a parser", ^{
-//            NSString* path = [[NSBundle bundleForClass:[CSSSelectorGrammar class]] pathForResource:@"CSSSelectorGrammar" ofType:@"txt"];
-//            CPGrammar* grammar1 = [[CPGrammar alloc] initWithStart:@"CSSSelectorGroup" backusNaurForm:[[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] error:nil];
-//
-//            NSString* outputFile = [NSTemporaryDirectory() stringByAppendingPathComponent:@"grammar.plist"];
-//            [NSKeyedArchiver archiveRootObject:@{@"grammar" : grammar1}
-//                                        toFile:outputFile];
-//
-//            CPGrammar* grammar2 = [NSKeyedUnarchiver unarchiveObjectWithFile:outputFile][@"grammar"];
-//            [[grammar2 should] equal:grammar1];
-//            [[[grammar2 allRules] should] equal:[grammar1 allRules]];
-//
-//            CSSSelectorTokeniser* tokeniser = [[CSSSelectorTokeniser alloc] init];
-//            CPTokenStream *tokenStream = [tokeniser tokenise:@"table"];
-//            CPParser* parser = [CPLALR1Parser parserWithGrammar:grammar2];
-//            id result = [parser parse:tokenStream];
-//            NSLog(@"result = %@", result);
-//        });
-//    });
 });
 
 SPEC_END
