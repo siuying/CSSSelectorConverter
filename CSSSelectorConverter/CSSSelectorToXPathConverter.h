@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) CSSSelectorParser* parser;
 
++(instancetype) sharedConverter;
+
 -(id) init;
 
 -(id) initWithParser:(CSSSelectorParser*)parser;

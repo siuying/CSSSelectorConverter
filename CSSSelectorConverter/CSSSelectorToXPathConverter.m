@@ -12,6 +12,16 @@
 
 @implementation CSSSelectorToXPathConverter
 
++(instancetype) sharedConverter
+{
+    static dispatch_once_t onceToken;
+    static CSSSelectorToXPathConverter* _converter;
+    dispatch_once(&onceToken, ^{
+        _converter = [[self alloc] init];
+    });
+    return _converter;
+}
+
 -(id) initWithParser:(CSSSelectorParser*)parser {
     self = [super init];
     self.parser = parser;
