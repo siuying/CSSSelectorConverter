@@ -4,7 +4,7 @@ PODS:
   - CocoaLumberjack/Core (1.9.2)
   - CocoaLumberjack/Extensions (1.9.2):
     - CocoaLumberjack/Core
-  - Kiwi (2.3.0)
+  - Kiwi (2.3.1)
   - NUIParse (1.2.1)
 
 DEPENDENCIES:
@@ -14,7 +14,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 205769c032b5fef85b92472046bcc8b7e7c8a817
-  Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
+  Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7
   NUIParse: f29eb240cfc9848b216c827884f37ae64abd19e4
 
 COCOAPODS: 0.36.1
