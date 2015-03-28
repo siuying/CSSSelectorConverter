@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'CSSSelectorConverter'
-  s.version  = '1.1.5'
+  s.version  = '1.2.0'
   s.license  = 'MIT'
   s.summary  = 'Objective-C/Cocoa String Tokenizer and Parser toolkit. Supports Grammars.'
   s.homepage = 'https://github.com/siuying/CSSSelectorConverter'
@@ -19,6 +19,7 @@ Pod::Spec.new do |s|
   s.dependency 'NUIParse'
   s.requires_arc           = true
 
+  s.public_header_files    = "CSSSelectorConverter/CSSSelectorConverter.h", "CSSSelectorConverter/CSSSelectorToXPathConverter.h"
   s.source_files           = 'CSSSelectorConverter/CSS*.{m,h}'
   s.prefix_header_contents = "#import \"CSSSelectorConverter.h\""
   s.requires_arc           = true

@@ -5,11 +5,7 @@
 //  Created by Francis Chong on 7/1/14.
 //  Copyright (c) 2014 Ignition Soft. All rights reserved.
 //
-#import "DDLog.h"
-#undef LOG_LEVEL_DEF
-#define LOG_LEVEL_DEF cssSelectorLogLevel
-static const int cssSelectorLogLevel = LOG_LEVEL_VERBOSE;
-
+#import "CSSSelectorParser.h"
 #import "CSSSelectorToXPathConverter.h"
 #import "CSSBaseSelector.h"
 #import "CSSSelectorXPathVisitor.h"

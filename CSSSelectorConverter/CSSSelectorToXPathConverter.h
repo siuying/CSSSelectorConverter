@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CSSSelectorParser.h"
+
+@class CSSSelectorParser;
 
 /**
  * Convert a CSS Selector to XPath.
