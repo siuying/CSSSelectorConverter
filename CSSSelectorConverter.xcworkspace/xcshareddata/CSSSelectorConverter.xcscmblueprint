@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "122DB07625ACCDABC9818C06D3A839B56B29D4FD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "20B5E220B44D3958A2219B13999BCD96DC9444FE" : 0,
+    "122DB07625ACCDABC9818C06D3A839B56B29D4FD" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F3C80365-7344-4DF4-8217-F1266652B9AD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "20B5E220B44D3958A2219B13999BCD96DC9444FE" : "CSSSelectorConverter\/vendor\/CoreParse",
+    "122DB07625ACCDABC9818C06D3A839B56B29D4FD" : "CSSSelectorConverter"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CSSSelectorConverter",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CSSSelectorConverter.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/github.com\/siuying\/CSSSelectorConverter.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "122DB07625ACCDABC9818C06D3A839B56B29D4FD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/beelsebob\/CoreParse.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "20B5E220B44D3958A2219B13999BCD96DC9444FE"
+    }
+  ]
+}

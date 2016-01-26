@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'CSSSelectorConverter'
-  s.version  = '1.2.2'
+  s.version  = '1.2.3'
   s.license  = 'MIT'
   s.summary  = 'Objective-C/Cocoa String Tokenizer and Parser toolkit. Supports Grammars.'
   s.homepage = 'https://github.com/siuying/CSSSelectorConverter'
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target  = '6.0'
   s.osx.deployment_target  = '10.8'
 
-  s.dependency 'CocoaLumberjack', '~> 1.9.0'
+  s.dependency 'CocoaLumberjack', '~> 2.0.0'
   s.dependency 'NUIParse'
   s.requires_arc           = true
 
