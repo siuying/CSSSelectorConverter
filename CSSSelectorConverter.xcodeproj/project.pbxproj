@@ -322,6 +322,7 @@
 				540AA345187BC5F60012AA44 /* Frameworks */,
 				540AA346187BC5F60012AA44 /* Resources */,
 				D4177FD04A764743819E8D91 /* Copy Pods Resources */,
+				CCBB5AE69B0EE716A45BE69F /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -341,6 +342,7 @@
 				540AA369187BC5F70012AA44 /* Frameworks */,
 				540AA36A187BC5F70012AA44 /* Resources */,
 				B54882A65CA547AA967484DE /* Copy Pods Resources */,
+				36C248A9A97CC7EC8A6F38F8 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -427,6 +429,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		36C248A9A97CC7EC8A6F38F8 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CSSSelectorConverterTests/Pods-CSSSelectorConverterTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B54882A65CA547AA967484DE /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -440,6 +457,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CSSSelectorConverterTests/Pods-CSSSelectorConverterTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCBB5AE69B0EE716A45BE69F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D4177FD04A764743819E8D91 /* Copy Pods Resources */ = {
