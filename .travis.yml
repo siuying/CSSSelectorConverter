@@ -1,3 +1,4 @@
+rvm: 2.2.3
 language: objective-c
 before_script:
   - export LANG=en_US.UTF-8
